@@ -1,7 +1,7 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.model.User;
-import com.github.swapbook.repositories.UsersRepository;
+import com.github.swapbook.repositories.users.FakeUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,23 +12,23 @@ import java.util.List;
 public class Users {
 
     @Autowired
-    UsersRepository users;
+    FakeUserRepository userRepository;
 
     @GetMapping("/api/users/all")
     @ResponseBody
     public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok().body(users.getUsers());
+        return ResponseEntity.ok().body(userRepository.getUsers());
     }
 
     @GetMapping("/api/users/{id}")
     @ResponseBody
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") int userId) {
-        return ResponseEntity.ok().body(users.getUserById(userId));
+        return ResponseEntity.ok().body(userRepository.getUserById(userId));
     }
 
     @PostMapping("/api/users/put")
     public void createUser(@RequestBody User user) {
-        users.addToList(user);
+        userRepository.addToList(user);
     }
 
 
