@@ -59,7 +59,7 @@ class FakeUserRepositoryTest {
     }
 
     @Test
-    public void getUserById_ShouldReturnNullForNorExistingUser() {
+    public void getUserById_ShouldReturnNullForNotExistingUser() {
         // Arrange
         int id = 4;
         UserRepository userRepository = new FakeUserRepository();
