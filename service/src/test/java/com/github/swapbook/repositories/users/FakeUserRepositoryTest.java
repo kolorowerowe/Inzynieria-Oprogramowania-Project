@@ -1,4 +1,4 @@
-package com.github.swapbook.repositories;
+package com.github.swapbook.repositories.users;
 
 import com.github.swapbook.model.Specimen;
 import com.github.swapbook.model.User;

@@ -58,8 +58,8 @@ public class Users {
     @PostMapping("/api/users/specimens/{id}")
     public void addSpecimenToUser(@PathVariable(value = "id") int userId, @RequestBody Specimen specimen) {
         specimen.setUserId(userId);
-        userRepository.addSpecimen(userId, specimen);
         specimenRepository.addToList(specimen);
+        userRepository.addSpecimen(userId, specimen);
     }
 
     @DeleteMapping("/api/users/specimens/{id}/{specimenId}")

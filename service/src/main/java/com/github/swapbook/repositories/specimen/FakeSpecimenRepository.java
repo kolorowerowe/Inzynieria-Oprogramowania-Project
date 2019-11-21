@@ -24,9 +24,14 @@ public class FakeSpecimenRepository implements SpecimenRepository {
     }
 
     @Override
-    public void addToList(Specimen specimen) {
+    public Specimen addToList(Specimen specimen) {
         if(specimen != null)
+        {
+            specimen.setId(this.listSpecimens.size() + 1);
             listSpecimens.add(specimen);
+            return specimen;
+        }
+        return (Specimen)null;
     }
 
     @Override

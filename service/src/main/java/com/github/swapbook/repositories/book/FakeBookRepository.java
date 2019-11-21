@@ -1,6 +1,7 @@
 package com.github.swapbook.repositories.book;
 
 import com.github.swapbook.model.Book;
+import com.github.swapbook.model.Review;
 import com.github.swapbook.model.Specimen;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,23 +41,7 @@ public class FakeBookRepository implements BookRepository {
     }
 
     public boolean setContainsName(Set<Book> set, String name) {
-        boolean flag = false;
-        for(Book book: set)
-        {
-            if(book.getName().equals(name))
-                flag = true;
-        }
-        return flag;
-    }
-
-    @Override
-    public void addToList(Book book) {
-        bookSet.add(book);
-    }
-
-    @Override
-    public void deleteSpecimenById(int id) {
-        bookSet.remove(getBookById(id));
+        return set.stream().anyMatch(b -> b.getName().equals(name));
     }
 
     @Override
@@ -72,5 +57,14 @@ public class FakeBookRepository implements BookRepository {
         }
 
         bookSet = bookSetTmp;
+    }
+
+    @Override
+    public void addReviewToBook(int bookId, Review review) {
+        Book book = bookSet.stream().filter(b->b.getId() == bookId).findAny().orElse(null);
+        this.bookSet.remove(book);
+        if(book != null)
+            book.addReview(review);
+        this.bookSet.add(book);
     }
 }

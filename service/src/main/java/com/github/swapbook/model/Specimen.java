@@ -44,6 +44,10 @@ public class Specimen {
         this.rentalTime = rentalTime;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -70,5 +74,13 @@ public class Specimen {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Specimen specimen = (Specimen) o;
+        return id == specimen.id;
     }
 }

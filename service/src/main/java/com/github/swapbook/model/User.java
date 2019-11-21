@@ -46,6 +46,7 @@ public class User {
     }
 
     public void setPassword(String password) {
+        //TODO
         //add some hash on password
         this.password = password;
     }
@@ -60,7 +61,9 @@ public class User {
         this.specimenList.remove(sp);
     }
 
-    public User(){}
+    public User() {
+        this.specimenList = new LinkedList<>();
+    }
 
     public User(int id, String name) {
         this.id = id;
@@ -72,7 +75,7 @@ public class User {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password; // add hash
+        this.password = password; //TODO add hash
         this.address = address;
         this.specimenList = new LinkedList<>();
     }

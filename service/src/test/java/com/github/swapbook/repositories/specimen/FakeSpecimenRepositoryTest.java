@@ -18,7 +18,6 @@ class FakeSpecimenRepositoryTest {
         List<Specimen> specimenList = specimenRepository.getSpecimens();
 
         // Assert
-
         assertEquals(true, specimenList.isEmpty());
     }
 

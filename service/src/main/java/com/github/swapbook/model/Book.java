@@ -1,9 +1,13 @@
 package com.github.swapbook.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Book {
     private int id;
     private String name;
     private String author;
+    private List<Review> reviewList;
 
     public Book() {}
 
@@ -11,6 +15,7 @@ public class Book {
         this.id = id;
         this.name = name;
         this.author = author;
+        this.reviewList = new LinkedList<>();
     }
 
     public int getId() {
@@ -31,5 +36,25 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return name == book.name;
+    }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
+    public void addReview(Review review) {
+        this.reviewList.add((review));
     }
 }
