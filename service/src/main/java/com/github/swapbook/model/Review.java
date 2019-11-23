@@ -1,14 +1,32 @@
 package com.github.swapbook.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "Review")
 public class Review {
+    @Id
+    @PrimaryKeyJoinColumn
+    @Column(columnDefinition = "Id")
     private int id;
+
+    @Column(columnDefinition = "BookId")
     private int bookId;
+
+    @Column(columnDefinition = "UserId")
     private int userId;
+
+    @Column(columnDefinition = "AddingDate")
     private Date addingDate;
+
+    @Column(columnDefinition = "Review")
     private String review;
+
+    @Column(columnDefinition = "Mark")
     private int mark;
+
+    public Review() { }
 
     public Review(int id, int bookId, int userId, String review) {
         this.id = id;

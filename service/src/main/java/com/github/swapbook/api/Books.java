@@ -4,6 +4,7 @@ import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Review;
 import com.github.swapbook.repositories.book.BookRepository;
 import com.github.swapbook.repositories.book.FakeBookRepository;
+import com.github.swapbook.repositories.review.ReviewDBRepository;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class Books {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    private ReviewDBRepository reviewDBRepository;
 
     public Books() {
         bookRepository = new FakeBookRepository();
@@ -42,5 +46,11 @@ public class Books {
     @PostMapping("/api/books/review/{id}")
     public void createBookReview(@PathVariable(value = "id") int bookId, @RequestBody Review review) {
         bookRepository.addReviewToBook(bookId, review);
+    }
+
+    @GetMapping("/api/review")
+    @ResponseBody
+    public ResponseEntity<List<Review>> getAllReviews() {
+        return ResponseEntity.ok().body(reviewDBRepository.findAll());
     }
 }
