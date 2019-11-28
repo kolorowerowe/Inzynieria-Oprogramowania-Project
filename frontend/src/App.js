@@ -5,8 +5,8 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import {Button, Form, FormControl, Nav, Navbar} from "react-bootstrap";
 
-import logo from './logo.svg';
 import Users from './components/Users'
 
 import './App.css';
@@ -21,19 +21,14 @@ class App extends Component {
     return (
       <Router>
           <div>
-              <nav>
-                  <ul>
-                      <li>
-                          <Link to="/">Home</Link>
-                      </li>
-                      <li>
-                          <Link to="/about">About</Link>
-                      </li>
-                      <li>
-                          <Link to="/users">Users</Link>
-                      </li>
-                  </ul>
-              </nav>
+
+              <Navbar bg="dark" variant="dark">
+                  <Navbar.Brand href="/">SwapBook</Navbar.Brand>
+                  <Nav className="mr-auto">
+                      <Nav.Link href="/about">About</Nav.Link>
+                      <Nav.Link href="/users">Użytkownicy</Nav.Link>
+                  </Nav>
+              </Navbar>
 
               {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
