@@ -1,0 +1,25 @@
+.Home{
+    text-align: center;
+}
+
+.login-register{
+    padding: 50px;
+}
+
+.login{
+    background-color: cornflowerblue;
+}
+
+.register{
+    background-color: pink;
+}
+
+.login-register-info{
+    padding: 50px;
+}
+
+.card, .card-body, .card-header {
+    background-color: transparent;
+    border: none;
+}
+
