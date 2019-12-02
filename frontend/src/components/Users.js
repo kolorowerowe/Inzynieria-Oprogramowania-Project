@@ -16,14 +16,14 @@ class Users extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
         const data = new FormData(event.target);
-        console.log(data);
 
         let post_data = {
             id: data.get("id"),
             name : data.get("name")
         };
-        console.log(post_data);
+
         fetch('/api/users/put', {
             method: 'POST',
             body: JSON.stringify(post_data),

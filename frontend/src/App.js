@@ -7,6 +7,7 @@ import {
 import {Nav, Navbar} from "react-bootstrap";
 
 import Users from './components/Users'
+import Home from './components/Home'
 
 import './App.css';
 
@@ -44,10 +45,6 @@ class App extends Component {
             </Router>
         );
     }
-}
-
-function Home() {
-    return <h2>Home</h2>;
 }
 
 function About() {
