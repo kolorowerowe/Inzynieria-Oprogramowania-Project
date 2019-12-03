@@ -4,10 +4,10 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {Nav, Navbar} from "react-bootstrap";
 
 import Users from './components/Users'
 import Home from './components/Home'
+import MyNavbar from './components/MyNavbar'
 
 import './App.css';
 
@@ -19,14 +19,7 @@ class App extends Component {
         return (
             <Router>
                 <div>
-
-                    <Navbar bg="dark" variant="dark">
-                        <Navbar.Brand href="/">SwapBook</Navbar.Brand>
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/about">About</Nav.Link>
-                            <Nav.Link href="/users">Użytkownicy</Nav.Link>
-                        </Nav>
-                    </Navbar>
+                    <MyNavbar/>
 
                     <div id="container">
                         <Switch>
