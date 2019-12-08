@@ -5,6 +5,7 @@ import com.github.swapbook.model.User;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import com.github.swapbook.repositories.users.FakeUserRepository;
+import com.github.swapbook.repositories.users.UserDBRepository;
 import com.github.swapbook.repositories.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +17,10 @@ import java.util.List;
 public class Users {
 
     @Autowired
-    UserRepository userRepository;
+    UserDBRepository userRepository;
 
     @Autowired
     SpecimenRepository specimenRepository;
-
-    public Users() {
-        userRepository = new FakeUserRepository();
-        specimenRepository = new FakeSpecimenRepository();
-    }
 
     @GetMapping("/api/users/all")
     @ResponseBody
