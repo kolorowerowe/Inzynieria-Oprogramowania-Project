@@ -29,7 +29,9 @@ public class UserDBRepository implements UserRepository {
 
     @Override
     public User getUserById(int id) {
-        return null;
+        return ((User) entityManager.createNativeQuery("select * from Users WHERE  id=?", User.class)
+                .setParameter(1, id)
+                .getSingleResult());
     }
 
     @Override
@@ -45,8 +47,11 @@ public class UserDBRepository implements UserRepository {
     }
 
     @Override
+    @Transactional
     public void deleteUserById(int id) {
-
+         entityManager.createNativeQuery("delete from Users WHERE  id=?", User.class)
+                .setParameter(1, id)
+                .executeUpdate();
     }
 
 }
