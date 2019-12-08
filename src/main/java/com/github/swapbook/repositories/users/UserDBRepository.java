@@ -42,7 +42,16 @@ public class UserDBRepository implements UserRepository{
 
     @Override
     public void addToList(User user) {
-
+        final String sql = "insert into Users(id, name , email,password, address, specimenList) values(:id,:name,:email,:password, :address, :specimenList)";
+        KeyHolder holder = new GeneratedKeyHolder();
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("id", user.getId())
+                .addValue("name", user.getName())
+                .addValue("email", user.getEmail())
+                .addValue("password", user.getPassword())
+                .addValue("address", user.getAddress())
+                .addValue("specimenList", user.getSpecimenList().toString());
+        template.update(sql,param, holder);
     }
 
     @Override
