@@ -48,19 +48,4 @@ public class FakeUserRepository implements UserRepository {
         listUsers.remove(getUserById(id));
     }
 
-    @Override
-    public void addSpecimen(int userId, Specimen specimen) {
-        User user = getUserById(userId);
-        if( user != null )
-            if( specimen != null)
-                user.addToSpecimenList(specimen);
-    }
-
-    @Override
-    public void deleteSpecimen(int userId, int specimenId) {
-        User user = getUserById(userId);
-        if( user != null) {
-            user.removeFromSpecimenList(specimenId);
-        }
-    }
 }

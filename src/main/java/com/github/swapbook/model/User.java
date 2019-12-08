@@ -2,18 +2,33 @@ package com.github.swapbook.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "Users")
 public class User {
+
+    @Id
+    @PrimaryKeyJoinColumn
+    @Column(columnDefinition = "id")
     private int id;
+
+    @Column(columnDefinition = "name")
     private String name;
+
+    @Column(columnDefinition = "email")
     private String email;
+
+    @Column(columnDefinition = "password")
     private String password;
+
+    @Column(columnDefinition = "address")
     private String address;
-    private List<Specimen> specimenList;
+
 
     public int getId() {
         return id;
@@ -35,8 +50,6 @@ public class User {
         return address;
     }
 
-    public List<Specimen> getSpecimenList() { return specimenList; }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -51,24 +64,11 @@ public class User {
         this.password = password;
     }
 
-    public void addToSpecimenList(Specimen specimen) {
-        this.specimenList.add(specimen);
-    }
-
-    public void removeFromSpecimenList(int id) {
-        Specimen sp = specimenList.stream().filter(s->s.getId() == id).findAny().orElse(null);
-
-        this.specimenList.remove(sp);
-    }
-
-    public User() {
-        this.specimenList = new LinkedList<>();
-    }
+    public User() { }
 
     public User(int id, String name) {
         this.id = id;
         this.name = name;
-        this.specimenList = new LinkedList<>();
     }
 
     public User(int id, String name, String email, String password, String address) {
@@ -77,7 +77,6 @@ public class User {
         this.email = email;
         this.password = password; //TODO add hash
         this.address = address;
-        this.specimenList = new LinkedList<>();
     }
 
     @Override
