@@ -67,7 +67,7 @@ public class Users {
         userRepository.deleteSpecimen(userId, specimenId);
     }
 
-    @GetMapping("/api/specimens/all")
+    @GetMapping("/api/users/specimen/all")
     @ResponseBody
     public ResponseEntity<List<Specimen>> getSpecimens() {
         return ResponseEntity.ok().body(specimenRepository.getSpecimens());
