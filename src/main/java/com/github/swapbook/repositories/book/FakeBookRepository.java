@@ -50,9 +50,9 @@ public class FakeBookRepository implements BookRepository {
 
         for(Specimen specimen : specimenRepository.getSpecimens())
         {
-            if(!setContainsName(bookSetTmp, specimen.getName()))
+            if(!setContainsName(bookSetTmp, specimen.getTitle()))
             {
-                bookSetTmp.add(new Book(bookSetTmp.size(), specimen.getName(), specimen.getAuthor()));
+                bookSetTmp.add(new Book(bookSetTmp.size(), specimen.getTitle(), specimen.getAuthor()));
             }
         }
 

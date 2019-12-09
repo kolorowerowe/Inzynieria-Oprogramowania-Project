@@ -8,6 +8,8 @@ import {Nav, Navbar} from "react-bootstrap";
 
 import Users from './components/Users'
 import AddBook from './components/AddBook'
+import AddSpecimen from './components/AddSpecimen'
+
 
 import './App.css';
 
@@ -26,7 +28,7 @@ class App extends Component {
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
                             <Nav.Link href="/addbook">Dodaj książke</Nav.Link>
-
+                            <Nav.Link href="/addspecimen">Dodaj egzemplarz</Nav.Link>
                         </Nav>
                     </Navbar>
 
@@ -41,6 +43,10 @@ class App extends Component {
                             <Route path="/addbook">
                                 <AddBook/>
                             </Route>
+                            <Route path="/addspecimen">
+                                <AddSpecimen/>
+                            </Route>
+
                             <Route path="/">
                                 <Home/>
                             </Route>

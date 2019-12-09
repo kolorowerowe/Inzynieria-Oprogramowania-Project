@@ -72,7 +72,7 @@ class FakeSpecimenRepositoryTest {
         assertNotNull(specimen);
         assertEquals(id, specimen.getId());
         assertEquals(id, specimen.getUserId());
-        assertEquals(name, specimen.getName());
+        assertEquals(name, specimen.getTitle());
     }
 
     @Test

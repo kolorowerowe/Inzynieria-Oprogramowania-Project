@@ -39,10 +39,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.github</groupId>
-            <artifactId>swap-book</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github</groupId>-->
+<!--            <artifactId>swap-book</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

@@ -1,16 +1,13 @@
 package com.github.swapbook.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Specimen {
     private int id;
     private int userId;
-    private String name; //Title if better
+    private String title; //Title if better
     private String state;
     private int numberOfPages;
     private String author;
@@ -18,21 +15,21 @@ public class Specimen {
     private String releaseNumber;
     private String isbn;
     private String publishingHouse;
-    private List<String> tags;
+    //private List<String> tags;
     private Timestamp rentalTime;
 
     public Specimen() {}
 
-    public Specimen(int id, int userId, String name) {
+    public Specimen(int id, int userId, String title) {
         this.id = id;
         this.userId = userId;
-        this.name = name;
+        this.title = title;
     }
 
-    public Specimen(int id, int userId, String name, String state, int numberOfPages, String author, Date releaseDate, String releaseNumber, String isbn, String publishingHouse, List<String> tags, Timestamp rentalTime) {
+    public Specimen(int id, int userId, String title, String state, int numberOfPages, String author, Date releaseDate, String releaseNumber, String isbn, String publishingHouse, Timestamp rentalTime) {
         this.id = id;
         this.userId = userId;
-        this.name = name;
+        this.title = title;
         this.state = state;
         this.numberOfPages = numberOfPages;
         this.author = author;
@@ -40,7 +37,7 @@ public class Specimen {
         this.releaseNumber = releaseNumber;
         this.isbn = isbn;
         this.publishingHouse = publishingHouse;
-        this.tags = tags;
+        //this.tags = tags;
         this.rentalTime = rentalTime;
     }
 
@@ -56,12 +53,12 @@ public class Specimen {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getId() {
