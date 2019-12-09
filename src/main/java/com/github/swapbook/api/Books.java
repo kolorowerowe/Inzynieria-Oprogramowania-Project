@@ -29,7 +29,7 @@ public class Books {
     @GetMapping("/api/books/all")
     @ResponseBody
     public ResponseEntity<List<Book>> getAllBooks() {
-        bookRepository.updateUniqueBooks();
+        //bookRepository.updateUniqueBooks();
         return ResponseEntity.ok().body(bookRepository.getBooks());
     }
 
@@ -43,4 +43,8 @@ public class Books {
     public void createBookReview(@PathVariable(value = "id") int bookId, @RequestBody Review review) {
         bookRepository.addReviewToBook(bookId, review);
     }
+
+    @PostMapping("/api/books/put")
+    public void createBook(@RequestBody Book book){ bookRepository.addBook(book);}
+
 }

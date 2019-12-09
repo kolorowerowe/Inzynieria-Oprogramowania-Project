@@ -48,7 +48,7 @@ public class Users {
         userRepository.deleteUserById((userId));
     }
 
-
+    // czy tu nie powinno być /api/users/.... ?
     @GetMapping("api/users/specimens/{id}")
     @ResponseBody
     public ResponseEntity<List<Specimen>> getUsersSpecimens(@PathVariable(value = "id") int userId) {

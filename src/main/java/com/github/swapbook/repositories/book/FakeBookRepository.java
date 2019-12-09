@@ -39,7 +39,7 @@ public class FakeBookRepository implements BookRepository {
                 .findAny()
                 .orElse(null);
     }
-
+    //set?
     public boolean setContainsName(Set<Book> set, String name) {
         return set.stream().anyMatch(b -> b.getName().equals(name));
     }
@@ -56,7 +56,9 @@ public class FakeBookRepository implements BookRepository {
             }
         }
 
-        bookSet = bookSetTmp;
+        //bookSet = bookSetTmp;
+        bookSet = new HashSet<>(bookSetTmp);
+
     }
 
     @Override
@@ -66,5 +68,11 @@ public class FakeBookRepository implements BookRepository {
         if(book != null)
             book.addReview(review);
         this.bookSet.add(book);
+    }
+
+    @Override
+    public void addBook(Book book) {
+        if(book != null)
+            bookSet.add(book);
     }
 }

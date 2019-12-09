@@ -11,4 +11,5 @@ public interface BookRepository {
     Book getBookByName(String name);
     void updateUniqueBooks();
     void addReviewToBook(int bookId, Review review);
+    void addBook(Book book);
 }

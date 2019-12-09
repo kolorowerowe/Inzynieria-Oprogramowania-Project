@@ -7,6 +7,7 @@ import {
 import {Nav, Navbar} from "react-bootstrap";
 
 import Users from './components/Users'
+import AddBook from './components/AddBook'
 
 import './App.css';
 
@@ -24,6 +25,8 @@ class App extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
+                            <Nav.Link href="/addbook">Dodaj książke</Nav.Link>
+
                         </Nav>
                     </Navbar>
 
@@ -34,6 +37,9 @@ class App extends Component {
                             </Route>
                             <Route path="/users">
                                 <Users/>
+                            </Route>
+                            <Route path="/addbook">
+                                <AddBook/>
                             </Route>
                             <Route path="/">
                                 <Home/>
@@ -50,8 +56,14 @@ function Home() {
     return <h2>Home</h2>;
 }
 
+//??? Czemu musi byc w Divie? To wymaganie FrameWorka?
 function About() {
-    return <h2>About</h2>;
+    return (
+        <div className="asd">
+            <h2>About</h2>
+            <p>Jakis tekst</p>
+        </div>
+            );
 }
 
 
