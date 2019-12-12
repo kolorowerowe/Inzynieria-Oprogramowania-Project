@@ -93,4 +93,15 @@ public class User {
         return Objects.hash(id);
     }
 
+    public boolean Verify(LoginModel loginModel)
+    {
+        if(this.email.equals(loginModel.getEmail()))
+        {
+            if(this.password.equals(loginModel.getPassword()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

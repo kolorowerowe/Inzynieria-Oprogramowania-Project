@@ -63,4 +63,12 @@ public class FakeUserRepository implements UserRepository {
             user.removeFromSpecimenList(specimenId);
         }
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return listUsers.stream()
+                .filter(u -> u.getEmail().equals(email))
+                .findAny()
+                .orElse(null);
+    }
 }

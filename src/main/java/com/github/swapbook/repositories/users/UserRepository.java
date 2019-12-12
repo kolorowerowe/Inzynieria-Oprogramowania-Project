@@ -13,4 +13,5 @@ public interface UserRepository {
     public void deleteUserById(int id);
     public void addSpecimen(int userId, Specimen specimen);
     public void deleteSpecimen(int userId, int specimenId);
+    public User getUserByEmail(String email);
 }

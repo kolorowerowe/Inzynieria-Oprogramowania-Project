@@ -6,15 +6,18 @@ import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import com.github.swapbook.repositories.users.FakeUserRepository;
 import com.github.swapbook.repositories.users.UserRepository;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 public class Users {
 
+    private String BadToken = "Incorrect Token value";
     @Autowired
     UserRepository userRepository;
 
@@ -34,8 +37,11 @@ public class Users {
 
     @GetMapping("/api/users/{id}")
     @ResponseBody
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") int userId) {
-        return ResponseEntity.ok().body(userRepository.getUserById(userId));
+    public ResponseEntity<User> getUserById(HttpServletRequest request, @PathVariable(value = "id") int userId) {
+        if(VerifyToken(request, userId))
+            return ResponseEntity.ok().body(userRepository.getUserById(userId));
+        else
+            return  ResponseEntity.badRequest().body(null);
     }
 
     @PostMapping("/api/users/put")
@@ -44,32 +50,58 @@ public class Users {
     }
 
     @DeleteMapping("/api/users/{id}")
-    public void deleteUser(@PathVariable(value = "id") int userId) {
-        userRepository.deleteUserById((userId));
+    public void deleteUser(HttpServletRequest request, @PathVariable(value = "id") int userId) {
+        if(VerifyToken(request, userId))
+            userRepository.deleteUserById((userId));
     }
 
 
     @GetMapping("api/users/specimens/{id}")
     @ResponseBody
-    public ResponseEntity<List<Specimen>> getUsersSpecimens(@PathVariable(value = "id") int userId) {
-        return ResponseEntity.ok().body(userRepository.getUserById(userId).getSpecimenList());
+    public ResponseEntity<List<Specimen>> getUsersSpecimens(HttpServletRequest request, @PathVariable(value = "id") int userId) {
+        if(VerifyToken(request, userId))
+            return ResponseEntity.ok().body(userRepository.getUserById(userId).getSpecimenList());
+        else
+            return  ResponseEntity.badRequest().body(null);
     }
 
     @PostMapping("/api/users/specimens/{id}")
-    public void addSpecimenToUser(@PathVariable(value = "id") int userId, @RequestBody Specimen specimen) {
-        specimen.setUserId(userId);
-        specimenRepository.addToList(specimen);
-        userRepository.addSpecimen(userId, specimen);
+    public void addSpecimenToUser(HttpServletRequest request, @PathVariable(value = "id") int userId, @RequestBody Specimen specimen) {
+        if(VerifyToken(request, userId))
+        {
+            specimen.setUserId(userId);
+            specimenRepository.addToList(specimen);
+            userRepository.addSpecimen(userId, specimen);
+        }
     }
 
     @DeleteMapping("/api/users/specimens/{id}/{specimenId}")
-    public void deleteSpecimenFromUser(@PathVariable(value = "id") int userId, @PathVariable(value = "specimenId") int specimenId) {
-        userRepository.deleteSpecimen(userId, specimenId);
+    public void deleteSpecimenFromUser(HttpServletRequest request, @PathVariable(value = "id") int userId, @PathVariable(value = "specimenId") int specimenId) {
+        if(VerifyToken(request, userId))
+            userRepository.deleteSpecimen(userId, specimenId);
     }
 
     @GetMapping("/api/specimens/all")
     @ResponseBody
     public ResponseEntity<List<Specimen>> getSpecimens() {
         return ResponseEntity.ok().body(specimenRepository.getSpecimens());
+    }
+
+    private boolean VerifyToken(HttpServletRequest request, int userId)
+    {
+        User user = userRepository.getUserById(userId);
+        if(user != null)
+        {
+            String token = request.getHeader("Authorization");
+
+            String email = Jwts.parser()
+                    .setSigningKey("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=".getBytes())
+                    .parseClaimsJws(token.replace("Bearer ", ""))
+                    .getBody()
+                    .getSubject();
+            if(email.equals(user.getEmail()))
+                return true;
+        }
+        return false;
     }
 }
