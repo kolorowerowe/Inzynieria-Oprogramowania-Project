@@ -2,62 +2,67 @@ DROP SCHEMA IF EXISTS swapbook CASCADE;
 CREATE SCHEMA IF NOT EXISTS swapbook;
 
 CREATE TABLE swapbook.users (
-    id INT PRIMARY KEY,
+    user_id INT PRIMARY KEY,
     name VARCHAR (255) NOT NULL,
     email VARCHAR (255) UNIQUE NOT NULL,
     password VARCHAR (255) NOT NULL,
     address VARCHAR (255)
 );
 
-CREATE TABLE swapbook.opinie (
-    id INT PRIMARY KEY,
+CREATE TABLE swapbook.opinions (
+    opinion_id INT PRIMARY KEY,
     id_wystawiajacy INT REFERENCES swapbook.users,
     id_oceniany INT REFERENCES swapbook.users,
-    tresc VARCHAR (500),
-    ocena INT NOT NULL CHECK ((idkompozycji >= 1) AND ( idkompozycji <= 5 )),
-    data DATE
+    text VARCHAR (500),
+    rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
+    date DATE
 );
 
-CREATE TABLE swapbook.ksiazki (
-    id INT PRIMARY KEY,
-    tytul VARCHAR (255) UNIQUE NOT NULL,
-    autor VARCHAR (255)  NOT NULL,
-    zdjecie_url VARCHAR (255) NOT NULL --url?
+CREATE TABLE swapbook.books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR (255) UNIQUE NOT NULL,
+    author VARCHAR (255)  NOT NULL,
+    photo_url VARCHAR (255) NOT NULL
 );
 
-CREATE TABLE swapbook.recenzje(
+CREATE TABLE swapbook.review(
     id INT PRIMARY KEY,
-    ksiazkaID INT REFERENCES swapbook.ksiazki,
-    userID INT REFERENCES swapbook.users,
-    tresc VARCHAR (500),
-    ocena INT NOT NULL CHECK ((ocena >= 1) AND ( ocena <= 5 )),
-    data DATE
+    book_id INT REFERENCES swapbook.books,
+    user_id INT REFERENCES swapbook.users,
+    text VARCHAR (500),
+    rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
+    date DATE
 );
 
-CREATE TABLE swapbook.egzemplarze(
-    id INT PRIMARY KEY,
-    ksiazkaID INT REFERENCES swapbook.ksiazki,
-    tytul VARCHAR (255) NOT NULL,
-    stan VARCHAR(64),
-    lStron INT ,
-    autor VARCHAR (255) NOT NULL,
-    dataWydania DATE,
-    nrWydania VARCHAR (64),
+CREATE TABLE swapbook.specimens(
+    specimen_id INT PRIMARY KEY,
+    book_id INT REFERENCES swapbook.books,
+    user_id INT REFERENCES swapbook.users,
+    title VARCHAR (255) NOT NULL,
+    condition VARCHAR(64),
+    number_pages INT ,
+    author VARCHAR (255) NOT NULL,
+    release_date DATE,
+    issue_number VARCHAR (64),
     ISBN VARCHAR (64),
-    czas_wypozyczenia DATE,
-    zdjecie_url VARCHAR (255) NOT NULL -- url?
+    loan_period DATE,
+    photo_url VARCHAR (255) NOT NULL
 );
 
-CREATE TABLE swapbook.wypozyczenia(
-    id INT PRIMARY KEY,
-    egzemplarzID INT REFERENCES swapbook.egzemplarze,
-    wlascicielID INT REFERENCES swapbook.users,
-    czytelnikID INT REFERENCES swapbook.users,
-    stan VARCHAR(64),                           -- tutaj z jakiejś listy rozwijanej, 1-5 czy jak?
-    data_wyp DATE NOT NULL,
-    data_odbioru DATE,
-    dl_wyp INT                                   -- w dniach?
+CREATE TABLE swapbook.loans(
+    loan_id INT PRIMARY KEY,
+    specimen_id INT REFERENCES swapbook.specimens,
+    owner_id INT REFERENCES swapbook.users,
+    loaner_id INT REFERENCES swapbook.users,
+    loan_status VARCHAR(64),
+    date_loan DATE NOT NULL,
+    date_return DATE,
+    period_days INT
 )
 
-INSERT INTO Users
-VALUES (12, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180','12,34,53');
+INSERT INTO swapboop.users
+VALUES
+    (12, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180'),
+    (24, 'Marcin', 'marcin@gmail.com', 'yyy','Kraków Chuta')
+    (36, 'Szymon', 'sborowy@gmail.com', 'zzz','Kraków nie Kraków')
+    ;
