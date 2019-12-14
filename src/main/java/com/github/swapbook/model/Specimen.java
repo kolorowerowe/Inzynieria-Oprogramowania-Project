@@ -26,6 +26,17 @@ public class Specimen {
         this.title = title;
     }
 
+    //potrzebne do czesciowego testowania /api/specimens/put
+    public Specimen(int id, String title, String state, int numberOfPages, String author)
+    {
+        System.out.println("Konstruktor");
+        this.id = id;
+        this.title = title;
+        this.state = state;
+        this.numberOfPages = numberOfPages;
+        this.author = author;
+    }
+
     public Specimen(int id, int userId, String title, String state, int numberOfPages, String author, Date releaseDate, String releaseNumber, String isbn, String publishingHouse, Timestamp rentalTime) {
         this.id = id;
         this.userId = userId;
@@ -44,6 +55,10 @@ public class Specimen {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getState() {return state;}
+
+    public int getNumberOfPages(){return numberOfPages;}
 
     public int getUserId() {
         return userId;

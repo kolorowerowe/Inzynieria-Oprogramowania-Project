@@ -1,3 +1,8 @@
 .specimenCol{
     border: 2px solid black;
 }
+
+.errorMessage{
+    color: red;
+    font-size: large;
+}

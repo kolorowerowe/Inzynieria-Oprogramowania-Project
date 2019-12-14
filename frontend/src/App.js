@@ -62,7 +62,6 @@ function Home() {
     return <h2>Home</h2>;
 }
 
-//??? Czemu musi byc w Divie? To wymaganie FrameWorka?
 function About() {
     return (
         <div className="asd">
