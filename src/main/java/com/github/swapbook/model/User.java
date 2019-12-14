@@ -3,19 +3,17 @@ package com.github.swapbook.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "Users")
+@Table(name = "swapbook.users")
 public class User {
 
     @Id
     @PrimaryKeyJoinColumn
-    @Column(columnDefinition = "id")
-    private int id;
+    @Column(columnDefinition = "user_id")
+    private int user_id;
 
     @Column(columnDefinition = "name")
     private String name;
@@ -30,8 +28,8 @@ public class User {
     private String address;
 
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
     public String getName() {
@@ -46,8 +44,13 @@ public class User {
         return password;
     }
 
+
     public String getAddress() {
         return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setName(String name) {
@@ -67,12 +70,12 @@ public class User {
     public User() { }
 
     public User(int id, String name) {
-        this.id = id;
+        this.user_id = id;
         this.name = name;
     }
 
     public User(int id, String name, String email, String password, String address) {
-        this.id = id;
+        this.user_id = id;
         this.name = name;
         this.email = email;
         this.password = password; //TODO add hash
@@ -84,12 +87,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return user_id == user.user_id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(user_id);
     }
 
 }

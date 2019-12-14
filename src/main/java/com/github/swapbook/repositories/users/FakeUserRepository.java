@@ -1,6 +1,5 @@
 package com.github.swapbook.repositories.users;
 
-import com.github.swapbook.model.Specimen;
 import com.github.swapbook.model.User;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +31,7 @@ public class FakeUserRepository implements UserRepository {
     @Override
     public User getUserById(int id){
         return listUsers.stream()
-                .filter(u -> u.getId() == id)
+                .filter(u -> u.getUser_id() == id)
                 .findAny()
                 .orElse(null);
     }

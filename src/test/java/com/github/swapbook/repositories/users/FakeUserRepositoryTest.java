@@ -85,7 +85,7 @@ class FakeUserRepositoryTest {
 
         // Assert
         assertNotNull(user);
-        assertEquals(user.getId(), id);
+        assertEquals(user.getUser_id(), id);
         assertEquals(user.getName(), name);
     }
 

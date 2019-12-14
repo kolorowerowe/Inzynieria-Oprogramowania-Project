@@ -11,8 +11,8 @@ CREATE TABLE swapbook.users (
 
 CREATE TABLE swapbook.opinions (
     opinion_id INT PRIMARY KEY,
-    id_wystawiajacy INT REFERENCES swapbook.users,
-    id_oceniany INT REFERENCES swapbook.users,
+    giver_id INT REFERENCES swapbook.users,
+    receiver_id INT REFERENCES swapbook.users,
     text VARCHAR (500),
     rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
     date DATE
@@ -26,7 +26,7 @@ CREATE TABLE swapbook.books (
 );
 
 CREATE TABLE swapbook.review(
-    id INT PRIMARY KEY,
+    review_id INT PRIMARY KEY,
     book_id INT REFERENCES swapbook.books,
     user_id INT REFERENCES swapbook.users,
     text VARCHAR (500),
@@ -58,11 +58,11 @@ CREATE TABLE swapbook.loans(
     date_loan DATE NOT NULL,
     date_return DATE,
     period_days INT
-)
+);
 
-INSERT INTO swapboop.users
+INSERT INTO swapbook.users
 VALUES
     (12, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180'),
-    (24, 'Marcin', 'marcin@gmail.com', 'yyy','Kraków Chuta')
+    (24, 'Marcin', 'marcin@gmail.com', 'yyy','Kraków Chuta'),
     (36, 'Szymon', 'sborowy@gmail.com', 'zzz','Kraków nie Kraków')
     ;
