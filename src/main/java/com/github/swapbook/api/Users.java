@@ -1,5 +1,6 @@
 package com.github.swapbook.api;
 
+import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.Specimen;
 import com.github.swapbook.model.User;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
@@ -16,8 +17,6 @@ import java.util.List;
 
 @RestController
 public class Users {
-
-    private String BadToken = "Incorrect Token value";
     @Autowired
     UserRepository userRepository;
 
@@ -92,11 +91,11 @@ public class Users {
         User user = userRepository.getUserById(userId);
         if(user != null)
         {
-            String token = request.getHeader("Authorization");
+            String token = request.getHeader(SecurityConstants.TOKEN_HEADER);
 
             String email = Jwts.parser()
-                    .setSigningKey("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=".getBytes())
-                    .parseClaimsJws(token.replace("Bearer ", ""))
+                    .setSigningKey(SecurityConstants.JWT_SECRET.getBytes())
+                    .parseClaimsJws(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
             if(email.equals(user.getEmail()))

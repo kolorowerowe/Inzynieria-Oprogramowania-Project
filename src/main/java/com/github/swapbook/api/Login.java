@@ -1,5 +1,6 @@
 package com.github.swapbook.api;
 
+import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.LoginModel;
 import com.github.swapbook.model.User;
 import com.github.swapbook.repositories.users.UserRepository;
@@ -31,22 +32,17 @@ public class Login {
         else {
             boolean isCorrect = loginUser.Verify(loginModel);
             if(isCorrect) {
-                //response.addCookie((new Cookie("", "")));
-
                 String jws = Jwts.builder()
                         .setIssuer("SwapBook")
                         .setSubject(loginUser.getEmail())
-                        //.claim("name", loginUser.getEmail())
-                        // Fri Jun 24 2016 15:33:42 GMT-0400 (EDT)
                         .setIssuedAt(Date.from(Instant.ofEpochSecond(1466796822L)))
-                        // Sat Jun 24 2116 15:33:42 GMT-0400 (EDT)
                         .setExpiration(Date.from(Instant.ofEpochSecond(4622470422L)))
                         .signWith(
                                 SignatureAlgorithm.HS256,
-                                Keys.hmacShaKeyFor("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=".getBytes())
+                                Keys.hmacShaKeyFor(SecurityConstants.JWT_SECRET.getBytes())
                         )
                         .compact();
-                return ResponseEntity.ok().header("Authorization","Bearer "+jws).body(loginUser);
+                return ResponseEntity.ok().header(SecurityConstants.TOKEN_HEADER, SecurityConstants.TOKEN_PREFIX + jws).body(loginUser);
             }
             else
                 return ResponseEntity.badRequest().body(null);
@@ -56,6 +52,6 @@ public class Login {
 
     @GetMapping("/api/logout")
     public void get(HttpServletRequest request, HttpServletResponse response) {
-        response.setHeader("Authorization", "Empty");
+        response.setHeader(SecurityConstants.TOKEN_HEADER, "Empty");
     }
 }
