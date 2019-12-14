@@ -35,11 +35,11 @@ public class FakeBookRepository implements BookRepository {
     @Override
     public Book getBookByName(String name) {
         return bookSet.stream()
-                .filter(b -> b.getName() == name)
+                .filter(b -> b.getName().equals(name))
                 .findAny()
                 .orElse(null);
     }
-    //set?
+
     public boolean setContainsName(Set<Book> set, String name) {
         return set.stream().anyMatch(b -> b.getName().equals(name));
     }
@@ -72,8 +72,10 @@ public class FakeBookRepository implements BookRepository {
 
     @Override
     public void addBook(Book book) {
-        if(book != null)
+        if(book != null) {
+            book.setId(this.bookSet.size() + 1);
             bookSet.add(book);
+        }
     }
 }
 //komentarz

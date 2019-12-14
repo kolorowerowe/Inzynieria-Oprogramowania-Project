@@ -18,9 +18,17 @@ public class Book {
         this.reviewList = new LinkedList<>();
     }
 
+    public Book(String name, String author) {
+        this.name = name;
+        this.author = author;
+        this.reviewList = new LinkedList<>();
+    }
+
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {this.id = id;}
 
     public String getName() {
         return name;

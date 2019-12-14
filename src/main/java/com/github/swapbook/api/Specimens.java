@@ -1,5 +1,6 @@
 package com.github.swapbook.api;
 
+import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
 import com.github.swapbook.repositories.book.BookRepository;
 import com.github.swapbook.repositories.book.FakeBookRepository;
@@ -33,7 +34,17 @@ public class Specimens {
     }
 
     @PostMapping("/api/specimens/put")
-    public void createSpecimen(@RequestBody Specimen specimen){ specimenRepository.addToList(specimen);}
+    public void createSpecimen(@RequestBody Specimen specimen){
+        Book resultBook = bookRepository.getBookByName(specimen.getTitle());
+
+        if(resultBook==null)
+        {
+            Book newBook = new Book(specimen.getTitle(),specimen.getAuthor());
+            bookRepository.addBook(newBook);
+        }
+        specimenRepository.addToList(specimen);
+
+    }
 
 
 }

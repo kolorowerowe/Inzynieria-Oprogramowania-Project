@@ -28,7 +28,7 @@ class App extends Component {
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
                             <Nav.Link href="/addbook">Dodaj książke</Nav.Link>
-                            <Nav.Link href="/addspecimen">Dodaj egzemplarz</Nav.Link>
+                            <Nav.Link href="/addspecimen">Dodaj egzemplarz & książkę</Nav.Link>
                         </Nav>
                     </Navbar>
 

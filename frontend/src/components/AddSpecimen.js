@@ -5,8 +5,8 @@ import "./AddSpecimen.css"
 
 const InitialState = {
     numberOfPagesError: "",
-    titleError: "",
-    authorError: "",
+    releaseDateError: "",
+    rentalTimeError: "",
     stateValue: "Average"
 }
 
@@ -14,6 +14,7 @@ class Specimen extends Component {
 
     state = InitialState;
     specimens = [];
+    books = [];
     form = document.forms['addSpecimenForm'];
 
     constructor(props) {
@@ -23,32 +24,28 @@ class Specimen extends Component {
     }
 
     validateForm = (data) => {
-        let titleError = "";
         let numberOfPagesError = "";
-        let authorError =  "";
+        let releaseDateError = "";
+        let rentalTimeError = "";
         let hasAnyErrors = false;
-        console.log(data.get("title"));
 
         if(!data.get("numberOfPages").match(/[1-9][0-9]*/)) {
             numberOfPagesError="Invalid number of pages";
             this.setState({numberOfPagesError});
             hasAnyErrors=true;
         }
-        if(data.get("title")==="") {
-            titleError = "Title cannot be empty";
-            this.setState({titleError});
-            hasAnyErrors=true;
+        if(Date.parse(data.get("releaseDate")) > Date.now()) {
+            releaseDateError = "Invalid Release Date - such day will already come";
+            this.setState({releaseDateError});
+            hasAnyErrors = true;
         }
-        if(data.get("author")==="") {
-            authorError = "Specify the author";
-            this.setState({authorError});
-            hasAnyErrors=true;
-        }
-
-        if(hasAnyErrors) {
-            return false;
+        if(Date.parse(data.get("rentalTime"))< Date.now()){
+            rentalTimeError = "Invalid Rental Time- such day has already passed";
+            this.setState({rentalTimeError});
+            hasAnyErrors = true
         }
 
+        if(hasAnyErrors) return false;
         return true;
     }
 
@@ -60,17 +57,17 @@ class Specimen extends Component {
 
         if(isValid) {
             let post_data = {
-                id: data.get("id"),
+                //id: data.get("id"),
                 //userId: data.get("userId"),
                 title: data.get("title"),
                 state: data.get("state"),
                 numberOfPages: data.get("numberOfPages"),
                 author: data.get("author"),
-                //releaseDate: data.get("releaseDate"),
-                //releaseNumber: data.get("releaseNumber"),
-                //isbn: data.get("isbn"),
-                //publishingHouse:data.get("publishingHouse"),
-                //rentalTime: data.get("rentalTime")
+                releaseDate: data.get("releaseDate"),
+                releaseNumber: data.get("releaseNumber"),
+                isbn: data.get("isbn"),
+                publishingHouse:data.get("publishingHouse"),
+                rentalTime: data.get("rentalTime")
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
@@ -82,7 +79,7 @@ class Specimen extends Component {
             }).then(
                 function () {
                     console.log("Successfully send form data");
-                    window.location.reload();
+                    //window.location.reload();
                 }
             ).catch(function () {
                 console.log("Error while sending")
@@ -105,6 +102,13 @@ class Specimen extends Component {
                 this.setState({update: 1});
 
             });
+        fetch('/api/books/all')
+            .then(response => response.json())
+            .then(books_res => {
+                this.books = books_res;
+                this.setState({update: 2});
+
+            });
     }
 
 
@@ -115,47 +119,59 @@ class Specimen extends Component {
                 Miejsce na dodanie egzemplarza<br/>
                 <Container>
                     <Row className="specimenRow">
-                        <Col className="specimenCol" md={1}>ID</Col>
-                        <Col className="specimenCol" md={3}>Title</Col>
-                        <Col className="specimenCol" md={1}>State</Col>
-                        <Col className="specimenCol" md={1}>NumOfPages</Col>
-                        <Col className="specimenCol" md={3}>Author</Col>
-                        {/*<Col className="specimenCol" md={2}>ReleasheDate</Col>*/}
-                        {/*<Col className="specimenCol" md={2}>ReleasheNumber</Col>*/}
-                        {/*<Col className="specimenCol" md={3}>ISBN</Col>*/}
-                        {/*<Col className="specimenCol" md={1}>PublishingHouse</Col>*/}
-                        {/*<Col className="specimenCol" md={1}>RentalTime</Col>*/}
+                        <Col className="specimenCol" >ID</Col>
+                        <Col className="specimenCol" >Title</Col>
+                        <Col className="specimenCol" >State</Col>
+                        <Col className="specimenCol" >Num OfPages</Col>
+                        <Col className="specimenCol" >Author</Col>
+                        <Col className="specimenCol" >Release Date</Col>
+                        <Col className="specimenCol" >release Number</Col>
+                        <Col className="specimenCol" >ISBN</Col>
+                        <Col className="specimenCol" >Publishing House</Col>
+                        <Col className="specimenCol" >Rental Time</Col>
                     </Row>
                     {this.specimens.map((specimen) => <Row className="specimenRow">
-                        <Col className="specimenCol" md={1}>{specimen.id}</Col>
-                        <Col className="specimenCol" md={3}>{specimen.title}</Col>
-                        <Col className="specimenCol" md={1}>{specimen.state}</Col>
-                        <Col className="specimenCol" md={1}>{specimen.numberOfPages}</Col>
-                        <Col className="specimenCol" md={3}>{specimen.author}</Col>
-                        {/*<Col className="specimenCol" md={2}>{specimen.releaseDate}</Col>*/}
-                        {/*<Col className="specimenCol" md={2}>{specimen.releaseNumber}</Col>*/}
-                        {/*<Col className="specimenCol" md={3}>{specimen.isbn}</Col>*/}
-                        {/*<Col className="specimenCol" md={1}>{specimen.publishingHouse}</Col>*/}
-                        {/*<Col className="specimenCol" md={1}>{specimen.rentalTime}</Col>*/}
+                        <Col className="specimenCol" >{specimen.id}</Col>
+                        <Col className="specimenCol" >{specimen.title}</Col>
+                        <Col className="specimenCol" >{specimen.state}</Col>
+                        <Col className="specimenCol" >{specimen.numberOfPages}</Col>
+                        <Col className="specimenCol" >{specimen.author}</Col>
+                        <Col className="specimenCol" >{specimen.releaseDate}</Col>
+                        <Col className="specimenCol" >{specimen.releaseNumber}</Col>
+                        <Col className="specimenCol" >{specimen.isbn}</Col>
+                        <Col className="specimenCol" >{specimen.publishingHouse}</Col>
+                        <Col className="specimenCol" >{specimen.rentalTime}</Col>
+                    </Row>)}
+                </Container>
+                <br/>
+                <h3>Tabela książek</h3>
+                <Container>
+                    <Row className="bookRow">
+                        <Col className="bookCol" >ID</Col>
+                        <Col className="bookCol" >NAME</Col>
+                        <Col className="bookCol" >AUTHOR</Col>
+                    </Row>
+                    {this.books.map((book) => <Row className="bookRow">
+                        <Col className="bookCol" >{book.id}</Col>
+                        <Col className="bookCol" >{book.name}</Col>
+                        <Col className="bookCol" >{book.author}</Col>
                     </Row>)}
                 </Container>
                 <br/>
                 <form id="addSpecimenForm" onSubmit={this.handleSubmit}>
 
-                    <label>
-                        Id:
-                        <input type="text" name="id"/>
-                    </label>
+                    {/*<label>*/}
+                    {/*    Id:*/}
+                    {/*    <input type="text" name="id"/>*/}
+                    {/*</label>*/}
                     <br/>
                     <label>
                         Title:
                         <input type="text" name="title" required={true}/>
-                        {/*<div className="errorMessage">{this.state.titleError}</div>*/}
                     </label>
                     <br/>
                     <label>
                         State:
-                        {/*<input type="select" name="state" />*/}
                         <select name="state" value={this.state.stateValue} onChange={this.handleStateChange}>
                             <option value={"Dog-eaten"}>Dog-eaten</option>
                             <option value={"Poor"}>Poor</option>
@@ -167,38 +183,44 @@ class Specimen extends Component {
                     <br/>
                     <label>
                         NumberOfPages:
-                        <input type="text" name="numberOfPages" />
+                        <input type="text" name="numberOfPages" required={true}/>
                         <div className="errorMessage">{this.state.numberOfPagesError}</div>
                     </label>
                     <br/>
                     <label>
                         Author:
                         <input type="text" name="author" required={true}/>
-                        {/*<div className="errorMessage">{this.state.authorError}</div>*/}
                     </label>
-                    {/*<br/>*/}
-                    {/*<label>*/}
-                    {/*    ReleaseNumber:*/}
-                    {/*    <input type="text" name="releaseNumber" />*/}
-                    {/*</label>*/}
-                    {/*<br/>*/}
-                    {/*<label>*/}
-                    {/*    ISBN:*/}
-                    {/*    <input type="text" name="isbn" />*/}
-                    {/*</label>*/}
-                    {/*<br/>*/}
-                    {/*<label>*/}
-                    {/*    PublishingHouse:*/}
-                    {/*    <input type="text" name="publishingHouse" />*/}
-                    {/*</label>*/}
-                    {/*<br/>*/}
-                    {/*<label>*/}
-                    {/*    RentalTime:*/}
-                    {/*    <input type="text" name="rentalTime" />*/}
-                    {/*</label>*/}
-                    {/*<br/>*/}
+                    <br/>
+                    <label>
+                        ReleaseDate:
+                        <input type="date" name="releaseDate" required={true} />
+                        <div className="errorMessage">{this.state.releaseDateError}</div>
+                    </label>
+                    <br/>
+                    <label>
+                        ReleaseNumber:
+                        <input type="text" name="releaseNumber" required={true}/>
+                    </label>
+                    <br/>
+                    <label>
+                        ISBN:
+                        <input type="text" name="isbn" required={true}/>
+                    </label>
+                    <br/>
+                    <label>
+                        PublishingHouse:
+                        <input type="text" name="publishingHouse" required={true}/>
+                    </label>
+                    <br/>
+                    <label>
+                        RentalTime:
+                        <input type="date" name="rentalTime" required={true} />
+                        <div className="errorMessage">{this.state.rentalTimeError}</div>
+                    </label>
+                    <br/>
 
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" required={true} />
                 </form>
             </div>
         );
