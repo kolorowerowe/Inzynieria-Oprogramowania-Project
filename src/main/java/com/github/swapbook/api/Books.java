@@ -39,6 +39,12 @@ public class Books {
         return ResponseEntity.ok().body(bookRepository.getBookById(bookId));
     }
 
+    @GetMapping("/api/books/title/{title}")
+    @ResponseBody
+    public ResponseEntity<Book> getBookByName(@PathVariable(value = "title") String bookTitle){
+        return ResponseEntity.ok().body(bookRepository.getBookByName(bookTitle));
+    }
+
     @PostMapping("/api/books/review/{id}")
     public void createBookReview(@PathVariable(value = "id") int bookId, @RequestBody Review review) {
         bookRepository.addReviewToBook(bookId, review);

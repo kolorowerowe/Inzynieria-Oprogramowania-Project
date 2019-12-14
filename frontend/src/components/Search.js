@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import "./AddBook.css"
+import "./Search.css"
 
 
-class Books extends Component {
+class Search extends Component {
 
+    books=[];
     state = {};
-    books = [];
-    form = document.forms['addBookForm'];
+    form = document.forms['searchBookByTitle'];
 
     constructor(props) {
         super(props);
@@ -20,10 +20,9 @@ class Books extends Component {
         console.log(data);
 
         let post_data = {
-            id: data.get("id"),
-            name : data.get("name"),
-            author: data.get("author")
+            title: data.get("title")
         };
+
         console.log(post_data);
         fetch('/api/books/put', {
             method: 'POST',
@@ -57,8 +56,11 @@ class Books extends Component {
     render() {
         return (
             <div className="books">
-                <h2>Add Book</h2>
-                Miejsce na dodanie książki<br/>
+                <h2>Search BOOKS by name:</h2>
+                <form id="searchBookByTitle" onSubmit={this.handleSubmit}>
+                    <input type={"text"} name={"title"} required={true}/><br/>
+                    <input type={"submit"} value={"Submit"}/>
+                </form>
                 <Container>
                     <Row className="bookRow">
                         <Col className="bookCol" md={2}>ID</Col>
@@ -71,27 +73,9 @@ class Books extends Component {
                         <Col className="bookCol" md={5}>{book.author}</Col>
                     </Row>)}
                 </Container>
-                <br/>
-                <form id="addBookForm" onSubmit={this.handleSubmit}>
-
-                    <label>
-                        Id:
-                        <input type="text" name="id" />
-                    </label>
-                    <label>
-                        Name:
-                        <input type="text" name="name" />
-                    </label>
-                    <label>
-                        Author:
-                        <input type="text" name="author" />
-                    </label>
-
-                    <input type="submit" value="Submit" />
-                </form>
             </div>
         );
     }
 }
 
-export default Books;
+export default Search;
