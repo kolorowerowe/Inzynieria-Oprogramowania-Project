@@ -43,8 +43,6 @@ public class Specimens {
             bookRepository.addBook(newBook);
         }
         specimenRepository.addToList(specimen);
-
     }
-
-
+    
 }

@@ -78,4 +78,3 @@ public class FakeBookRepository implements BookRepository {
         }
     }
 }
-//komentarz

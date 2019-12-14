@@ -7,7 +7,7 @@ const InitialState = {
     releaseDateError: "",
     rentalTimeError: "",
     stateValue: "Average",
-    disabled: true
+    rentalTimeDisabled: true
 }
 
 class Specimen extends Component {
@@ -67,7 +67,7 @@ class Specimen extends Component {
                 releaseNumber: data.get("releaseNumber"),
                 isbn: data.get("isbn"),
                 publishingHouse:data.get("publishingHouse"),
-                rentalTime: (this.state.disabled?"null":data.get("rentalTime"))
+                rentalTime: (this.state.rentalTimeDisabled?"null":data.get("rentalTime"))
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
@@ -79,7 +79,7 @@ class Specimen extends Component {
             }).then(
                 function () {
                     console.log("Successfully send form data");
-                    window.location.reload();
+                    //window.location.reload();
                 }
             ).catch(function () {
                 console.log("Error while sending")
@@ -94,7 +94,7 @@ class Specimen extends Component {
     }
 
     handleRentalTimeStateChange(event){
-        this.setState({disabled: !this.state.disabled});
+        this.setState({rentalTimeDisabled: !this.state.rentalTimeDisabled});
     }
 
 
@@ -165,12 +165,6 @@ class Specimen extends Component {
                 </Container>
                 <br/>
                 <form id="addSpecimenForm" onSubmit={this.handleSubmit}>
-
-                    {/*<label>*/}
-                    {/*    Id:*/}
-                    {/*    <input type="text" name="id"/>*/}
-                    {/*</label>*/}
-                    <br/>
                     <label>
                         Title:
                         <input type="text" name="title" required={true}/>
@@ -226,11 +220,10 @@ class Specimen extends Component {
                     <br/>
                     <label>
                         RentalTime:
-                        <input type="date" name="rentalTime" required={!this.state.disabled} disabled={(this.state.disabled)?true:false}/>
+                        <input type="date" name="rentalTime" required={!this.state.rentalTimeDisabled} disabled={(this.state.rentalTimeDisabled)?true:false}/>
                         <div className="errorMessage">{this.state.rentalTimeError}</div>
                     </label>
                     <br/>
-
                     <input type="submit" value="Submit"/>
                 </form>
             </div>

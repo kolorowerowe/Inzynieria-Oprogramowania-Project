@@ -1,14 +1,9 @@
 package com.github.swapbook;
 
-import com.github.swapbook.model.Specimen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @SpringBootApplication
 public class SwapBookApplication {
@@ -19,8 +14,6 @@ public class SwapBookApplication {
 		SpringApplication.run(SwapBookApplication.class, args);
 
 		log.info("SwapBookApplication has just started");
-
-
 	}
 
 

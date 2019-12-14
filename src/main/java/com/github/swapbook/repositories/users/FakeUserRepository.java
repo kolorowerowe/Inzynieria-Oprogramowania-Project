@@ -13,7 +13,7 @@ public class FakeUserRepository implements UserRepository {
     private List<User> listUsers = new LinkedList<>();
 
     public FakeUserRepository() {
-        /*User user1 = new User(1, "name1");
+        User user1 = new User(1, "name1");
         User user2 = new User(2, "name2");
         User user3 = new User(3, "name3");
         User user4 = new User(4, "name4", "123@123.pl", "123admin", "address");
@@ -21,7 +21,7 @@ public class FakeUserRepository implements UserRepository {
         this.addToList(user1);
         this.addToList(user2);
         this.addToList(user3);
-        this.addToList(user4);*/
+        this.addToList(user4);
     }
 
     @Override

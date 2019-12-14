@@ -1,6 +1,5 @@
 package com.github.swapbook.model;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -43,7 +42,6 @@ public class Specimen {
         this.numberOfPages = numberOfPages;
         this.author = author;
     }
-
 
     public Specimen(int id, String title, String state, int numberOfPages, String author)
     {
@@ -181,7 +179,7 @@ public class Specimen {
     }
 
     public void setRentalTime(String rentalTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         if (rentalTime.equals("null"))
             this.rentalTime = null;
         else
