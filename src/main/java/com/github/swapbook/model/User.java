@@ -2,21 +2,34 @@ package com.github.swapbook.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.LinkedList;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "swapbook.users")
 public class User {
-    private int id;
-    private String name;
-    private String email;
-    private String password;
-    private String address;
-    private List<Specimen> specimenList;
 
-    public int getId() {
-        return id;
+    @Id
+    @PrimaryKeyJoinColumn
+    @Column(columnDefinition = "user_id")
+    private int user_id;
+
+    @Column(columnDefinition = "name")
+    private String name;
+
+    @Column(columnDefinition = "email")
+    private String email;
+
+    @Column(columnDefinition = "password")
+    private String password;
+
+    @Column(columnDefinition = "address")
+    private String address;
+
+
+    public int getUser_id() {
+        return user_id;
     }
 
     public String getName() {
@@ -31,11 +44,14 @@ public class User {
         return password;
     }
 
+
     public String getAddress() {
         return address;
     }
 
-    public List<Specimen> getSpecimenList() { return specimenList; }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -51,33 +67,19 @@ public class User {
         this.password = password;
     }
 
-    public void addToSpecimenList(Specimen specimen) {
-        this.specimenList.add(specimen);
-    }
-
-    public void removeFromSpecimenList(int id) {
-        Specimen sp = specimenList.stream().filter(s->s.getId() == id).findAny().orElse(null);
-
-        this.specimenList.remove(sp);
-    }
-
-    public User() {
-        this.specimenList = new LinkedList<>();
-    }
+    public User() { }
 
     public User(int id, String name) {
-        this.id = id;
+        this.user_id = id;
         this.name = name;
-        this.specimenList = new LinkedList<>();
     }
 
     public User(int id, String name, String email, String password, String address) {
-        this.id = id;
+        this.user_id = id;
         this.name = name;
         this.email = email;
         this.password = password; //TODO add hash
         this.address = address;
-        this.specimenList = new LinkedList<>();
     }
 
     @Override
@@ -85,12 +87,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return user_id == user.user_id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(user_id);
     }
 
 }
