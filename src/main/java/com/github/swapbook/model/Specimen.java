@@ -174,11 +174,17 @@ public class Specimen {
     }
 
     public String getRentalTime() {
-        return rentalTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        if(rentalTime==null)
+            return "null";
+        else
+            return rentalTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     public void setRentalTime(String rentalTime) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.rentalTime = LocalDate.parse(rentalTime,dtf);
+        if (rentalTime.equals("null"))
+            this.rentalTime = null;
+        else
+            this.rentalTime = LocalDate.parse(rentalTime,dtf);
     }
 }

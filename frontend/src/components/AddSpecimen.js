@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import "./AddSpecimen.css"
 
-
 const InitialState = {
     numberOfPagesError: "",
     releaseDateError: "",
     rentalTimeError: "",
-    stateValue: "Average"
+    stateValue: "Average",
+    disabled: true
 }
 
 class Specimen extends Component {
-
     state = InitialState;
     specimens = [];
     books = [];
@@ -21,6 +20,7 @@ class Specimen extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleStateChange = this.handleStateChange.bind(this);
+        this.handleRentalTimeStateChange = this.handleRentalTimeStateChange.bind(this);
     }
 
     validateForm = (data) => {
@@ -67,7 +67,7 @@ class Specimen extends Component {
                 releaseNumber: data.get("releaseNumber"),
                 isbn: data.get("isbn"),
                 publishingHouse:data.get("publishingHouse"),
-                rentalTime: data.get("rentalTime")
+                rentalTime: (this.state.disabled?"null":data.get("rentalTime"))
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
@@ -79,11 +79,12 @@ class Specimen extends Component {
             }).then(
                 function () {
                     console.log("Successfully send form data");
-                    //window.location.reload();
+                    window.location.reload();
                 }
             ).catch(function () {
                 console.log("Error while sending")
             });
+
             this.setState(InitialState);
         }
     }
@@ -91,6 +92,11 @@ class Specimen extends Component {
     handleStateChange(event) {
         this.setState({stateValue: event.target.stateValue});
     }
+
+    handleRentalTimeStateChange(event){
+        this.setState({disabled: !this.state.disabled});
+    }
+
 
     componentDidMount() {
         fetch('/api/specimens/all')
@@ -214,13 +220,18 @@ class Specimen extends Component {
                     </label>
                     <br/>
                     <label>
+                        Ready for renting:<br/>
+                        <input type="button" name={"readyForRenting"} onClick={this.handleRentalTimeStateChange}/>Yes<br/>
+                    </label>
+                    <br/>
+                    <label>
                         RentalTime:
-                        <input type="date" name="rentalTime" required={true} />
+                        <input type="date" name="rentalTime" required={!this.state.disabled} disabled={(this.state.disabled)?true:false}/>
                         <div className="errorMessage">{this.state.rentalTimeError}</div>
                     </label>
                     <br/>
 
-                    <input type="submit" value="Submit" required={true} />
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
         );
