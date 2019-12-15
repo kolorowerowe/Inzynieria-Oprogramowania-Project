@@ -1,33 +1,47 @@
 package com.github.swapbook.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "swapbook.books")
 public class Book {
-    private int id;
-    private String name;
+
+    @Id
+    @PrimaryKeyJoinColumn
+    @Column
+    private int book_id;
+
+    @Column
+    private String title;
+
+    @Column
     private String author;
-    private List<Review> reviewList;
+
+    @Column
+    private String photo_url;
 
     public Book() {}
 
-    public Book(int id, String name, String author) {
-        this.id = id;
-        this.name = name;
+    public Book(int book_id, String title, String author) {
+        this.book_id = book_id;
+        this.title = title;
         this.author = author;
-        this.reviewList = new LinkedList<>();
+        this.photo_url = "";
     }
 
-    public int getId() {
-        return id;
+    public int getBook_id() {
+        return book_id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
@@ -38,23 +52,20 @@ public class Book {
         this.author = author;
     }
 
+    public String getPhoto_url() {
+        return photo_url;
+    }
+
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return name == book.name;
+        return title == book.title;
     }
 
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
-    public void addReview(Review review) {
-        this.reviewList.add((review));
-    }
 }
