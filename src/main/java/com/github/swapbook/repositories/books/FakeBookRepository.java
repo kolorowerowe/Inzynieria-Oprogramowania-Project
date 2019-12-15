@@ -1,8 +1,8 @@
-package com.github.swapbook.repositories.book;
+package com.github.swapbook.repositories.books;
 
 import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
-import com.github.swapbook.repositories.specimen.SpecimenDBRepository;
+import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

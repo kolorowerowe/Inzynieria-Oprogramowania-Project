@@ -1,4 +1,4 @@
-package com.github.swapbook.repositories.specimen;
+package com.github.swapbook.repositories.specimens;
 
 import com.github.swapbook.model.Specimen;
 import java.util.List;

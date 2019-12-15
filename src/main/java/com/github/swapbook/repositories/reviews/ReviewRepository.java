@@ -1,4 +1,4 @@
-package com.github.swapbook.repositories.review;
+package com.github.swapbook.repositories.reviews;
 
 import com.github.swapbook.model.Review;
 

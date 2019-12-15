@@ -1,8 +1,7 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.model.Specimen;
-import com.github.swapbook.repositories.specimen.SpecimenDBRepository;
-import com.github.swapbook.repositories.specimen.SpecimenRepository;
+import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

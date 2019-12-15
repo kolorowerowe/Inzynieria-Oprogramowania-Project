@@ -1,4 +1,4 @@
-package com.github.swapbook.repositories.book;
+package com.github.swapbook.repositories.books;
 
 import com.github.swapbook.model.Book;
 

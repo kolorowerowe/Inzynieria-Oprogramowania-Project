@@ -81,3 +81,7 @@ VALUES
 INSERT INTO swapbook.opinions
 VALUES
     (111, 12, 24, 'Marcin to spoko gość, powiedział Dominik jbc', 5, '2019-12-13');
+
+INSERT INTO swapbook.loans
+VALUES
+    (131, 71, 24, 36, 'LOANED', '2019-12-05', '2019-12-30', 30);
