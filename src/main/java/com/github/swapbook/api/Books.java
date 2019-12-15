@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
@@ -23,9 +24,13 @@ public class Books {
     private BookRepository searchBookRepository;
 
     public Books() {
-        this.bookRepository = new BookDBRepository();
+        searchBookRepository = new BookDBRepository();
     }
 
+    @PostConstruct
+    public void loadSearchBookRepository(){
+        searchBookRepository = bookRepository.searchBooksByAuthor(".*");
+    }
 
     @GetMapping("/api/books/all")
     @ResponseBody
@@ -42,7 +47,7 @@ public class Books {
     @GetMapping("/api/books/search/result")
     @ResponseBody
     public ResponseEntity<List<Book>> getSearchResult() {
-        return ResponseEntity.ok().body(bookRepository.getBooks());
+        return ResponseEntity.ok().body(searchBookRepository.getBooks());
     }
 
     @PostMapping("/api/books/search/title/regex")

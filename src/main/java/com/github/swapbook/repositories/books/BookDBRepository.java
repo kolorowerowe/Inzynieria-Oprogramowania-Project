@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Repository("swapbook.books")
 public class BookDBRepository implements BookRepository {
@@ -33,13 +35,35 @@ public class BookDBRepository implements BookRepository {
     }
 
     @Override
-    public BookRepository searchBooksByRegex(String title) {
-        return null;
+    public BookRepository searchBooksByRegex(String regex) {
+        BookRepository resultRepository = new FakeBookRepository();
+        Pattern compiledPattern = Pattern.compile(regex);
+
+        List<Book> bookList = getBooks();
+
+        for (Book book:bookList) {
+            Matcher matcher =compiledPattern.matcher(book.getTitle());
+            if(matcher.find())
+                resultRepository.addBookToList(book);
+        }
+
+        return resultRepository;
     }
 
     @Override
     public BookRepository searchBooksByAuthor(String regex) {
-        return null;
+        BookRepository resultRepository = new FakeBookRepository();
+        Pattern compiledPattern = Pattern.compile(regex);
+
+        List<Book> bookList = getBooks();
+
+        for (Book book:bookList) {
+            Matcher matcher =compiledPattern.matcher(book.getAuthor());
+            if(matcher.find())
+                resultRepository.addBookToList(book);
+        }
+
+        return resultRepository;
     }
 
     @Override

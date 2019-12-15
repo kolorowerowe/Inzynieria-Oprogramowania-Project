@@ -27,7 +27,7 @@ class Login extends Component {
         }).then(response => response.json())
         .then(data => {
             console.log(data);
-            window.location.href = "/api/users/"+data["id"];
+            window.location.href = "/api/users/"+data["user_id"];
         })
         .catch(function () {
             console.log("Error while sending")
