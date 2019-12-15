@@ -34,7 +34,7 @@ public class Books {
     @GetMapping("/api/books/name/{title}")
     @ResponseBody
     public ResponseEntity<Book> getBookByTitle(@PathVariable(value = "title") String title) {
-        return ResponseEntity.ok().body(bookRepository.getBookByName(title));
+        return ResponseEntity.ok().body(bookRepository.getBookByTitle(title));
     }
 
     @PostMapping("/api/books/put")

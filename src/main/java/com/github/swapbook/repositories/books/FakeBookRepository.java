@@ -33,7 +33,7 @@ public class FakeBookRepository implements BookRepository {
     }
 
     @Override
-    public Book getBookByName(String name) {
+    public Book getBookByTitle(String name) {
         return bookSet.stream()
                 .filter(b -> b.getTitle() == name)
                 .findAny()

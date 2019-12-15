@@ -32,9 +32,9 @@ public class BookDBRepository implements BookRepository {
     }
 
     @Override
-    public Book getBookByName(String name) {
-        return ((Book) entityManager.createNativeQuery("select * from swapbook.books WHERE book_name=?", Book.class)
-                .setParameter(1, name)
+    public Book getBookByTitle(String title) {
+        return ((Book) entityManager.createNativeQuery("select * from swapbook.books WHERE title=?", Book.class)
+                .setParameter(1, title)
                 .getSingleResult());
     }
 
