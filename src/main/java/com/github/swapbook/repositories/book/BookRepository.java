@@ -12,6 +12,7 @@ public interface BookRepository {
     Book getBookByName(String name);
     BookRepository searchBooksByRegex(String title);
     BookRepository searchBooksByAuthor(String regex);
+    boolean setContainsName(Set<Book> set, String name);
     void updateUniqueBooks();
     void addReviewToBook(int bookId, Review review);
     void addBook(Book book);
