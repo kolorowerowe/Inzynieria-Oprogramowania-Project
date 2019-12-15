@@ -10,6 +10,11 @@ import java.util.List;
 public class FakeSpecimenRepository implements SpecimenRepository {
     private List<Specimen> listSpecimens = new LinkedList<>();
 
+    public FakeSpecimenRepository() {
+        //listSpecimens.add(new Specimen("W pustynii i w puszczy","Good",500,"Henryk Sienkiewicz"));
+    }
+
+
     @Override
     public List<Specimen> getSpecimens() {
         return listSpecimens;

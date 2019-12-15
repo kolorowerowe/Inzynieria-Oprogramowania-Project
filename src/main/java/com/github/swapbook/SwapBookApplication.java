@@ -8,13 +8,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SwapBookApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(SwapBookApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(SwapBookApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(SwapBookApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(SwapBookApplication.class, args);
 
-		log.info("SwapBookApplication has just started");
-	}
+        log.info("SwapBookApplication has just started");
+
+//		String asd="0123456789";
+//		StringBuilder b = new StringBuilder(asd);
+//
+//		CharSequence x  = b.subSequence(3,7);
+//		System.out.println(x);
+
+
+    }
 
 
 }

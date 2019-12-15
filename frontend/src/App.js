@@ -7,6 +7,10 @@ import {
 import {Nav, Navbar} from "react-bootstrap";
 
 import Users from './components/Users'
+import Search from './components/Search'
+// import AddBook from './components/AddBook'
+import AddSpecimen from './components/AddSpecimen'
+
 
 import './App.css';
 
@@ -28,6 +32,9 @@ class App extends Component {
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
                             <Nav.Link href="/login">Logowanie</Nav.Link>
+                            <Nav.Link href="/search">Wyszukaj</Nav.Link>
+                            {/*<Nav.Link href="/addbook">Dodaj książke</Nav.Link>*/}
+                            <Nav.Link href="/addspecimen">Dodaj egzemplarz & książkę</Nav.Link>
                         </Nav>
                     </Navbar>
 
@@ -42,6 +49,16 @@ class App extends Component {
                             <Route path="/login">
                                 <Login/>
                             </Route>
+                            <Route path={"/search"}>
+                                <Search/>
+                            </Route>
+                            {/*<Route path="/addbook">*/}
+                            {/*    <AddBook/>*/}
+                            {/*</Route>*/}
+                            <Route path="/addspecimen">
+                                <AddSpecimen/>
+                            </Route>
+
                             <Route path="/">
                                 <Home/>
                             </Route>
@@ -58,7 +75,12 @@ function Home() {
 }
 
 function About() {
-    return <h2>About</h2>;
+    return (
+        <div>
+            <h2>About</h2>
+            <p>Jakis tekst</p>
+        </div>
+            );
 }
 
 
