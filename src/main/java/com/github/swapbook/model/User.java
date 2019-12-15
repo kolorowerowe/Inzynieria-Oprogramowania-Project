@@ -95,4 +95,15 @@ public class User {
         return Objects.hash(user_id);
     }
 
+    public boolean Verify(LoginModel loginModel)
+    {
+        if(this.email.equals(loginModel.getEmail()))
+        {
+            if(this.password.equals(loginModel.getPassword()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

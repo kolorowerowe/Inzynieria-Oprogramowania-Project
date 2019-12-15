@@ -10,6 +10,9 @@ import Users from './components/Users'
 
 import './App.css';
 
+import Login from './components/Login'
+
+
 
 class App extends Component {
 
@@ -24,6 +27,7 @@ class App extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
+                            <Nav.Link href="/login">Logowanie</Nav.Link>
                         </Nav>
                     </Navbar>
 
@@ -34,6 +38,9 @@ class App extends Component {
                             </Route>
                             <Route path="/users">
                                 <Users/>
+                            </Route>
+                            <Route path="/login">
+                                <Login/>
                             </Route>
                             <Route path="/">
                                 <Home/>
