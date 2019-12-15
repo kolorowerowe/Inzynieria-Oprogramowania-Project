@@ -29,6 +29,7 @@ public class Specimens {
 
     @PostMapping("/api/specimens/put")
     public void createSpecimen(@RequestBody Specimen specimen) {
+        specimen.setSpecimen_id(specimenRepository.getNextID());
         specimenRepository.addToList(specimen);
     }
 
@@ -37,4 +38,9 @@ public class Specimens {
         specimenRepository.deleteSpecimenById(specimen_id);
     }
 
+    @GetMapping("/api/specimens/nextId")
+    @ResponseBody
+    public ResponseEntity<Integer> getNextId() {
+        return ResponseEntity.ok().body(specimenRepository.getNextID());
+    }
 }

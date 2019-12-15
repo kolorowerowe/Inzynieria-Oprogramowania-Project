@@ -60,7 +60,7 @@ class Specimen extends Component {
                 //specimen_id: data.get("specimen_id"),
                 //book_id: data.get("book_id"),
                 //user_id: data.get("user_id"),
-                specimen_id: 11,
+                // specimen_id: 11,
                 book_id: 51,
                 user_id: 11,
                 title: data.get("title"),

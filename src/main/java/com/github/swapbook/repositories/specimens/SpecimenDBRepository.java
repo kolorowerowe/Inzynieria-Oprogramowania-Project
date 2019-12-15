@@ -56,4 +56,17 @@ public class SpecimenDBRepository implements SpecimenRepository {
                 .setParameter(1, id)
                 .executeUpdate();
     }
+
+    public int getNextID() {
+        int max = 0;
+        List<Specimen> specimenList = getSpecimens();
+
+        for (Specimen specimen : specimenList) {
+            if (specimen.getSpecimen_id() > max) {
+                max = specimen.getSpecimen_id();
+            }
+        }
+        return max + 1;
+
+    }
 }
