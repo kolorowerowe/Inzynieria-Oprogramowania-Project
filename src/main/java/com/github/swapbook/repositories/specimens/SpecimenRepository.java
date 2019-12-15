@@ -1,4 +1,4 @@
-package com.github.swapbook.repositories.specimen;
+package com.github.swapbook.repositories.specimens;
 
 import com.github.swapbook.model.Specimen;
 import java.util.List;
@@ -6,6 +6,6 @@ import java.util.List;
 public interface SpecimenRepository {
     List<Specimen> getSpecimens();
     Specimen getSpecimenById(int id);
-    Specimen addToList(Specimen user);
+    void addToList(Specimen specimen);
     void deleteSpecimenById(int id);
 }

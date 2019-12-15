@@ -7,19 +7,19 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "swapbook.reviews")
-public class Review {
+@Table(name = "swapbook.opinions")
+public class Opinion {
 
     @Id
     @PrimaryKeyJoinColumn
     @Column
-    private int review_id;
+    private int opinion_id;
 
     @Column
-    private int book_id;
+    private int giver_id;
 
     @Column
-    private int user_id;
+    private int receiver_id;
 
     @Column
     private String text;
@@ -30,27 +30,27 @@ public class Review {
     @Column
     private Date date;
 
-    public Review() {
+    public Opinion() {
     }
 
-    public int getReview_id() {
-        return review_id;
+    public int getOpinion_id() {
+        return opinion_id;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getGiver_id() {
+        return giver_id;
     }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setGiver_id(int giver_id) {
+        this.giver_id = giver_id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getReceiver_id() {
+        return receiver_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setReceiver_id(int receiver_id) {
+        this.receiver_id = receiver_id;
     }
 
     public String getText() {
@@ -77,10 +77,10 @@ public class Review {
         this.date = date;
     }
 
-    public Review(int review_id, int book_id, int user_id, String text, int mark, Date date) {
-        this.review_id = review_id;
-        this.book_id = book_id;
-        this.user_id = user_id;
+    public Opinion(int opinion_id, int giver_id, int receiver_id, String text, int mark, Date date) {
+        this.opinion_id = opinion_id;
+        this.giver_id = giver_id;
+        this.receiver_id = receiver_id;
         this.text = text;
         this.mark = mark;
         this.date = date;

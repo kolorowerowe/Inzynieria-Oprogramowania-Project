@@ -1,10 +1,7 @@
 package com.github.swapbook.api;
 
-import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
-import com.github.swapbook.repositories.book.BookRepository;
-import com.github.swapbook.repositories.book.FakeBookRepository;
-import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
+import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,34 +12,28 @@ import java.util.List;
 public class Specimens {
 
     @Autowired
-    FakeSpecimenRepository specimenRepository;
-
-    @Autowired
-    BookRepository bookRepository;
-
-    public Specimens()
-    {
-        specimenRepository = new FakeSpecimenRepository();
-        bookRepository = new FakeBookRepository();
-    }
+    SpecimenDBRepository specimenRepository;
 
     @GetMapping("/api/specimens/all")
     @ResponseBody
-    public ResponseEntity<List<Specimen>> getAllSpecimens()
-    {
+    public ResponseEntity<List<Specimen>> getSpecimens() {
         return ResponseEntity.ok().body(specimenRepository.getSpecimens());
     }
 
-    @PostMapping("/api/specimens/put")
-    public void createSpecimen(@RequestBody Specimen specimen){
-        Book resultBook = bookRepository.getBookByName(specimen.getTitle());
+    @GetMapping("/api/specimens/{id}")
+    @ResponseBody
+    public ResponseEntity<Specimen> getSpecimenById(@PathVariable(value = "id") int specimen_id) {
+        return ResponseEntity.ok().body(specimenRepository.getSpecimenById(specimen_id));
+    }
 
-        if(resultBook==null)
-        {
-            Book newBook = new Book(specimen.getTitle(),specimen.getAuthor());
-            bookRepository.addBook(newBook);
-        }
+    @PostMapping("/api/specimens/put")
+    public void createSpecimen(@RequestBody Specimen specimen) {
         specimenRepository.addToList(specimen);
     }
-    
+
+    @DeleteMapping("/api/specimens/{id}")
+    public void deleteSpecimen(@PathVariable(value = "id") int specimen_id) {
+        specimenRepository.deleteSpecimenById(specimen_id);
+    }
+
 }

@@ -1,5 +1,7 @@
-package com.github.swapbook.repositories.book;
+package com.github.swapbook.repositories.books;
 
+import com.github.swapbook.repositories.specimens.FakeSpecimenRepository;
+import com.github.swapbook.repositories.specimens.SpecimenRepository;
 import com.github.swapbook.model.Book;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;

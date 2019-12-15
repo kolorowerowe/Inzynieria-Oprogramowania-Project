@@ -1,4 +1,4 @@
-package com.github.swapbook.repositories.specimen;
+package com.github.swapbook.repositories.specimens;
 
 import com.github.swapbook.model.Specimen;
 import org.junit.jupiter.api.Test;
@@ -70,8 +70,8 @@ class FakeSpecimenRepositoryTest {
 
         // Assert
         assertNotNull(specimen);
-        assertEquals(id, specimen.getId());
-        assertEquals(id, specimen.getUserId());
+        assertEquals(id, specimen.getSpecimen_id());
+        assertEquals(id, specimen.getUser_id());
         assertEquals(name, specimen.getTitle());
     }
 

@@ -1,109 +1,67 @@
 package com.github.swapbook.model;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "swapbook.specimens")
 public class Specimen {
 
-    private int id;
-    private int userId;
+    @Id
+    @PrimaryKeyJoinColumn
+    @Column
+    private int specimen_id;
+
+    @Column
+    private int book_id;
+
+    @Column
+    private int user_id;
+
+    @Column
     private String title;
-    private String state;
-    private int numberOfPages;
+
+    @Column
+    private String condition;
+
+    @Column
+    private int number_pages;
+
+    @Column
     private String author;
-    private LocalDate releaseDate;
-    private String releaseNumber;
+
+    @Column
+    private Date release_date;
+
+    @Column
+    private String issue_number;
+
+    @Column
     private String isbn;
-    private String publishingHouse;
-    private LocalDate rentalTime;
 
-    public Specimen() {}
-
-    public Specimen(String title, String state, int numberOfPages, String author, String releaseDate) {
-        this.title = title;
-        this.state = state;
-        this.numberOfPages = numberOfPages;
-        this.author = author;
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        this.releaseDate = LocalDate.parse(releaseDate,dtf);
+    public int getSpecimen_id() {
+        return specimen_id;
     }
 
-    public Specimen(int id, int userId, String title) {
-        this.id = id;
-        this.userId = userId;
-        this.title = title;
+    public void setSpecimen_id(int specimen_id) {
+        this.specimen_id = specimen_id;
     }
 
-    public Specimen(String title, String state, int numberOfPages, String author)
-    {
-        this.title = title;
-        this.state = state;
-        this.numberOfPages = numberOfPages;
-        this.author = author;
+    public int getBook_id() {
+        return book_id;
     }
 
-    public Specimen(int id, String title, String state, int numberOfPages, String author)
-    {
-        this.id = id;
-        this.title = title;
-        this.state = state;
-        this.numberOfPages = numberOfPages;
-        this.author = author;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public Specimen(String title, String state, int numberOfPages, String author, String releaseDate, String releaseNumber, String isbn, String publishingHouse, String rentalTime) {
-        this.title = title;
-        this.state = state;
-        this.numberOfPages = numberOfPages;
-        this.author = author;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.releaseDate = LocalDate.parse(releaseDate,dtf);
-        this.releaseNumber = releaseNumber;
-        this.isbn = isbn;
-        this.publishingHouse = publishingHouse;
-        this.rentalTime = LocalDate.parse(rentalTime,dtf);;
-    }
-
-    public Specimen(int id, int userId, String title, String state, int numberOfPages, String author, String releaseDate, String releaseNumber, String isbn, String publishingHouse, String rentalTime) {
-        this.id = id;
-        this.userId = userId;
-        this.title = title;
-        this.state = state;
-        this.numberOfPages = numberOfPages;
-        this.author = author;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.releaseDate = LocalDate.parse(releaseDate,dtf);
-        this.releaseNumber = releaseNumber;
-        this.isbn = isbn;
-        this.publishingHouse = publishingHouse;
-        this.rentalTime = LocalDate.parse(rentalTime,dtf);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Specimen specimen = (Specimen) o;
-        return id == specimen.id;
-    }
-
-    //Getters and Setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getTitle() {
@@ -114,20 +72,20 @@ public class Specimen {
         this.title = title;
     }
 
-    public String getState() {
-        return state;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
-    public int getNumberOfPages() {
-        return numberOfPages;
+    public int getNumber_pages() {
+        return number_pages;
     }
 
-    public void setNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
+    public void setNumber_pages(int number_pages) {
+        this.number_pages = number_pages;
     }
 
     public String getAuthor() {
@@ -138,21 +96,20 @@ public class Specimen {
         this.author = author;
     }
 
-    public String getReleaseDate() {
-        return (releaseDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+    public Date getRelease_date() {
+        return release_date;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.releaseDate = LocalDate.parse(releaseDate,dtf);
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
     }
 
-    public String getReleaseNumber() {
-        return releaseNumber;
+    public String getIssue_number() {
+        return issue_number;
     }
 
-    public void setReleaseNumber(String releaseNumber) {
-        this.releaseNumber = releaseNumber;
+    public void setIssue_number(String issue_number) {
+        this.issue_number = issue_number;
     }
 
     public String getIsbn() {
@@ -163,26 +120,57 @@ public class Specimen {
         this.isbn = isbn;
     }
 
-    public String getPublishingHouse() {
-        return publishingHouse;
+    public int getLoan_period() {
+        return loan_period;
     }
 
-    public void setPublishingHouse(String publishingHouse) {
-        this.publishingHouse = publishingHouse;
+    public void setLoan_period(int loan_period) {
+        this.loan_period = loan_period;
     }
 
-    public String getRentalTime() {
-        if(rentalTime==null)
-            return "null";
-        else
-            return rentalTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    public String getPhoto_url() {
+        return photo_url;
     }
 
-    public void setRentalTime(String rentalTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        if (rentalTime.equals("null"))
-            this.rentalTime = null;
-        else
-            this.rentalTime = LocalDate.parse(rentalTime,dtf);
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
+
+    @Column
+    private int loan_period;
+
+    @Column
+    private String photo_url;
+
+    public Specimen() {}
+
+    public Specimen(int specimen_id, int user_id, String title) {
+        this.specimen_id = specimen_id;
+        this.user_id = user_id;
+        this.title = title;
+    }
+
+    public Specimen(int specimen_id, int book_id, int user_id, String title, String condition, int number_pages, String author, Date release_date, String issue_number, String isbn, int loan_period, String photo_url) {
+        this.specimen_id = specimen_id;
+        this.book_id = book_id;
+        this.user_id = user_id;
+        this.title = title;
+        this.condition = condition;
+        this.number_pages = number_pages;
+        this.author = author;
+        this.release_date = release_date;
+        this.issue_number = issue_number;
+        this.isbn = isbn;
+        this.loan_period = loan_period;
+        this.photo_url = photo_url;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Specimen specimen = (Specimen) o;
+        return specimen_id == specimen.specimen_id;
     }
 }

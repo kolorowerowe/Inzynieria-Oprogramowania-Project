@@ -7,6 +7,8 @@ import com.github.swapbook.repositories.book.BookRepository;
 import com.github.swapbook.repositories.book.FakeBookRepository;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
+import com.github.swapbook.repositories.books.BookDBRepository;
+import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,10 @@ import java.util.List;
 public class Books {
 
     @Autowired
-    SpecimenRepository specimenRepository;
+    SpecimenDBRepository specimenRepository;
 
     @Autowired
-    BookRepository bookRepository;
+    BookDBRepository bookRepository;
 
     BookRepository searchBookRepository;
 
@@ -33,7 +35,6 @@ public class Books {
     @GetMapping("/api/books/all")
     @ResponseBody
     public ResponseEntity<List<Book>> getAllBooks() {
-        //bookRepository.updateUniqueBooks();
         return ResponseEntity.ok().body(bookRepository.getBooks());
     }
 
@@ -63,9 +64,20 @@ public class Books {
     @PostMapping("/api/books/review/{id}")
     public void createBookReview(@PathVariable(value = "id") int bookId, @RequestBody Review review) {
         bookRepository.addReviewToBook(bookId, review);
+    @GetMapping("/api/books/name/{title}")
+    @ResponseBody
+    public ResponseEntity<Book> getBookByTitle(@PathVariable(value = "title") String title) {
+        return ResponseEntity.ok().body(bookRepository.getBookByTitle(title));
     }
 
     @PostMapping("/api/books/put")
-    public void createBook(@RequestBody Book book){ bookRepository.addBook(book);}
+    public void createSpecimen(@RequestBody Book book) {
+        bookRepository.addBookToList(book);
+    }
+
+    @DeleteMapping("/api/books/{id}")
+    public void deleteSpecimen(@PathVariable(value = "id") int book_id) {
+        bookRepository.deleteBookById(book_id);
+    }
 
 }
