@@ -3,6 +3,7 @@ package com.github.swapbook.api;
 import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.LoginModel;
 import com.github.swapbook.model.User;
+import com.github.swapbook.repositories.users.UserDBRepository;
 import com.github.swapbook.repositories.users.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,7 +21,7 @@ import java.util.Date;
 @RestController
 public class Login {
     @Autowired
-    UserRepository userRepository;
+    UserDBRepository userRepository;
 
     @PostMapping("/api/login")
     @ResponseBody

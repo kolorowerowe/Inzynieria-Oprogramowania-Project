@@ -50,4 +50,11 @@ public class UserDBRepository implements UserRepository {
                 .executeUpdate();
     }
 
+    @Override
+    public User getUserByEmail(String email) {
+        return ((User) entityManager.createNativeQuery("select * from swapbook.users WHERE  email=?", User.class)
+                .setParameter(1, email)
+                .getSingleResult());
+    }
+
 }

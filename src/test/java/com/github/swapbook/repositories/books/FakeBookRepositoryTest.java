@@ -3,8 +3,8 @@ package com.github.swapbook.repositories.books;
 import com.github.swapbook.repositories.specimens.FakeSpecimenRepository;
 import com.github.swapbook.repositories.specimens.SpecimenRepository;
 import com.github.swapbook.model.Book;
-import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
-import com.github.swapbook.repositories.specimen.SpecimenRepository;
+import com.github.swapbook.repositories.specimens.FakeSpecimenRepository;
+import com.github.swapbook.repositories.specimens.SpecimenRepository;
 import com.github.swapbook.repositories.users.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +44,7 @@ class FakeBookRepositoryTest {
         Book book = new Book(id,name,author);
 
         //Act
-        bookRepository.addBook(book);
+        bookRepository.addBookToList(book);
         Book book1 = bookRepository.getBookById(id);
 
         //Assert
@@ -61,8 +61,9 @@ class FakeBookRepositoryTest {
         Book book = new Book(id,name,author);
 
         //Act
-        bookRepository.addBook(book);
-        Book book1 = bookRepository.getBookByName(name);
+        bookRepository.addBookToList(book);
+        Book book1 = bookRepository.getBookByTitle(name);
+
 
         //Assert
         assertTrue(bookRepository.getBooks().contains(book1));
@@ -94,7 +95,7 @@ class FakeBookRepositoryTest {
         String author = "author1";
         Book book = new Book(id,name,author);
         //Act
-        bookRepository.addBook(book);
+        bookRepository.addBookToList(book);
 
         //Assert
         assertTrue(bookRepository.getBooks().contains(book));
@@ -127,8 +128,8 @@ class FakeBookRepositoryTest {
         Book book2 = new Book(id2,name2,author2);
 
         //Act
-        bookRepository.addBook(book);
-        bookRepository.addBook(book1);
+        bookRepository.addBookToList(book);
+        bookRepository.addBookToList(book1);
 
 
         //Assert

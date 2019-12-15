@@ -57,17 +57,17 @@ class Specimen extends Component {
 
         if(isValid) {
             let post_data = {
-                //id: data.get("id"),
-                //userId: data.get("userId"),
+                //id: data.get("specimen_id"),
+                //userId: data.get("user_id"),
                 title: data.get("title"),
-                state: data.get("state"),
-                numberOfPages: data.get("numberOfPages"),
+                state: data.get("condition"),
+                numberOfPages: data.get("number_pages"),
                 author: data.get("author"),
-                releaseDate: data.get("releaseDate"),
-                releaseNumber: data.get("releaseNumber"),
+                releaseDate: data.get("release_date"),
+                releaseNumber: data.get("issue_number"),
                 isbn: data.get("isbn"),
                 publishingHouse:data.get("publishingHouse"),
-                rentalTime: (this.state.rentalTimeDisabled?"null":data.get("rentalTime"))
+                rentalTime: (this.state.rentalTimeDisabled?"null":data.get("loan_period"))
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
@@ -137,16 +137,16 @@ class Specimen extends Component {
                         <Col className="specimenCol" >Rental Time</Col>
                     </Row>
                     {this.specimens.map((specimen) => <Row className="specimenRow">
-                        <Col className="specimenCol" >{specimen.id}</Col>
+                        <Col className="specimenCol" >{specimen.specimen_id}</Col>
                         <Col className="specimenCol" >{specimen.title}</Col>
-                        <Col className="specimenCol" >{specimen.state}</Col>
-                        <Col className="specimenCol" >{specimen.numberOfPages}</Col>
+                        <Col className="specimenCol" >{specimen.condition}</Col>
+                        <Col className="specimenCol" >{specimen.number_pages}</Col>
                         <Col className="specimenCol" >{specimen.author}</Col>
-                        <Col className="specimenCol" >{specimen.releaseDate}</Col>
-                        <Col className="specimenCol" >{specimen.releaseNumber}</Col>
+                        <Col className="specimenCol" >{specimen.release_date}</Col>
+                        <Col className="specimenCol" >{specimen.issue_number}</Col>
                         <Col className="specimenCol" >{specimen.isbn}</Col>
                         <Col className="specimenCol" >{specimen.publishingHouse}</Col>
-                        <Col className="specimenCol" >{specimen.rentalTime}</Col>
+                        <Col className="specimenCol" >{specimen.loan_period}</Col>
                     </Row>)}
                 </Container>
                 <br/>
@@ -158,8 +158,8 @@ class Specimen extends Component {
                         <Col className="bookCol" >AUTHOR</Col>
                     </Row>
                     {this.books.map((book) => <Row className="bookRow">
-                        <Col className="bookCol" >{book.id}</Col>
-                        <Col className="bookCol" >{book.name}</Col>
+                        <Col className="bookCol" >{book.book_id}</Col>
+                        <Col className="bookCol" >{book.title}</Col>
                         <Col className="bookCol" >{book.author}</Col>
                     </Row>)}
                 </Container>

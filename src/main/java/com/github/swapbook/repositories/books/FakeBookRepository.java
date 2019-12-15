@@ -1,6 +1,7 @@
 package com.github.swapbook.repositories.books;
 
 import com.github.swapbook.model.Book;
+import com.github.swapbook.model.Review;
 import com.github.swapbook.model.Specimen;
 import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class FakeBookRepository implements BookRepository {
                 .orElse(null);
     }
 
-    @Override
+
     @Override
     public void deleteBookById(int id) {
        bookSet = bookSet.stream().filter(b -> b.getBook_id() != id).collect(Collectors.toSet());
@@ -58,9 +59,9 @@ public class FakeBookRepository implements BookRepository {
         Pattern compiledPattern = Pattern.compile(regex);
 
         for (Book book:this.bookSet) {
-            Matcher matcher =compiledPattern.matcher(book.getName());
+            Matcher matcher =compiledPattern.matcher(book.getTitle());
             if(matcher.find())
-                resultRepository.addBook(book);
+                resultRepository.addBookToList(book);
         }
 
         return resultRepository;
@@ -74,39 +75,15 @@ public class FakeBookRepository implements BookRepository {
         for (Book book:this.bookSet) {
             Matcher matcher =compiledPattern.matcher(book.getAuthor());
             if(matcher.find())
-                resultRepository.addBook(book);
+                resultRepository.addBookToList(book);
         }
 
         return resultRepository;
     }
 
-
-    @Override
-    public void updateUniqueBooks() {
-        Set<Book> bookSetTmp = new HashSet<>();
-
-        for(Specimen specimen : specimenRepository.getSpecimens())
-        {
-            if(!setContainsName(bookSetTmp, specimen.getTitle()))
-            {
-                bookSetTmp.add(new Book(bookSetTmp.size(), specimen.getTitle(), specimen.getAuthor()));
-            }
-        }
-
-        //bookSet = bookSetTmp;
-        bookSet = new HashSet<>(bookSetTmp);
-
-    }
-
     @Override
     public void addBookToList(Book book) {
-        bookSet.add(book);
-    }
-
-    @Override
-    public void addBook(Book book) {
         if(book != null) {
-            book.setId(this.bookSet.size() + 1);
             bookSet.add(book);
         }
     }

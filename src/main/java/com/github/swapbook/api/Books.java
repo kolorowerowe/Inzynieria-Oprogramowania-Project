@@ -1,13 +1,9 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.model.Book;
-import com.github.swapbook.model.Review;
 import com.github.swapbook.model.SearchQuery;
-import com.github.swapbook.repositories.book.BookRepository;
-import com.github.swapbook.repositories.book.FakeBookRepository;
-import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
-import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import com.github.swapbook.repositories.books.BookDBRepository;
+import com.github.swapbook.repositories.books.BookRepository;
 import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +20,12 @@ public class Books {
     @Autowired
     BookDBRepository bookRepository;
 
-    BookRepository searchBookRepository;
+    private BookRepository searchBookRepository;
 
     public Books() {
-        bookRepository = new FakeBookRepository();
-        specimenRepository = new FakeSpecimenRepository();
-        searchBookRepository = new FakeBookRepository();
+        this.bookRepository = new BookDBRepository();
     }
+
 
     @GetMapping("/api/books/all")
     @ResponseBody
@@ -47,23 +42,19 @@ public class Books {
     @GetMapping("/api/books/search/result")
     @ResponseBody
     public ResponseEntity<List<Book>> getSearchResult() {
-        return ResponseEntity.ok().body(searchBookRepository.getBooks());
+        return ResponseEntity.ok().body(bookRepository.getBooks());
     }
 
     @PostMapping("/api/books/search/title/regex")
     public void searchBooksByRegex(@RequestBody SearchQuery query) {
         if (query.getAttribute().equals("book")) {
             searchBookRepository = bookRepository.searchBooksByRegex(query.getValue());
-        }
-        else if(query.getAttribute().equals("author")){
+        } else if (query.getAttribute().equals("author")) {
             searchBookRepository = bookRepository.searchBooksByAuthor(query.getValue());
         }
 
     }
 
-    @PostMapping("/api/books/review/{id}")
-    public void createBookReview(@PathVariable(value = "id") int bookId, @RequestBody Review review) {
-        bookRepository.addReviewToBook(bookId, review);
     @GetMapping("/api/books/name/{title}")
     @ResponseBody
     public ResponseEntity<Book> getBookByTitle(@PathVariable(value = "title") String title) {

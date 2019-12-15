@@ -100,8 +100,8 @@ class Search extends Component {
                         <Col className="bookCol" md={5}>AUTHOR</Col>
                     </Row>
                     {this.books.map((book) => <Row className="bookRow">
-                        <Col className="bookCol" md={2}>{book.id}</Col>
-                        <Col className="bookCol" md={5}>{book.name}</Col>
+                        <Col className="bookCol" md={2}>{book.book_id}</Col>
+                        <Col className="bookCol" md={5}>{book.title}</Col>
                         <Col className="bookCol" md={5}>{book.author}</Col>
                     </Row>)}
                 </Container >

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Repository("swapbook.books")
 public class BookDBRepository implements BookRepository {
@@ -32,6 +33,21 @@ public class BookDBRepository implements BookRepository {
     }
 
     @Override
+    public BookRepository searchBooksByRegex(String title) {
+        return null;
+    }
+
+    @Override
+    public BookRepository searchBooksByAuthor(String regex) {
+        return null;
+    }
+
+    @Override
+    public boolean setContainsName(Set<Book> set, String name) {
+        return false;
+    }
+
+    @Override
     public Book getBookByTitle(String title) {
         return ((Book) entityManager.createNativeQuery("select * from swapbook.books WHERE title=?", Book.class)
                 .setParameter(1, title)
@@ -46,10 +62,6 @@ public class BookDBRepository implements BookRepository {
                 .executeUpdate();
     }
 
-    @Override
-    public void updateUniqueBooks() {
-
-    }
 
     @Override
     @Transactional
