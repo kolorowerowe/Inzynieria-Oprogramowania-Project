@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Instant;
@@ -23,7 +24,7 @@ public class Login {
 
     @PostMapping("/api/login")
     @ResponseBody
-    public ResponseEntity<User> createUser(@RequestBody LoginModel loginModel) {
+    public ResponseEntity<User> createUser(@RequestBody LoginModel loginModel, HttpServletResponse response) {
 
         User loginUser = userRepository.getUserByEmail(loginModel.getEmail());
         if(loginUser == null) {
@@ -42,7 +43,13 @@ public class Login {
                                 Keys.hmacShaKeyFor(SecurityConstants.JWT_SECRET.getBytes())
                         )
                         .compact();
-                return ResponseEntity.ok().header(SecurityConstants.TOKEN_HEADER, SecurityConstants.TOKEN_PREFIX + jws).body(loginUser);
+
+                Cookie cookie = new Cookie(SecurityConstants.TOKEN_HEADER,jws);
+                cookie.setMaxAge(3600);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                
+                return ResponseEntity.ok().body(loginUser);
             }
             else
                 return ResponseEntity.badRequest().body(null);

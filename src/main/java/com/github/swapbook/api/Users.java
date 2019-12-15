@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -91,15 +92,25 @@ public class Users {
         User user = userRepository.getUserById(userId);
         if(user != null)
         {
-            String token = request.getHeader(SecurityConstants.TOKEN_HEADER);
+            String token = null;
+            final Cookie[] cookies = request.getCookies();
+            for (Cookie c: cookies
+                 ) {
+                if(c.getName().equals(SecurityConstants.TOKEN_HEADER)){
+                    token = c.getValue();
+                }
+            }
 
-            String email = Jwts.parser()
-                    .setSigningKey(SecurityConstants.JWT_SECRET.getBytes())
-                    .parseClaimsJws(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
-            if(email.equals(user.getEmail()))
-                return true;
+            if (token != null )
+            {
+                String email = Jwts.parser()
+                        .setSigningKey(SecurityConstants.JWT_SECRET.getBytes())
+                        .parseClaimsJws(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
+                        .getBody()
+                        .getSubject();
+                if(email.equals(user.getEmail()))
+                    return true;
+            }
         }
         return false;
     }
