@@ -14,7 +14,7 @@ CREATE TABLE swapbook.opinions (
     giver_id INT REFERENCES swapbook.users,
     receiver_id INT REFERENCES swapbook.users,
     text VARCHAR (500),
-    rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
+    mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
 );
 
@@ -25,12 +25,12 @@ CREATE TABLE swapbook.books (
     photo_url VARCHAR (255) NOT NULL
 );
 
-CREATE TABLE swapbook.review(
+CREATE TABLE swapbook.reviews(
     review_id INT PRIMARY KEY,
     book_id INT REFERENCES swapbook.books,
     user_id INT REFERENCES swapbook.users,
     text VARCHAR (500),
-    rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
+    mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
 );
 
@@ -73,3 +73,7 @@ VALUES
 INSERT INTO swapbook.specimens
 VALUES
     (71, 51, 24, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', 9780605928183, 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' );
+
+INSERT INTO swapbook.reviews
+VALUES
+    (91, 51, 12, 'Super Książka', 4, '2019-12-15' );

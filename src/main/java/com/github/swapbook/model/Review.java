@@ -1,64 +1,89 @@
 package com.github.swapbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "swapbook.reviews")
 public class Review {
-    private int id;
-    private int bookId;
-    private int userId;
-    private Date addingDate;
-    private String review;
+
+    @Id
+    @PrimaryKeyJoinColumn
+    @Column
+    private int review_id;
+
+    @Column
+    private int book_id;
+
+    @Column
+    private int user_id;
+
+    @Column
+    private String text;
+
+    @Column
     private int mark;
 
-    public Review(int id, int bookId, int userId, String review) {
-        this.id = id;
-        this.bookId = bookId;
-        this.userId = userId;
-        this.review = review;
+    @Column
+    private Date date;
+
+    public Review() {
     }
 
-
-    public int getId() {
-        return id;
+    public int getReview_id() {
+        return review_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getBook_id() {
+        return book_id;
     }
 
-    public int getBookId() {
-        return bookId;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public int getUserId() {
-        return userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public String getText() {
+        return text;
     }
 
-    public Date getAddingDate() {
-        return addingDate;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public void setAddingDate(Date addingDate) {
-        this.addingDate = addingDate;
+    public int getMark() {
+        return mark;
     }
 
-    public String getReview() {
-        return review;
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public Date getDate() {
+        return date;
     }
 
-    public int getMark() { return mark; }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-    public void setMark(int mark) { this.mark = mark; }
+    public Review(int review_id, int book_id, int user_id, String text, int mark, Date date) {
+        this.review_id = review_id;
+        this.book_id = book_id;
+        this.user_id = user_id;
+        this.text = text;
+        this.mark = mark;
+        this.date = date;
+    }
+
 }

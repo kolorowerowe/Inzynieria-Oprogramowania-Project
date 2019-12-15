@@ -9,13 +9,8 @@ public class FakeReviewRepository implements ReviewRepository{
     private List<Review> reviewList = new LinkedList<>();
 
     @Override
-    public List<Review> getReviewsFromBook(int bookId) {
+    public List<Review> getReviewsForBook(int bookId) {
         return null;
-    }
-
-    @Override
-    public void addReviewToBook(int bookId, Review review) {
-
     }
 
     @Override
@@ -24,7 +19,17 @@ public class FakeReviewRepository implements ReviewRepository{
     }
 
     @Override
+    public Review getReviewById(int reviev_id) {
+        return null;
+    }
+
+    @Override
     public void addReview(Review review) {
         reviewList.add(review);
+    }
+
+    @Override
+    public void deleteReviewById(int reviev_id) {
+
     }
 }
