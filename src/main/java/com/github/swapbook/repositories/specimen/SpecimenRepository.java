@@ -6,6 +6,6 @@ import java.util.List;
 public interface SpecimenRepository {
     List<Specimen> getSpecimens();
     Specimen getSpecimenById(int id);
-    Specimen addToList(Specimen user);
+    void addToList(Specimen user);
     void deleteSpecimenById(int id);
 }

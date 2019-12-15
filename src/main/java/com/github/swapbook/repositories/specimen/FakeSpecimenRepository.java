@@ -18,20 +18,18 @@ public class FakeSpecimenRepository implements SpecimenRepository {
     @Override
     public Specimen getSpecimenById(int id) {
         return listSpecimens.stream()
-                .filter(s -> s.getId() == id)
+                .filter(s -> s.getSpecimen_id() == id)
                 .findAny()
                 .orElse(null);
     }
 
     @Override
-    public Specimen addToList(Specimen specimen) {
+    public void addToList(Specimen specimen) {
         if(specimen != null)
         {
-            specimen.setId(this.listSpecimens.size() + 1);
+            specimen.setSpecimen_id(this.listSpecimens.size() + 1);
             listSpecimens.add(specimen);
-            return specimen;
         }
-        return (Specimen)null;
     }
 
     @Override

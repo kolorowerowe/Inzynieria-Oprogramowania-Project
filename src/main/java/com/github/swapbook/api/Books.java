@@ -5,6 +5,7 @@ import com.github.swapbook.model.Review;
 import com.github.swapbook.repositories.book.BookRepository;
 import com.github.swapbook.repositories.book.FakeBookRepository;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
+import com.github.swapbook.repositories.specimen.SpecimenDBRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +17,10 @@ import java.util.List;
 public class Books {
 
     @Autowired
-    SpecimenRepository specimenRepository;
+    SpecimenDBRepository specimenRepository;
 
     @Autowired
     BookRepository bookRepository;
-
-    public Books() {
-        bookRepository = new FakeBookRepository();
-        specimenRepository = new FakeSpecimenRepository();
-    }
 
     @GetMapping("/api/books/all")
     @ResponseBody

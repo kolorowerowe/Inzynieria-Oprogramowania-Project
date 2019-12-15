@@ -44,8 +44,8 @@ CREATE TABLE swapbook.specimens(
     author VARCHAR (255) NOT NULL,
     release_date DATE,
     issue_number VARCHAR (64),
-    ISBN VARCHAR (64),
-    loan_period DATE,
+    isbn VARCHAR (64),
+    loan_period INT,
     photo_url VARCHAR (255) NOT NULL
 );
 
@@ -64,5 +64,12 @@ INSERT INTO swapbook.users
 VALUES
     (12, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180'),
     (24, 'Marcin', 'marcin@gmail.com', 'yyy','Kraków Chuta'),
-    (36, 'Szymon', 'sborowy@gmail.com', 'zzz','Kraków nie Kraków')
-    ;
+    (36, 'Szymon', 'sborowy@gmail.com', 'zzz','Kraków nie Kraków');
+
+INSERT INTO swapbook.books
+VALUES
+    (51, 'Harry Potter i Komnata Tajemnic', 'J.K. Rowling', 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg');
+
+INSERT INTO swapbook.specimens
+VALUES
+    (71, 51, 24, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', 9780605928183, 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' );

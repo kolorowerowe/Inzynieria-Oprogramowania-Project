@@ -3,6 +3,7 @@ package com.github.swapbook.repositories.book;
 import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Review;
 import com.github.swapbook.model.Specimen;
+import com.github.swapbook.repositories.specimen.SpecimenDBRepository;
 import com.github.swapbook.repositories.specimen.SpecimenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class FakeBookRepository implements BookRepository {
     private Set<Book> bookSet = new HashSet<>();
 
     @Autowired
-    SpecimenRepository specimenRepository;
+    SpecimenDBRepository specimenRepository;
 
     @Override
     public List<Book> getBooks() {
@@ -50,9 +51,9 @@ public class FakeBookRepository implements BookRepository {
 
         for(Specimen specimen : specimenRepository.getSpecimens())
         {
-            if(!setContainsName(bookSetTmp, specimen.getName()))
+            if(!setContainsName(bookSetTmp, specimen.getTitle()))
             {
-                bookSetTmp.add(new Book(bookSetTmp.size(), specimen.getName(), specimen.getAuthor()));
+                bookSetTmp.add(new Book(bookSetTmp.size(), specimen.getTitle(), specimen.getAuthor()));
             }
         }
 
