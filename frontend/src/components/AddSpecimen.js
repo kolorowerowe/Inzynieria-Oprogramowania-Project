@@ -79,7 +79,7 @@ class Specimen extends Component {
             }).then(
                 function () {
                     console.log("Successfully send form data");
-                    //window.location.reload();
+                    window.location.reload();
                 }
             ).catch(function () {
                 console.log("Error while sending")
@@ -166,25 +166,33 @@ class Specimen extends Component {
                 <br/>
                 <form id="addSpecimenForm" onSubmit={this.handleSubmit}>
                     <label>
-                        Title:
-                        <input type="text" name="title" required={true}/>
+                        <Row className={"addSpecimenForm"}>
+                            <Col className={"addSpecimenForm"}>Title:</Col>
+                            <Col className={"addSpecimenForm"}><input type="text" name="title" required={true}/></Col>
+                        </Row>
                     </label>
                     <br/>
                     <label>
-                        State:
-                        <select name="state" value={this.state.stateValue} onChange={this.handleStateChange}>
-                            <option value={"Dog-eaten"}>Dog-eaten</option>
-                            <option value={"Poor"}>Poor</option>
-                            <option value={"Average"}>Average</option>
-                            <option value={"Good"}>Good</option>
-                            <option value={"Perfect"}>Perfect</option>
-                        </select>
+                        <Row className={"addSpecimenForm"}>
+                            <Col>State:</Col>
+                            <Col>
+                                <select name="state" value={this.state.stateValue} onChange={this.handleStateChange}>
+                                <option value={"Dog-eaten"}>Dog-eaten</option>
+                                <option value={"Poor"}>Poor</option>
+                                <option value={"Average"}>Average</option>
+                                <option value={"Good"}>Good</option>
+                                <option value={"Perfect"}>Perfect</option>
+                                </select>
+                            </Col>
+                        </Row>
                     </label>
                     <br/>
                     <label>
-                        NumberOfPages:
-                        <input type="text" name="numberOfPages" required={true}/>
-                        <div className="errorMessage">{this.state.numberOfPagesError}</div>
+                        <Row>
+                            <Col>NumberOfPages:</Col>
+                            <Col><input type="text" name="numberOfPages" required={true}/></Col>
+                            <div className="errorMessage">{this.state.numberOfPagesError}</div>
+                        </Row>
                     </label>
                     <br/>
                     <label>
@@ -215,7 +223,7 @@ class Specimen extends Component {
                     <br/>
                     <label>
                         Ready for renting:<br/>
-                        <input type="button" name={"readyForRenting"} onClick={this.handleRentalTimeStateChange}/>Yes<br/>
+                        <input type="checkbox" name={"readyForRenting"} onClick={this.handleRentalTimeStateChange}/>Yes<br/>
                     </label>
                     <br/>
                     <label>

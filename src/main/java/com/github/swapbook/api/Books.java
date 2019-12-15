@@ -2,6 +2,7 @@ package com.github.swapbook.api;
 
 import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Review;
+import com.github.swapbook.model.SearchQuery;
 import com.github.swapbook.repositories.book.BookRepository;
 import com.github.swapbook.repositories.book.FakeBookRepository;
 import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
@@ -21,9 +22,12 @@ public class Books {
     @Autowired
     BookRepository bookRepository;
 
+    BookRepository searchBookRepository;
+
     public Books() {
         bookRepository = new FakeBookRepository();
         specimenRepository = new FakeSpecimenRepository();
+        searchBookRepository = new FakeBookRepository();
     }
 
     @GetMapping("/api/books/all")
@@ -39,10 +43,21 @@ public class Books {
         return ResponseEntity.ok().body(bookRepository.getBookById(bookId));
     }
 
-    @GetMapping("/api/books/title/{title}")
+    @GetMapping("/api/books/search/result")
     @ResponseBody
-    public ResponseEntity<Book> getBookByName(@PathVariable(value = "title") String bookTitle){
-        return ResponseEntity.ok().body(bookRepository.getBookByName(bookTitle));
+    public ResponseEntity<List<Book>> getSearchResult() {
+        return ResponseEntity.ok().body(searchBookRepository.getBooks());
+    }
+
+    @PostMapping("/api/books/search/title/regex")
+    public void searchBooksByRegex(@RequestBody SearchQuery query) {
+        if (query.getAttribute().equals("book")) {
+            searchBookRepository = bookRepository.searchBooksByRegex(query.getValue());
+        }
+        else if(query.getAttribute().equals("author")){
+            searchBookRepository = bookRepository.searchBooksByAuthor(query.getValue());
+        }
+
     }
 
     @PostMapping("/api/books/review/{id}")

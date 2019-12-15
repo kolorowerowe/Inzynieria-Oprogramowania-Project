@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class FakeBookRepository implements BookRepository {
@@ -43,6 +45,35 @@ public class FakeBookRepository implements BookRepository {
     public boolean setContainsName(Set<Book> set, String name) {
         return set.stream().anyMatch(b -> b.getName().equals(name));
     }
+
+    @Override
+    public BookRepository searchBooksByRegex(String regex){
+        BookRepository resultRepository = new FakeBookRepository();
+        Pattern compiledPattern = Pattern.compile(regex);
+
+        for (Book book:this.bookSet) {
+            Matcher matcher =compiledPattern.matcher(book.getName());
+            if(matcher.find())
+                resultRepository.addBook(book);
+        }
+
+        return resultRepository;
+    }
+
+    @Override
+    public BookRepository searchBooksByAuthor(String regex){
+        BookRepository resultRepository = new FakeBookRepository();
+        Pattern compiledPattern = Pattern.compile(regex);
+
+        for (Book book:this.bookSet) {
+            Matcher matcher =compiledPattern.matcher(book.getAuthor());
+            if(matcher.find())
+                resultRepository.addBook(book);
+        }
+
+        return resultRepository;
+    }
+
 
     @Override
     public void updateUniqueBooks() {
