@@ -77,3 +77,7 @@ VALUES
 INSERT INTO swapbook.reviews
 VALUES
     (91, 51, 12, 'Super Książka', 4, '2019-12-15' );
+
+INSERT INTO swapbook.opinions
+VALUES
+    (111, 12, 24, 'Marcin to spoko gość, powiedział Dominik jbc', 5, '2019-12-13');
