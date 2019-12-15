@@ -14,7 +14,7 @@ CREATE TABLE swapbook.opinions (
     giver_id INT REFERENCES swapbook.users,
     receiver_id INT REFERENCES swapbook.users,
     text VARCHAR (500),
-    rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
+    mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
 );
 
@@ -25,12 +25,12 @@ CREATE TABLE swapbook.books (
     photo_url VARCHAR (255) NOT NULL
 );
 
-CREATE TABLE swapbook.review(
+CREATE TABLE swapbook.reviews(
     review_id INT PRIMARY KEY,
     book_id INT REFERENCES swapbook.books,
     user_id INT REFERENCES swapbook.users,
     text VARCHAR (500),
-    rating INT NOT NULL CHECK ((rating >= 1) AND ( rating <= 5 )),
+    mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
 );
 
@@ -44,8 +44,8 @@ CREATE TABLE swapbook.specimens(
     author VARCHAR (255) NOT NULL,
     release_date DATE,
     issue_number VARCHAR (64),
-    ISBN VARCHAR (64),
-    loan_period DATE,
+    isbn VARCHAR (64),
+    loan_period INT,
     photo_url VARCHAR (255) NOT NULL
 );
 
@@ -62,7 +62,32 @@ CREATE TABLE swapbook.loans(
 
 INSERT INTO swapbook.users
 VALUES
-    (12, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180'),
-    (24, 'Marcin', 'marcin@gmail.com', 'yyy','Kraków Chuta'),
-    (36, 'Szymon', 'sborowy@gmail.com', 'zzz','Kraków nie Kraków')
-    ;
+    (11, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180'),
+    (12, 'Marcin', 'marcin@gmail.com', 'yyy','Kraków Chuta'),
+    (13, 'Szymon', 'sborowy@gmail.com', 'zzz','Kraków nie Kraków');
+
+INSERT INTO swapbook.books
+VALUES
+    (51, 'Harry Potter i Komnata Tajemnic', 'J.K. Rowling', 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg'),
+    (52, 'Świat według Clarksona. Jeśli mógłbym dokończyć...', 'Jeremy Clarkson', 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg');
+
+INSERT INTO swapbook.specimens
+VALUES
+    (71, 51, 11, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', 9780605928183, 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
+    (72, 51, 12, 'Harry Potter i komnata tajemnic', 'Average', 566, 'J. K. Rowling', '1999-07-27', 'wydanie trzecie', 9780605928122, 17, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
+    (73, 52, 13, 'Świat według Clarksona. Jeśli mógłbym dokończyć...', 'Average', 321, 'Jeremy Clarkson', '2019-11-13', 'pierwsze', 33634555, 10, 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' );
+
+INSERT INTO swapbook.reviews
+VALUES
+    (91, 51, 11, 'Super Książka', 4, '2019-12-15' ),
+    (92, 52, 13, 'Clarkson to jednak umie pisać!', 5, '2019-12-11' );
+
+INSERT INTO swapbook.opinions
+VALUES
+    (111, 11, 12, 'Marcin to spoko gość, powiedział Dominik jbc', 5, '2019-12-13'),
+    (112, 13, 11, 'Z dominikiem nigdy nie było problemów, polecam, Szymon', 5, '2019-12-14');
+
+INSERT INTO swapbook.loans
+VALUES
+    (131, 71, 11, 13, 'LOANED', '2019-12-05', '2019-12-30', 30),
+    (132, 73, 13, 12, 'RETURNED', '2019-12-01', '2019-12-14', 30);

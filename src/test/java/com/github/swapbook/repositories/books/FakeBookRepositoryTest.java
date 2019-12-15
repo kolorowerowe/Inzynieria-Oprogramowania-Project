@@ -1,11 +1,9 @@
-package com.github.swapbook.repositories.book;
+package com.github.swapbook.repositories.books;
 
-import com.github.swapbook.repositories.specimen.FakeSpecimenRepository;
-import com.github.swapbook.repositories.specimen.SpecimenRepository;
+import com.github.swapbook.repositories.specimens.FakeSpecimenRepository;
+import com.github.swapbook.repositories.specimens.SpecimenRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FakeBookRepositoryTest {
 
