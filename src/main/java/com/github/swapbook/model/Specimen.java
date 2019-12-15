@@ -3,9 +3,13 @@ package com.github.swapbook.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
@@ -36,13 +40,22 @@ public class Specimen {
     private String author;
 
     @Column
-    private Date release_date;
+    private String release_date;
 
     @Column
     private String issue_number;
 
     @Column
     private String isbn;
+
+    @Column
+    private String publishing_house;
+
+    @Column
+    private int loan_period;
+
+    @Column
+    private String photo_url;
 
     public int getSpecimen_id() {
         return specimen_id;
@@ -96,13 +109,6 @@ public class Specimen {
         this.author = author;
     }
 
-    public Date getRelease_date() {
-        return release_date;
-    }
-
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
-    }
 
     public String getIssue_number() {
         return issue_number;
@@ -136,11 +142,16 @@ public class Specimen {
         this.photo_url = photo_url;
     }
 
-    @Column
-    private int loan_period;
+    public String getPublishing_house() {
+        return publishing_house;
+    }
 
-    @Column
-    private String photo_url;
+    public void setPublishing_house(String publishing_house) {
+        this.publishing_house = publishing_house;
+    }
+
+
+
 
     public Specimen() {}
 
@@ -150,7 +161,7 @@ public class Specimen {
         this.title = title;
     }
 
-    public Specimen(int specimen_id, int book_id, int user_id, String title, String condition, int number_pages, String author, Date release_date, String issue_number, String isbn, int loan_period, String photo_url) {
+    public Specimen(int specimen_id, int book_id, int user_id, String title, String condition, int number_pages, String author, String release_date, String issue_number, String isbn, int loan_period, String photo_url) {
         this.specimen_id = specimen_id;
         this.book_id = book_id;
         this.user_id = user_id;
@@ -172,5 +183,15 @@ public class Specimen {
         if (o == null || getClass() != o.getClass()) return false;
         Specimen specimen = (Specimen) o;
         return specimen_id == specimen.specimen_id;
+    }
+
+    public String getRelease_date() {
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        System.out.println( release_date.format(dtf));
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 }

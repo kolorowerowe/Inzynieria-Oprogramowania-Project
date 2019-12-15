@@ -29,18 +29,18 @@ class Specimen extends Component {
         let rentalTimeError = "";
         let hasAnyErrors = false;
 
-        if(!data.get("numberOfPages").match(/[1-9][0-9]*/)) {
+        if(!data.get("number_pages").match(/[1-9][0-9]*/)) {
             numberOfPagesError="Invalid number of pages";
             this.setState({numberOfPagesError});
             hasAnyErrors=true;
         }
-        if(Date.parse(data.get("releaseDate")) > Date.now()) {
-            releaseDateError = "Invalid Release Date - such day will already come";
-            this.setState({releaseDateError});
-            hasAnyErrors = true;
-        }
-        if(Date.parse(data.get("rentalTime"))< Date.now()){
-            rentalTimeError = "Invalid Rental Time- such day has already passed";
+        // if(Date.parse(data.get("release_date")) > Date.now()) {
+        //     releaseDateError = "Invalid Release Date - such day will already come";
+        //     this.setState({releaseDateError});
+        //     hasAnyErrors = true;
+        // }
+        if(data.get("loan_period") < 0 ){
+            rentalTimeError = "Invalid Rental Time- rental time cannot be less than 0!";
             this.setState({rentalTimeError});
             hasAnyErrors = true
         }
@@ -57,17 +57,22 @@ class Specimen extends Component {
 
         if(isValid) {
             let post_data = {
-                //id: data.get("specimen_id"),
-                //userId: data.get("user_id"),
+                //specimen_id: data.get("specimen_id"),
+                //book_id: data.get("book_id"),
+                //user_id: data.get("user_id"),
+                specimen_id: 11,
+                book_id: 51,
+                user_id: 11,
                 title: data.get("title"),
-                state: data.get("condition"),
-                numberOfPages: data.get("number_pages"),
+                condition: data.get("condition"),
+                number_pages: data.get("number_pages"),
                 author: data.get("author"),
-                releaseDate: data.get("release_date"),
-                releaseNumber: data.get("issue_number"),
+                release_date: data.get("release_date"),
+                issue_number: data.get("issue_number"),
                 isbn: data.get("isbn"),
-                publishingHouse:data.get("publishingHouse"),
-                rentalTime: (this.state.rentalTimeDisabled?"null":data.get("loan_period"))
+                publishing_house:data.get("publishing_house"),
+                loan_period: (this.state.rentalTimeDisabled?-1:data.get("loan_period")),
+                photo_url:data.get("photo_url")
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
@@ -145,7 +150,7 @@ class Specimen extends Component {
                         <Col className="specimenCol" >{specimen.release_date}</Col>
                         <Col className="specimenCol" >{specimen.issue_number}</Col>
                         <Col className="specimenCol" >{specimen.isbn}</Col>
-                        <Col className="specimenCol" >{specimen.publishingHouse}</Col>
+                        <Col className="specimenCol" >{specimen.publishing_house}</Col>
                         <Col className="specimenCol" >{specimen.loan_period}</Col>
                     </Row>)}
                 </Container>
@@ -176,7 +181,7 @@ class Specimen extends Component {
                         <Row className={"addSpecimenForm"}>
                             <Col>State:</Col>
                             <Col>
-                                <select name="state" value={this.state.stateValue} onChange={this.handleStateChange}>
+                                <select name="condition" value={this.state.stateValue} onChange={this.handleStateChange}>
                                 <option value={"Dog-eaten"}>Dog-eaten</option>
                                 <option value={"Poor"}>Poor</option>
                                 <option value={"Average"}>Average</option>
@@ -190,7 +195,7 @@ class Specimen extends Component {
                     <label>
                         <Row>
                             <Col>NumberOfPages:</Col>
-                            <Col><input type="text" name="numberOfPages" required={true}/></Col>
+                            <Col><input type="text" name="number_pages" required={true}/></Col>
                             <div className="errorMessage">{this.state.numberOfPagesError}</div>
                         </Row>
                     </label>
@@ -202,13 +207,13 @@ class Specimen extends Component {
                     <br/>
                     <label>
                         ReleaseDate:
-                        <input type="date" name="releaseDate" required={true} />
+                        <input type="date" name="release_date" required={true} />
                         <div className="errorMessage">{this.state.releaseDateError}</div>
                     </label>
                     <br/>
                     <label>
                         ReleaseNumber:
-                        <input type="text" name="releaseNumber" required={true}/>
+                        <input type="text" name="issue_number" required={true}/>
                     </label>
                     <br/>
                     <label>
@@ -218,7 +223,7 @@ class Specimen extends Component {
                     <br/>
                     <label>
                         PublishingHouse:
-                        <input type="text" name="publishingHouse" required={true}/>
+                        <input type="text" name="publishing_house" required={true}/>
                     </label>
                     <br/>
                     <label>
@@ -228,7 +233,7 @@ class Specimen extends Component {
                     <br/>
                     <label>
                         RentalTime:
-                        <input type="date" name="rentalTime" required={!this.state.rentalTimeDisabled} disabled={(this.state.rentalTimeDisabled)?true:false}/>
+                        <input type="number" name="loan_period" required={!this.state.rentalTimeDisabled} disabled={(this.state.rentalTimeDisabled)?true:false}/>
                         <div className="errorMessage">{this.state.rentalTimeError}</div>
                     </label>
                     <br/>

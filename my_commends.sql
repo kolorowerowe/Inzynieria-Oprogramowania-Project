@@ -42,11 +42,12 @@ CREATE TABLE swapbook.specimens(
     condition VARCHAR(64),
     number_pages INT ,
     author VARCHAR (255) NOT NULL,
-    release_date DATE,
+    release_date VARCHAR (64),
     issue_number VARCHAR (64),
     isbn VARCHAR (64),
+    publishing_house VARCHAR (64),
     loan_period INT,
-    photo_url VARCHAR (255) NOT NULL
+    photo_url VARCHAR (255)
 );
 
 CREATE TABLE swapbook.loans(
@@ -56,8 +57,7 @@ CREATE TABLE swapbook.loans(
     loaner_id INT REFERENCES swapbook.users,
     loan_status VARCHAR(64),
     date_loan DATE NOT NULL,
-    date_return DATE,
-    period_days INT
+    date_return DATE
 );
 
 INSERT INTO swapbook.users
@@ -73,9 +73,9 @@ VALUES
 
 INSERT INTO swapbook.specimens
 VALUES
-    (71, 51, 11, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', 9780605928183, 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
-    (72, 51, 12, 'Harry Potter i komnata tajemnic', 'Average', 566, 'J. K. Rowling', '1999-07-27', 'wydanie trzecie', 9780605928122, 17, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
-    (73, 52, 13, 'Świat według Clarksona. Jeśli mógłbym dokończyć...', 'Average', 321, 'Jeremy Clarkson', '2019-11-13', 'pierwsze', 33634555, 10, 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' );
+    (71, 51, 11, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '2015-08-07', 'wydanie drugie', '5342223', 'Insignis', 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
+    (72, 51, 12, 'Harry Potter i komnata tajemnic', 'Average', 566, 'J. K. Rowling', '2015-08-08', 'wydanie trzecie', '23452', 'Biały Kruk', 17, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
+    (73, 52, 13, 'Świat według Clarksona. Jeśli mógłbym dokończyć...', 'Average', 321, 'Jeremy Clarkson', '2015-08-09', 'pierwsze', '23543365', 'PWN', 10, 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' );
 
 INSERT INTO swapbook.reviews
 VALUES
@@ -89,5 +89,5 @@ VALUES
 
 INSERT INTO swapbook.loans
 VALUES
-    (131, 71, 11, 13, 'LOANED', '2019-12-05', '2019-12-30', 30),
-    (132, 73, 13, 12, 'RETURNED', '2019-12-01', '2019-12-14', 30);
+    (131, 71, 11, 13, 'LOANED', '2019-12-05', '2019-12-30'),
+    (132, 73, 13, 12, 'RETURNED', '2019-12-01', '2019-12-14');

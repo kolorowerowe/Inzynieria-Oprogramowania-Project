@@ -32,7 +32,7 @@ public class SpecimenDBRepository implements SpecimenRepository {
     @Override
     @Transactional
     public void addToList(Specimen specimen) {
-        entityManager.createNativeQuery("INSERT INTO swapbook.specimens VALUES (?,?,?,?,?,?,?,?,?,?,?,?)")
+        entityManager.createNativeQuery("INSERT INTO swapbook.specimens VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")
                 .setParameter(1, specimen.getSpecimen_id())
                 .setParameter(2, specimen.getBook_id())
                 .setParameter(3, specimen.getUser_id())
@@ -43,8 +43,9 @@ public class SpecimenDBRepository implements SpecimenRepository {
                 .setParameter(8, specimen.getRelease_date())
                 .setParameter(9, specimen.getIssue_number())
                 .setParameter(10, specimen.getIsbn())
-                .setParameter(11, specimen.getLoan_period())
-                .setParameter(12, specimen.getPhoto_url())
+                .setParameter(11, specimen.getPublishing_house())
+                .setParameter(12, specimen.getLoan_period())
+                .setParameter(13, specimen.getPhoto_url())
                 .executeUpdate();
     }
 
