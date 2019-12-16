@@ -34,11 +34,11 @@ class Specimen extends Component {
             this.setState({numberOfPagesError});
             hasAnyErrors=true;
         }
-        // if(Date.parse(data.get("release_date")) > Date.now()) {
-        //     releaseDateError = "Invalid Release Date - such day will already come";
-        //     this.setState({releaseDateError});
-        //     hasAnyErrors = true;
-        // }
+        if(Date.parse(data.get("release_date")) > Date.now()) {
+            releaseDateError = "Invalid Release Date - such day will already come";
+            this.setState({releaseDateError});
+            hasAnyErrors = true;
+        }
         if(data.get("loan_period") < 0 ){
             rentalTimeError = "Invalid Rental Time- rental time cannot be less than 0!";
             this.setState({rentalTimeError});
@@ -72,7 +72,7 @@ class Specimen extends Component {
                 isbn: data.get("isbn"),
                 publishing_house:data.get("publishing_house"),
                 loan_period: (this.state.rentalTimeDisabled?-1:data.get("loan_period")),
-                photo_url:data.get("photo_url")
+                photo_url:"nic"
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
