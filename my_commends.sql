@@ -62,37 +62,37 @@ CREATE TABLE swapbook.loans(
 
 INSERT INTO swapbook.users
 VALUES
-    (11, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezówka 180, 39-102'),
-    (12, 'Marcin', 'marcinkozak005@gmail.com', 'yyy','Kraków '),
-    (13, 'Szymon', 'sborowy4@gmail.com', 'zzz','Kraków ul. Jana Pawła II 12'),
-    (14, 'Bartek', 'bartek@gmail.com', 'qqq','Kraków ul. Symfoniczna 1/21');
+    (11, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezowka 180, 39-102'),
+    (12, 'Marcin', 'marcinkozak005@gmail.com', 'yyy','Krakow '),
+    (13, 'Szymon', 'sborowy4@gmail.com', 'zzz','Krakow ul. Jana Pawla II 12'),
+    (14, 'Bartek', 'bartek@gmail.com', 'qqq','Krakow ul. Symfoniczna 1/21');
 
 INSERT INTO swapbook.books
 VALUES
     (51, 'Harry Potter i Komnata Tajemnic', 'J.K. Rowling', 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg'),
     (52, 'Swiat wedlug Clarksona. Jesli moglbym dokonczyc...', 'Jeremy Clarkson', 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg'),
     (53, 'Wprowadzenie do fizyki w grach, animacjach i symulacjach Flash', 'Dev Ramtal', 'https://static01.helion.com.pl/helion/okladki/326x466/wprofi.jpg'),
-    (54, 'English 4 IT', 'Beata Błaszczyk', 'https://static01.helion.com.pl/helion/okladki/326x466/anginf.jpg'),
-    (55, 'Wprowadzenie do algorytmów', 'Thomas H. Cormen, Ron Rivest', 'https://ksiegarniainternetowa.de/img/product_images_new/472/20472_01_wprowadzenie_do_algorytmow.300.jpg');
+    (54, 'English 4 IT', 'Beata Blaszczyk', 'https://static01.helion.com.pl/helion/okladki/326x466/anginf.jpg'),
+    (55, 'Wprowadzenie do algorytmow', 'Thomas H. Cormen, Ron Rivest', 'https://ksiegarniainternetowa.de/img/product_images_new/472/20472_01_wprowadzenie_do_algorytmow.300.jpg');
 
 INSERT INTO swapbook.specimens
 VALUES
     (71, 51, 11, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', '9780605928183', 'Wydawnictwo Magow', 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
     (72, 51, 12, 'Harry Potter i komnata tajemnic', 'Average', 566, 'J. K. Rowling', '1999-07-27', 'wydanie trzecie', '9780605928122', 'PWN', 17, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
-    (73, 52, 13, 'Świat według Clarksona. Jeśli mógłbym dokończyć...', 'Average', 321, 'Jeremy Clarkson', '2019-11-13', 'pierwsze', '33634555', 'Insignis' , 10, 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' ),
+    (73, 52, 13, 'Swiat według Clarksona. Jesli moglbym dokonczyć...', 'Average', 321, 'Jeremy Clarkson', '2019-11-13', 'pierwsze', '33634555', 'Insignis' , 10, 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' ),
     (74, 53, 11, 'Wprowadzenie do fizyki w grach, animacjach i symulacjach Flash', 'Average', 531, 'Dev Ramtal', '2019-11-13', 'pierwsze', '978-83-246-4473-5', 'Helion' , 10, 'https://static01.helion.com.pl/helion/okladki/326x466/wprofi.jpg' ),
-    (75, 54, 11, 'English 4 IT', 'Average', 283, 'Beata Błaszczyk', '2017-10-11', 'pierwsze', '9788328304338', 'Helion' , 10, 'https://static01.helion.com.pl/helion/okladki/326x466/anginf.jpg' ),
-    (76, 55, 13, 'Wprowadzenie do algorytmów', 'Good', 999, 'Thomas H. Cormen, Ron Rivest', '2019-11-13', 'pierwsze', '9789650603533', 'PWN' , 10, 'https://emp-scs-uat.img-osdw.pl/img-p/1/kipwn/d576082e/std/2bc-452/105536615o.jpg' );
+    (75, 54, 11, 'English 4 IT', 'Average', 283, 'Beata Blaszczyk', '2017-10-11', 'pierwsze', '9788328304338', 'Helion' , 10, 'https://static01.helion.com.pl/helion/okladki/326x466/anginf.jpg' ),
+    (76, 55, 13, 'Wprowadzenie do algorytmow', 'Good', 999, 'Thomas H. Cormen, Ron Rivest', '2019-11-13', 'pierwsze', '9789650603533', 'PWN' , 10, 'https://emp-scs-uat.img-osdw.pl/img-p/1/kipwn/d576082e/std/2bc-452/105536615o.jpg' );
 
 INSERT INTO swapbook.reviews
 VALUES
-    (91, 51, 11, 'Super Książka', 4, '2019-12-15' ),
-    (92, 52, 13, 'Clarkson to jednak umie pisać!', 5, '2019-12-11' );
+    (91, 51, 11, 'Super Ksiazka', 4, '2019-12-15' ),
+    (92, 52, 13, 'Clarkson to jednak umie pisac!', 5, '2019-12-11' );
 
 INSERT INTO swapbook.opinions
 VALUES
-    (111, 11, 12, 'Marcin to spoko gość, powiedział Dominik jbc', 5, '2019-12-13'),
-    (112, 13, 11, 'Z dominikiem nigdy nie było problemów, polecam, Szymon', 5, '2019-12-14');
+    (111, 11, 12, 'Marcin to spoko gosc, powiedzial Dominik jbc', 5, '2019-12-13'),
+    (112, 13, 11, 'Z dominikiem nigdy nie było problemow, polecam, Szymon', 5, '2019-12-14');
 
 INSERT INTO swapbook.loans
 VALUES
