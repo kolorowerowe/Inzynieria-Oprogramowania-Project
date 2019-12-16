@@ -72,7 +72,7 @@ class Specimen extends Component {
                 isbn: data.get("isbn"),
                 publishing_house:data.get("publishing_house"),
                 loan_period: (this.state.rentalTimeDisabled?-1:data.get("loan_period")),
-                photo_url:"nic"
+                photo_url: data.get("photo_url")
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
