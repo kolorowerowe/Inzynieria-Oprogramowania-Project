@@ -1,6 +1,7 @@
 package com.github.swapbook.repositories.books;
 
 import com.github.swapbook.model.Book;
+import com.github.swapbook.model.Specimen;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

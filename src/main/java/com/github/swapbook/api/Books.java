@@ -60,6 +60,11 @@ public class Books {
 
     }
 
+    @DeleteMapping("/api/books/delete/{id}")
+    public void deleteBook(@PathVariable(value = "id") int book_id) {
+        bookRepository.deleteBookById(book_id);
+    }
+
     @GetMapping("/api/books/name/{title}")
     @ResponseBody
     public ResponseEntity<Book> getBookByTitle(@PathVariable(value = "title") String title) {

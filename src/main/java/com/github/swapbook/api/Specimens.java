@@ -1,6 +1,8 @@
 package com.github.swapbook.api;
 
+import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
+import com.github.swapbook.repositories.books.BookDBRepository;
 import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +31,8 @@ public class Specimens {
 
     @PostMapping("/api/specimens/put")
     public void createSpecimen(@RequestBody Specimen specimen) {
-        specimen.setSpecimen_id(specimenRepository.getNextID());
-        specimenRepository.addToList(specimen);
+            specimen.setSpecimen_id(specimenRepository.getNextID());
+            specimenRepository.addToList(specimen);
     }
 
     @DeleteMapping("/api/specimens/{id}")

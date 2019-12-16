@@ -6,6 +6,11 @@
     border: 2px solid black;
 }
 
+.img-fluid{
+    height: 100px;
+    width: 64px;
+}
+
 .errorMessage{
     color: red;
     font-size: large;
