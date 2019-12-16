@@ -140,6 +140,7 @@ class Specimen extends Component {
                         <Col className="specimenCol" >ISBN</Col>
                         <Col className="specimenCol" >Publishing House</Col>
                         <Col className="specimenCol" >Rental Time</Col>
+                        <Col className="specimenCol" >Photo</Col>
                     </Row>
                     {this.specimens.map((specimen) => <Row className="specimenRow">
                         <Col className="specimenCol" >{specimen.specimen_id}</Col>
@@ -152,6 +153,7 @@ class Specimen extends Component {
                         <Col className="specimenCol" >{specimen.isbn}</Col>
                         <Col className="specimenCol" >{specimen.publishing_house}</Col>
                         <Col className="specimenCol" >{specimen.loan_period}</Col>
+                        <Col className="specimenCol" ><img className="img-fluid" src = {specimen.photo_url}/></Col>
                     </Row>)}
                 </Container>
                 <br/>
@@ -161,11 +163,13 @@ class Specimen extends Component {
                         <Col className="bookCol" >ID</Col>
                         <Col className="bookCol" >NAME</Col>
                         <Col className="bookCol" >AUTHOR</Col>
+                        <Col className="bookCol" >PHOTO</Col>
                     </Row>
                     {this.books.map((book) => <Row className="bookRow">
                         <Col className="bookCol" >{book.book_id}</Col>
                         <Col className="bookCol" >{book.title}</Col>
                         <Col className="bookCol" >{book.author}</Col>
+                        <Col className="bookCol" ><img className="img-fluid" src = {book.photo_url}/></Col>
                     </Row>)}
                 </Container>
                 <br/>
@@ -235,6 +239,11 @@ class Specimen extends Component {
                         RentalTime:
                         <input type="number" name="loan_period" required={!this.state.rentalTimeDisabled} disabled={(this.state.rentalTimeDisabled)?true:false}/>
                         <div className="errorMessage">{this.state.rentalTimeError}</div>
+                    </label>
+                    <br/>
+                    <label>
+                        Photo url:
+                        <input type="text" name="photo_url" required={true}/>
                     </label>
                     <br/>
                     <input type="submit" value="Submit"/>

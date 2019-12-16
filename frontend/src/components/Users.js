@@ -60,12 +60,16 @@ class Users extends Component {
                 below you an find all users <br/>
                 <Container>
                     <Row className="userRow">
-                        <Col className="userCol" md={2}>ID</Col>
-                        <Col className="userCol" md={10}>NAME</Col>
+                        <Col className="userCol" md={1}>ID</Col>
+                        <Col className="userCol" md={3}>NAME</Col>
+                        <Col className="userCol" md={3}>MAIL</Col>
+                        <Col className="userCol" md={4}>ADDRESS</Col>
                     </Row>
                     {this.users.map((user) => <Row className="userRow">
-                        <Col className="userCol" md={2}>{user.user_id}</Col>
-                        <Col className="userCol" md={10}>{user.name}</Col>
+                        <Col className="userCol" md={1}>{user.user_id}</Col>
+                        <Col className="userCol" md={3}>{user.name}</Col>
+                        <Col className="userCol" md={3}>{user.email}</Col>
+                        <Col className="userCol" md={4}>{user.address}</Col>
                     </Row>)}
                 </Container>
                 <br/>
