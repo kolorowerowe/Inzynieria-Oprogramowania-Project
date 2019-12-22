@@ -34,11 +34,11 @@ class Specimen extends Component {
             this.setState({numberOfPagesError});
             hasAnyErrors=true;
         }
-        // if(Date.parse(data.get("release_date")) > Date.now()) {
-        //     releaseDateError = "Invalid Release Date - such day will already come";
-        //     this.setState({releaseDateError});
-        //     hasAnyErrors = true;
-        // }
+        if(Date.parse(data.get("release_date")) > Date.now()) {
+            releaseDateError = "Invalid Release Date - such day will already come";
+            this.setState({releaseDateError});
+            hasAnyErrors = true;
+        }
         if(data.get("loan_period") < 0 ){
             rentalTimeError = "Invalid Rental Time- rental time cannot be less than 0!";
             this.setState({rentalTimeError});
@@ -72,7 +72,7 @@ class Specimen extends Component {
                 isbn: data.get("isbn"),
                 publishing_house:data.get("publishing_house"),
                 loan_period: (this.state.rentalTimeDisabled?-1:data.get("loan_period")),
-                photo_url:data.get("photo_url")
+                photo_url: data.get("photo_url")
             };
             console.log(post_data);
             fetch('/api/specimens/put', {
@@ -130,30 +130,30 @@ class Specimen extends Component {
                 Miejsce na dodanie egzemplarza<br/>
                 <Container>
                     <Row className="specimenRow">
-                        <Col className="specimenCol" >ID</Col>
-                        <Col className="specimenCol" >Title</Col>
-                        <Col className="specimenCol" >State</Col>
-                        <Col className="specimenCol" >Num OfPages</Col>
-                        <Col className="specimenCol" >Author</Col>
-                        <Col className="specimenCol" >Release Date</Col>
-                        <Col className="specimenCol" >release Number</Col>
-                        <Col className="specimenCol" >ISBN</Col>
-                        <Col className="specimenCol" >Publishing House</Col>
-                        <Col className="specimenCol" >Rental Time</Col>
-                        <Col className="specimenCol" >Photo</Col>
+                        <Col className="specimenCol" md={1}>ID</Col>
+                        <Col className="specimenCol" md={2}>Title</Col>
+                        <Col className="specimenCol" md={1}>State</Col>
+                        <Col className="specimenCol" md={1}>Num OfPages</Col>
+                        <Col className="specimenCol" md={1}>Author</Col>
+                        <Col className="specimenCol" md={1}>Release Date</Col>
+                        <Col className="specimenCol" md={1}>release Number</Col>
+                        <Col className="specimenCol" md={1}>ISBN</Col>
+                        <Col className="specimenCol" md={1}>Publishing House</Col>
+                        <Col className="specimenCol" md={1}>Rental Time</Col>
+                        <Col className="specimenCol" md={1}>Photo</Col>
                     </Row>
                     {this.specimens.map((specimen) => <Row className="specimenRow">
-                        <Col className="specimenCol" >{specimen.specimen_id}</Col>
-                        <Col className="specimenCol" >{specimen.title}</Col>
-                        <Col className="specimenCol" >{specimen.condition}</Col>
-                        <Col className="specimenCol" >{specimen.number_pages}</Col>
-                        <Col className="specimenCol" >{specimen.author}</Col>
-                        <Col className="specimenCol" >{specimen.release_date}</Col>
-                        <Col className="specimenCol" >{specimen.issue_number}</Col>
-                        <Col className="specimenCol" >{specimen.isbn}</Col>
-                        <Col className="specimenCol" >{specimen.publishing_house}</Col>
-                        <Col className="specimenCol" >{specimen.loan_period}</Col>
-                        <Col className="specimenCol" ><img className="img-fluid" src = {specimen.photo_url}/></Col>
+                        <Col className="specimenCol" md={1}>{specimen.specimen_id}</Col>
+                        <Col className="specimenCol" md={2}>{specimen.title}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.condition}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.number_pages}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.author}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.release_date}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.issue_number}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.isbn}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.publishing_house}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.loan_period}</Col>
+                        <Col className="specimenCol" md={1}><img className="img-fluid" src = {specimen.photo_url}/></Col>
                     </Row>)}
                 </Container>
                 <br/>
