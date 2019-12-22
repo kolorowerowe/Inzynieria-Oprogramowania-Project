@@ -1,6 +1,8 @@
 package com.github.swapbook.email;
 
+import javax.mail.MessagingException;
+
 public interface EmailService {
-    void sendSimpleMessage(String to, String subject, String text);
+    void sendMessage(String to, String subject, String text, Boolean isHtml) throws MessagingException;
 
 }

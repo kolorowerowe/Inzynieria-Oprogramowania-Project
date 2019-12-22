@@ -1,5 +1,6 @@
 package com.github.swapbook.email;
 
+import org.apache.commons.mail.util.MimeMessageParser;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -26,15 +27,15 @@ class EmailServiceImplTest {
     }
 
     @Test
-    public void sendSimpleMessage_shouldSendMail() throws Exception {
+    public void sendMessage_shouldSendPlainMail() throws Exception {
 
         // arrange
         String mail_to = "test@domena.pl";
         String title = "Title";
-        String content = "Content";
+        String content = "Content XXX";
 
         // act
-        emailService.sendSimpleMessage(mail_to, title, content);
+        emailService.sendMessage(mail_to, title, content, false);
 
         // assert
         MimeMessage[] receivedMessages = smtpServerRule.getMessages();
@@ -44,6 +45,9 @@ class EmailServiceImplTest {
 
         assertEquals(title, current.getSubject());
         assertEquals(mail_to, current.getAllRecipients()[0].toString());
-        assertTrue(String.valueOf(current.getContent()).contains(content));
+
+        MimeMessageParser parser = new MimeMessageParser(current);
+        parser.parse();
+        assertTrue(parser.getPlainContent().contains(content));
     }
 }

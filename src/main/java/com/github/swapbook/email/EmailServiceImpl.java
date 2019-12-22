@@ -3,9 +3,14 @@ package com.github.swapbook.email;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.lang.NonNull;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 @Component
 public class EmailServiceImpl implements EmailService {
@@ -15,15 +20,26 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendSimpleMessage(String mail_to, String subject, String text) {
+    public void sendMessage(@NonNull String mail_to, String subject, String text, Boolean isHtml) throws MessagingException {
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mail_to);
-        message.setSubject(subject);
-        message.setText(text);
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        emailSender.send(message);
-        log.info("Sent mail mail_to: {}, with subject: {}", mail_to, subject);
+        helper.setTo(mail_to);
+
+//        if subject is null, make it empty
+        helper.setSubject(subject != null ? subject : "");
+
+//       same with text. isHtml by default is false
+        helper.setText(text != null ? text : "", isHtml != null ? isHtml : false);
+
+        try {
+            emailSender.send(message);
+            log.info("Sent mail mail_to: {}, with subject: {}", mail_to, subject);
+        } catch (MailException e) {
+            log.error("Mail not send", e);
+        }
+
     }
 
 }
