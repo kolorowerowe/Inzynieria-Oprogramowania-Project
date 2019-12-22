@@ -29,12 +29,12 @@ class EmailServiceImplTest {
     public void sendSimpleMessage_shouldSendMail() throws Exception {
 
         // arrange
-        String to = "test@domena.pl";
+        String mail_to = "test@domena.pl";
         String title = "Title";
         String content = "Content";
 
         // act
-        emailService.sendSimpleMessage(to, title, content);
+        emailService.sendSimpleMessage(mail_to, title, content);
 
         // assert
         MimeMessage[] receivedMessages = smtpServerRule.getMessages();
@@ -43,7 +43,7 @@ class EmailServiceImplTest {
         MimeMessage current = receivedMessages[0];
 
         assertEquals(title, current.getSubject());
-        assertEquals(to, current.getAllRecipients()[0].toString());
+        assertEquals(mail_to, current.getAllRecipients()[0].toString());
         assertTrue(String.valueOf(current.getContent()).contains(content));
     }
 }

@@ -15,17 +15,15 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendSimpleMessage(String mail_to, String subject, String text) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-
-        message.setTo(to);
+        message.setTo(mail_to);
         message.setSubject(subject);
         message.setText(text);
 
         emailSender.send(message);
-
-        log.info("Sent mail to: {}, with subject: {}", to, subject);
-
+        log.info("Sent mail mail_to: {}, with subject: {}", mail_to, subject);
     }
+
 }

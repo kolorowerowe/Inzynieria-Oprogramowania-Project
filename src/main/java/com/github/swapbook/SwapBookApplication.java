@@ -12,10 +12,8 @@ public class SwapBookApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SwapBookApplication.class, args);
-
         log.info("SwapBookApplication has just started");
 
     }
-
 
 }
