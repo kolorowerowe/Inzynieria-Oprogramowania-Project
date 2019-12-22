@@ -12,7 +12,7 @@ public class Emails {
     @Autowired
     EmailServiceImpl emailService;
 
-    @GetMapping("/api/email/test")
+    @GetMapping("/api/emails/test")
     public void sendTestMail() {
         emailService.sendSimpleMessage("dominos55555@gmail.com", "TEST SUBJECT", "Ciało");
     }

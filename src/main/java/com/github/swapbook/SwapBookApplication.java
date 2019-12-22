@@ -15,13 +15,6 @@ public class SwapBookApplication {
 
         log.info("SwapBookApplication has just started");
 
-//		String asd="0123456789";
-//		StringBuilder b = new StringBuilder(asd);
-//
-//		CharSequence x  = b.subSequence(3,7);
-//		System.out.println(x);
-
-
     }
 
 
