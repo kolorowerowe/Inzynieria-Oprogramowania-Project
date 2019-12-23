@@ -1,7 +1,10 @@
 package com.github.swapbook;
 
+import com.github.swapbook.email.EmailService;
+import com.github.swapbook.email.EmailServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,17 +15,8 @@ public class SwapBookApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SwapBookApplication.class, args);
-
         log.info("SwapBookApplication has just started");
 
-//		String asd="0123456789";
-//		StringBuilder b = new StringBuilder(asd);
-//
-//		CharSequence x  = b.subSequence(3,7);
-//		System.out.println(x);
-
-
     }
-
 
 }
