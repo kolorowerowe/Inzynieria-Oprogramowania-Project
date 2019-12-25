@@ -6,7 +6,8 @@ CREATE TABLE swapbook.users (
     name VARCHAR (255) NOT NULL,
     email VARCHAR (255) UNIQUE NOT NULL,
     password VARCHAR (255) NOT NULL,
-    address VARCHAR (255)
+    address VARCHAR (255),
+    is_active BOOLEAN
 );
 
 CREATE TABLE swapbook.opinions (
@@ -62,10 +63,10 @@ CREATE TABLE swapbook.loans(
 
 INSERT INTO swapbook.users
 VALUES
-    (11, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezowka 180, 39-102'),
-    (12, 'Marcin', 'marcinkozak005@gmail.com', 'yyy','Krakow '),
-    (13, 'Szymon', 'sborowy4@gmail.com', 'zzz','Krakow ul. Jana Pawla II 12'),
-    (14, 'Bartek', 'bartek@gmail.com', 'qqq','Krakow ul. Symfoniczna 1/21');
+    (11, 'Dominik', 'kolodziejd@student.agh.edu.pl', 'xxx','Brzezowka 180, 39-102', TRUE),
+    (12, 'Marcin', 'marcinkozak005@gmail.com', 'yyy','Krakow ', TRUE),
+    (13, 'Szymon', 'sborowy4@gmail.com', 'zzz','Krakow ul. Jana Pawla II 12', TRUE),
+    (14, 'Bartek', 'bartek@gmail.com', 'qqq','Krakow ul. Symfoniczna 1/21', TRUE);
 
 INSERT INTO swapbook.books
 VALUES

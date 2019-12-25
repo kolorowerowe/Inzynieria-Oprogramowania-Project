@@ -52,9 +52,6 @@ class Login extends Component {
                         <button class="btn btn-link btn-sm">Zapomniałem Hasła</button>
                     </div>
                 </div>
-                <div>
-                {/* <a href="/api/users/1">Go to</a> */}
-            </div>
             </div>
         );
     }
