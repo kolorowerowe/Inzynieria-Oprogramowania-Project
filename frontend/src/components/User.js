@@ -4,36 +4,46 @@ import "./User.css"
 class User extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
+    // handleSubmit(event) {
+        // event.preventDefault();
+        // const data = new FormData(event.target);
 
-        let post_data = {
-            email: data.get("email"),
-            password : data.get("password"),
-            name: data.get("name"),
-            address: data.get("address")
-        };
+        // let post_data = {
+            // email: data.get("email"),
+            // password : data.get("password"),
+            // name: data.get("name"),
+            // address: data.get("address")
+        // };
         
-        console.log(post_data);
-        fetch('/api/users/put', {
-            method: 'POST',
-            body: JSON.stringify(post_data),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }).then(response => response.json())
-        .then(data => {
-            console.log(data);
-            window.location.href = "/api/users/"+data["user_id"];
-        })
-        .catch(function () {
-            console.log("Error while sending")
-        });
-    }
+        // console.log(post_data);
+        // fetch('/api/users/put', {
+            // method: 'POST',
+            // body: JSON.stringify(post_data),
+            // headers: {
+                // 'Content-Type': 'application/json',
+            // }
+        // }).then(response => response.json())
+        // .then(data => {
+            // console.log(data);
+            // window.location.href = "/api/users/"+data["user_id"];
+        // })
+        // .catch(function () {
+            // console.log("Error while sending")
+        // });
+    // }
+
+    // componentDidMount() {
+    //     fetch('/api/users/all')
+    //         .then(response => response.json())
+    //         .then(users_res => {
+    //             this.users = users_res;
+    //             this.setState({update: 1});
+
+    //         });
+    // }
 
     render() {
         return (
@@ -41,7 +51,7 @@ class User extends Component {
 
             <div class="row p-5">
                 <div class="col-12 col-lg-4">
-                    <img src="img/profile.jpg" alt="User" class="img-fluid"/>
+                    {/* <img src="img/profile.jpg" alt="User" class="img-fluid"/> */}
                 </div>
                 <div class="col-12 col-lg-8 d-flex justify-content-center flex-column">
                     <h3>edek_z_fabryki_kredek <small class="text-black-50">edzio@gmail.com</small></h3>
