@@ -39,7 +39,5 @@ public class EmailServiceImpl implements EmailService {
         } catch (MailException e) {
             log.error("Mail not send", e);
         }
-
     }
-
 }

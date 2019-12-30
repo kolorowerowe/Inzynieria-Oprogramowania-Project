@@ -5,6 +5,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {isLoggedIn: false};
     }
 
     handleSubmit(event) {
@@ -27,6 +28,7 @@ class Login extends Component {
         }).then(response => response.json())
         .then(data => {
             console.log(data);
+            this.props.state.isLoggedIn = true;
             window.location.href = "/api/users/"+data["user_id"];
         })
         .catch(function () {
@@ -42,19 +44,16 @@ class Login extends Component {
                         <h3 class="mb-5">Zaloguj się</h3>
                         <form onSubmit={this.handleSubmit}>
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login"></input>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login" required></input>
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło"></input>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło" required></input>
                             </div>
                             <button type="submit" class="btn btn-success mt-3">Zaloguj się!</button>
                         </form>
                         <button class="btn btn-link btn-sm">Zapomniałem Hasła</button>
                     </div>
                 </div>
-                <div>
-                {/* <a href="/api/users/1">Go to</a> */}
-            </div>
             </div>
         );
     }

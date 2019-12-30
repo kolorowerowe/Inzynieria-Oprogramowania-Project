@@ -27,6 +27,9 @@ public class User {
     @Column(columnDefinition = "address")
     private String address;
 
+    //@Column(columnDefinition = "is_active")
+    private boolean isActive;
+
 
     public int getUser_id() {
         return user_id;
@@ -44,10 +47,11 @@ public class User {
         return password;
     }
 
-
     public String getAddress() {
         return address;
     }
+
+    public boolean getIsActive() { return isActive; }
 
     public void setAddress(String address) {
         this.address = address;
@@ -66,6 +70,8 @@ public class User {
         //add some hash on password
         this.password = password;
     }
+
+    public void setIsActive(boolean isActive) { this.isActive = isActive; }
 
     public User() { }
 
