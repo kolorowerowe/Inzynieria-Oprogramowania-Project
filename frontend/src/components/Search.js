@@ -75,36 +75,39 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="books">
-                <h2>Search for:</h2>
-                <form id="searchBookByTitle" onSubmit={this.handleSubmit}>
-                    <label>
-                        State:
-                        <select name="attribute" value={this.state.attributeValue} onChange={this.handleAttributeChange}>
-                            <option value={"book"}>Book</option>
-                            <option value={"author"}>Author</option>
-                        </select>
-                    </label>
-                    <input type={"text"} name={"value"} required={true}/><br/>
-                    <input type={"submit"} value={"Submit"}/>
-                    <br/>
-                </form>
-                
-                <div>
-                    {/*<p>Search result for attribute:{searchAttributeFor} and value:{searchValueFor}</p>*/}
+            <div className="container h-100">
+                <div className="row h-100">
+                    <div className="col d-flex align-items-center justify-content-center flex-column">
+                        <h2>Przeszukiwanie:</h2>
+                        <form id="searchBookByTitle" onSubmit={this.handleSubmit}>
+                            <label>
+                                    <select id={"selectState"} name="attribute" value={this.state.attributeValue} onChange={this.handleAttributeChange}>
+                                        <option value={"book"}>Book</option>
+                                        <option value={"author"}>Author</option>
+                                    </select>
+                            </label>
+                            <input type={"text"} name={"value"} class="form-marcin" id={"mainInput"} required={true}/>
+                            <input type={"submit"} value={"Szukaj"} className="btn btn-success-marcin"/>
+
+                            <br/>
+                        </form>
+                        <div>
+                            {/*<p>Search result for attribute:{searchAttributeFor} and value:{searchValueFor}</p>*/}
+                        </div>
+                        <Container>
+                            <Row className="bookRow">
+                                <Col className="bookCol" md={2}>ID</Col>
+                                <Col className="bookCol" md={5}>NAME</Col>
+                                <Col className="bookCol" md={5}>AUTHOR</Col>
+                            </Row>
+                            {this.books.map((book) => <Row className="bookRow">
+                                <Col className="bookCol" md={2}>{book.book_id}</Col>
+                                <Col className="bookCol" md={5}>{book.title}</Col>
+                                <Col className="bookCol" md={5}>{book.author}</Col>
+                            </Row>)}
+                        </Container >
+                    </div>
                 </div>
-                <Container>
-                    <Row className="bookRow">
-                        <Col className="bookCol" md={2}>ID</Col>
-                        <Col className="bookCol" md={5}>NAME</Col>
-                        <Col className="bookCol" md={5}>AUTHOR</Col>
-                    </Row>
-                    {this.books.map((book) => <Row className="bookRow">
-                        <Col className="bookCol" md={2}>{book.book_id}</Col>
-                        <Col className="bookCol" md={5}>{book.title}</Col>
-                        <Col className="bookCol" md={5}>{book.author}</Col>
-                    </Row>)}
-                </Container >
             </div>
         );
     }
