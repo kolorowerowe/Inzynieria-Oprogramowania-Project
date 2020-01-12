@@ -25,7 +25,7 @@ public class Login {
     @PostMapping("/api/login")
     @ResponseBody
     public ResponseEntity<User> createUser(@RequestBody LoginModel loginModel, HttpServletResponse response) {
-        
+
         User loginUser = userRepository.getUserByEmail(loginModel.getEmail());
         if(loginUser == null) {
             return ResponseEntity.badRequest().body(null);

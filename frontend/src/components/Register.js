@@ -28,7 +28,7 @@ class Register extends Component {
         }).then(response => response.json())
         .then(data => {
             console.log(data);
-            window.location.href = "/api/users/"+data["user_id"];
+            window.location.href = "/login";
         })
         .catch(function () {
             console.log("Error while sending")

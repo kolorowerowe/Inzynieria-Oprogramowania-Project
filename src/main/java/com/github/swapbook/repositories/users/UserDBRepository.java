@@ -33,8 +33,10 @@ public class UserDBRepository implements UserRepository {
     @Override
     @Transactional
     public void addToList(User user) {
+        List<User> users = getUsers();
+        int countOfUser = getUsers().size();
         entityManager.createNativeQuery("INSERT INTO swapbook.users VALUES (?,?,?,?,?)")
-                .setParameter(1, user.getUser_id())
+                .setParameter(1, countOfUser+1)
                 .setParameter(2, user.getName())
                 .setParameter(3, user.getEmail())
                 .setParameter(4, user.getPassword())
