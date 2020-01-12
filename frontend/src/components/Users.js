@@ -47,7 +47,7 @@ class Users extends Component {
             .then(response => response.json())
             .then(users_res => {
                 this.users = users_res;
-                //this.setState({update: 1});
+                this.setState({update: 1});
 
             });
     }

@@ -53,20 +53,17 @@ public class Users {
     }
 
     @PostMapping("/api/users/put")
-    public ResponseEntity<User> createUser(@RequestBody User user) throws MessagingException {
-        //user.setIsActive(false);
+    public void createUser(@RequestBody User user) throws MessagingException {
+        user.setIsActive(false);
         emailService.sendMessage(user.getEmail(), "Create user in SwapBook", "<html><body>Confirm Your account. <button><a href=\""+ApiUrl+"/api/users/confirm/"+user.getUser_id()+"\">Confirm</a></button> <h3>Team swapBook</h3></body></html>", true);
 
-
         userRepository.addToList(user);
-        user = userRepository.getUserByEmail(user.getEmail());
-        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping("/api/users/confirm/{id}")
     public ResponseEntity<Object> confirmCreateUser(@PathVariable(value = "id") int userId) throws URISyntaxException {
         User user = userRepository.getUserById(userId);
-        //user.setIsActive(true);
+        user.setIsActive(true);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(new URI(FrontUrl));
@@ -78,7 +75,7 @@ public class Users {
         if(userService.VerifyToken(request, userId)) {
             //userRepository.deleteUserById((userId));
             User user = userRepository.getUserById(userId);
-            //user.setIsActive(false);
+            user.setIsActive(false);
         }
     }
 }
