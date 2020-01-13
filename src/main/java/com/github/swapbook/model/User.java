@@ -27,8 +27,8 @@ public class User {
     @Column(columnDefinition = "address")
     private String address;
 
-    //@Column(columnDefinition = "is_active")
-    private boolean isActive;
+    @Column(columnDefinition = "is_active")
+    private boolean isActive = false;
 
 
     public int getUser_id() {

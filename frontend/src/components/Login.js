@@ -5,7 +5,6 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {isLoggedIn: false};
     }
 
     handleSubmit(event) {
@@ -28,30 +27,34 @@ class Login extends Component {
         }).then(response => response.json())
         .then(data => {
             console.log(data);
-            this.props.state.isLoggedIn = true;
-            window.location.href = "/api/users/"+data["user_id"];
+            if(data.isActive) {
+                this.props.handleLogin(data);
+            } else {
+                this.props.handleLogin("incorrectdata");
+            }
         })
-        .catch(function () {
-            console.log("Error while sending")
+        .catch(_ => {
+            console.log("Error while sending");
+            this.props.handleLogin("incorrectdata");
         });
     }
 
     render() {
         return (
-            <div class="container h-100">
-                 <div class="row h-100">
-                    <div class="col d-flex align-items-center justify-content-center flex-column">
-                        <h3 class="mb-5">Zaloguj się</h3>
+            <div className="container h-100">
+                 <div className="row h-100">
+                    <div className="col d-flex align-items-center justify-content-center flex-column">
+                        <h3 className="mb-5">Zaloguj się</h3>
                         <form onSubmit={this.handleSubmit}>
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login" required></input>
+                            <div className="form-group">
+                                <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login" required></input>
                             </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło" required></input>
+                            <div className="form-group">
+                                <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Hasło" required></input>
                             </div>
-                            <button type="submit" class="btn btn-success mt-3">Zaloguj się!</button>
+                            <button type="submit" className="btn btn-success mt-3">Zaloguj się!</button>
                         </form>
-                        <button class="btn btn-link btn-sm">Zapomniałem Hasła</button>
+                        {/* <button class="btn btn-link btn-sm">Zapomniałem Hasła</button> */}
                     </div>
                 </div>
             </div>

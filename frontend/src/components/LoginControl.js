@@ -6,17 +6,21 @@ import User from './User'
 class LoginControl extends Component {
     constructor(props) {
       super(props);
-      this.handleLoginClick = this.handleLoginClick.bind(this);
+      this.handleLogin = this.handleLogin.bind(this);
       this.handleLogoutClick = this.handleLogoutClick.bind(this);
-      this.state = {isLoggedIn: false};
+      this.state = {isLoggedIn: false, user: {}, error: null};
     }
-  
-    handleLoginClick() {
-      this.setState({isLoggedIn: true});
+
+    handleLogin(data) {
+      if(data === "incorrectdata") {
+        this.setState({isLoggedIn: false, user: {}, error: "Błędne dane"});
+      } else {
+        this.setState({isLoggedIn: true, user: data, error: null});
+      }
     }
   
     handleLogoutClick() {
-      this.setState({isLoggedIn: false});
+      this.setState({isLoggedIn: false, user: {}, error: null});
     }
   
     render() {
@@ -25,43 +29,26 @@ class LoginControl extends Component {
   
       if (isLoggedIn) {
         button = <LogoutButton onClick={this.handleLogoutClick} />;
-      } else {
-        button = <LoginButton onClick={this.handleLoginClick} />;
       }
   
       return (
         <div>
-          <Greeting isLoggedIn={isLoggedIn} />
+          <Panel isLoggedIn={isLoggedIn} handleLogin={this.handleLogin} user={this.state.user} />
+          <small>{this.state.error}</small>
           {button}
         </div>
       );
     }
   }
-  
-  function UserGreeting(props) {
-    return <h1>Welcome back!</h1>;
-  }
-  
-  function GuestGreeting(props) {
-    return <h1>Please sign up.</h1>;
-  }
-  
-  function Greeting(props) {
+
+  function Panel(props) {
     const isLoggedIn = props.isLoggedIn;
     if (isLoggedIn) {
-      return <User />;
+      return <User user={props.user} />;
     }
-    return <Login />;
+    return <Login handleLogin={props.handleLogin}/>;
   }
-  
-  function LoginButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Login
-      </button>
-    );
-  }
-  
+
   function LogoutButton(props) {
     return (
       <button onClick={props.onClick}>
@@ -69,9 +56,4 @@ class LoginControl extends Component {
       </button>
     );
   }
-  
-//   ReactDOM.render(
-//     <LoginControl />,
-//     document.getElementById('root')
-//   );
 export default LoginControl;

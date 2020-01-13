@@ -37,34 +37,34 @@ class Register extends Component {
 
     render() {
         return (
-            <div class="container h-100">
+            <div className="container h-100">
 
-            <div class="row h-100">
-                <div class="col d-flex align-items-center justify-content-center flex-column">
-                    <h3 class="mb-5">Rejstracja</h3>
+            <div className="row h-100">
+                <div className="col d-flex align-items-center justify-content-center flex-column">
+                    <h3 className="mb-5">Rejstracja</h3>
 
                     <form onSubmit={this.handleSubmit}>
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nazwa" required></input>
+                        <div className="form-group">
+                            <input type="text" name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nazwa" required></input>
                         </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required></input>
+                        <div className="form-group">
+                            <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required></input>
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło" required></input>
+                        <div className="form-group">
+                            <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Hasło" required></input>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adres" required></input>
+                        <div className="form-group">
+                            <input type="text" name="address" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adres" required></input>
                         </div>
-                        <div class="form-group">
+                        <div className="form-group">
                         <label>
                             <input type="checkbox" name="regulamin" value="accepted" required/> Czy akceptujesz regulamin
                         </label>
                         </div>
-                        <button type="submit" class="btn btn-success mt-3">Zarejestruj się!</button>
+                        <button type="submit" className="btn btn-success mt-3">Zarejestruj się!</button>
                     </form>
 
-                    <a href="login.html" class="btn btn-link btn-sm">Masz już konto? Przejdź do strony logowania</a>
+                    <a href="login.html" className="btn btn-link btn-sm">Masz już konto? Przejdź do strony logowania</a>
                     
                 </div>
             </div>
