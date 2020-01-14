@@ -268,7 +268,7 @@ class Specimen extends Component {
                                     </Row>
                                 </label>
                                 <br/>
-                                <input type="submit" value="Submit"/>
+                                <input type="submit" value="Submit" className="btn btn-success"/>
                             </form>
                         </div>
                     </div>
