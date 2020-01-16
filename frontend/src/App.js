@@ -14,7 +14,8 @@ import AddSpecimen from './components/AddSpecimen'
 
 import './App.css';
 
-import Login from './components/Login'
+import Register from './components/Register'
+import LoginControl from './components/LoginControl'
 
 
 
@@ -31,7 +32,8 @@ class App extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
-                            <Nav.Link href="/login">Logowanie</Nav.Link>
+                            <Nav.Link href="/register">Rejstracja</Nav.Link>
+                            <Nav.Link href="/user">Login</Nav.Link>
                             <Nav.Link href="/search">Wyszukaj</Nav.Link>
                             {/*<Nav.Link href="/addbook">Dodaj książke</Nav.Link>*/}
                             <Nav.Link href="/addspecimen">Dodaj egzemplarz & książkę</Nav.Link>
@@ -46,8 +48,11 @@ class App extends Component {
                             <Route path="/users">
                                 <Users/>
                             </Route>
-                            <Route path="/login">
-                                <Login/>
+                            <Route path="/register">
+                                <Register/>
+                            </Route>
+                            <Route patch="/user">
+                                <LoginControl/>
                             </Route>
                             <Route path={"/search"}>
                                 <Search/>

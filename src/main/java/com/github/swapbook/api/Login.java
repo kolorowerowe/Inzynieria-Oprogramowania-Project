@@ -4,7 +4,6 @@ import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.LoginModel;
 import com.github.swapbook.model.User;
 import com.github.swapbook.repositories.users.UserDBRepository;
-import com.github.swapbook.repositories.users.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -26,7 +25,7 @@ public class Login {
     @PostMapping("/api/login")
     @ResponseBody
     public ResponseEntity<User> createUser(@RequestBody LoginModel loginModel, HttpServletResponse response) {
-
+        
         User loginUser = userRepository.getUserByEmail(loginModel.getEmail());
         if(loginUser == null) {
             return ResponseEntity.badRequest().body(null);
