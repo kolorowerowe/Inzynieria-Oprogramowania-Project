@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -33,6 +34,19 @@ public class BooksTest {
     @Before
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(books).build();
+    }
+
+    @Test
+    public void getAllBooks_shouldReturnEmptyList() throws Exception {
+
+        List<Book> listOfBooks = new LinkedList<>();
+
+        when(bookRepository.getBooks()).thenReturn(listOfBooks);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/books/all"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.*", Matchers.hasSize(0)));
     }
 
     @Test
@@ -60,4 +74,24 @@ public class BooksTest {
                 .andExpect(jsonPath("$.[1].photo_url", Matchers.is(""))
                 );
     }
+
+    @Test
+    public void getBookById_shouldReturnCorrectBook() throws Exception{
+        final int id = 15;
+
+        Book book1 = new Book(id, "Tytuł, lol", "author 11", "url://url");
+
+        when(bookRepository.getBookById(id)).thenReturn(book1);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/books/"+id))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.*", Matchers.hasSize(4)))
+                .andExpect(jsonPath("$.book_id", Matchers.is(book1.getBook_id())))
+                .andExpect(jsonPath("$.title", Matchers.is(book1.getTitle())))
+                .andExpect(jsonPath("$.author", Matchers.is(book1.getAuthor())))
+                .andExpect(jsonPath("$.photo_url", Matchers.is(book1.getPhoto_url())));
+
+    }
+
 }
