@@ -23,6 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class LoginTest {
     private MockMvc mockMvc;
 
+    private static final int NUMBER_OF_USER_FIELDS = 6;
+
     @Mock
     private UserDBRepository userRepository;
 
@@ -49,7 +51,7 @@ public class LoginTest {
                                 "    \"password\": \"haslo\"\n" +
                                 "}"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(jsonPath("$.*", Matchers.hasSize(5)))
+                .andExpect(jsonPath("$.*", Matchers.hasSize(NUMBER_OF_USER_FIELDS)))
                 .andExpect(jsonPath("$.user_id", Matchers.is(user1.getUser_id())))
                 .andExpect(jsonPath("$.name", Matchers.is(user1.getName())))
                 .andExpect(jsonPath("$.email", Matchers.is(user1.getEmail())))
