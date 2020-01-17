@@ -1,5 +1,7 @@
 .specimenCol{
-    border: 2px solid black;
+    border: 2px solid grey;
+    border-radius: 50px;
+    text-align: center;
 }
 
 .bookCol{
