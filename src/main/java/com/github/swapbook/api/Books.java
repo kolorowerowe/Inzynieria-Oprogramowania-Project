@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -20,13 +22,13 @@ public class Books {
     @Autowired
     BookService bookService;
 
-    private BookService searchBookRepository;
+    private List<Book> searchBookRepository;
 
     public Books() {
-        searchBookRepository = new BookService();
+        List<Book> searchBookRepository = new LinkedList<>();
     }
 
-//    @PostConstruct
+    @PostConstruct
     public void loadSearchBookRepository(){
         searchBookRepository = bookService.searchBooksByAuthor(".*");
     }
@@ -46,7 +48,7 @@ public class Books {
     @GetMapping("/api/books/search/result")
     @ResponseBody
     public ResponseEntity<List<Book>> getSearchResult() {
-        return ResponseEntity.ok().body(searchBookRepository.getAllBooks());
+        return ResponseEntity.ok().body(searchBookRepository);
     }
 
     @PostMapping("/api/books/search/title/regex")

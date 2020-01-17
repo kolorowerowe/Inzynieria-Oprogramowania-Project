@@ -37,33 +37,14 @@ public class BookService {
     }
 
 
-    public BookService searchBooksByRegex(String regex) {
-        BookService resultRepository = new BookService();
-        Pattern compiledPattern = Pattern.compile(regex);
-
-        List<Book> bookList = getAllBooks();
-
-        for (Book book:bookList) {
-            Matcher matcher =compiledPattern.matcher(book.getTitle());
-            if(matcher.find())
-                resultRepository.addBook(book);
-        }
-
-        return resultRepository;
+    public List<Book>  searchBooksByRegex(String regex) {
+        String my_regex = ".*" + regex + ".*";
+        return getAllBooks().stream().filter(x -> x.getTitle().matches(my_regex)).collect(Collectors.toList());
     }
 
-    public BookService searchBooksByAuthor(String regex) {
-        BookService resultRepository = new BookService();
-        Pattern compiledPattern = Pattern.compile(regex);
+    public List<Book> searchBooksByAuthor(String regex) {
+        String my_regex = ".*" + regex + ".*";
+        return getAllBooks().stream().filter(x -> x.getAuthor().matches(my_regex)).collect(Collectors.toList());
 
-        List<Book> bookList = getAllBooks();
-
-        for (Book book:bookList) {
-            Matcher matcher =compiledPattern.matcher(book.getAuthor());
-            if(matcher.find())
-                resultRepository.addBook(book);
-        }
-
-        return resultRepository;
     }
 }
