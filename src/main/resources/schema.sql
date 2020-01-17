@@ -58,6 +58,7 @@ CREATE TABLE swapbook.loans(
     loaner_id INT REFERENCES swapbook.users(id),
     loan_status VARCHAR(64),
     date_loan DATE NOT NULL,
+    period_days INT,
     date_return DATE
 );
 
@@ -97,5 +98,5 @@ VALUES
 
 INSERT INTO swapbook.loans
 VALUES
-    (131, 71, 11, 13, 'LOANED', '2019-12-05', '2019-12-30'),
-    (132, 73, 13, 12, 'RETURNED', '2019-12-01', '2019-12-14');
+    (131, 71, 11, 13, 'LOANED', '2019-12-05', 25, '2019-12-30'),
+    (132, 73, 13, 12, 'RETURNED', '2019-12-01', 13, '2019-12-14');

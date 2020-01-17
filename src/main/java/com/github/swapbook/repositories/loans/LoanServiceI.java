@@ -4,7 +4,7 @@ import com.github.swapbook.model.Loan;
 
 import java.util.List;
 
-public interface LoanRepository {
+public interface LoanServiceI {
     List<Loan> getAllLoans();
     List<Loan> getLoansInState(String state);
     List<Loan> getLoansFromUser(int owner_id);
