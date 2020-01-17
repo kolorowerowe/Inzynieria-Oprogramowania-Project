@@ -135,6 +135,7 @@ class Search extends Component {
 <br/>
 
                         <Container>
+                            <Container>
                             <Row className="bookRow">
                                 <Col className="searchCol" md={2}>ID</Col>
                                 <Col className="searchCol" md={5}>NAME</Col>
@@ -148,6 +149,7 @@ class Search extends Component {
                                 {/*<Col className={"searchCol"}  md={1}><button className={"Button1"} onClick={()=>{loadBookPage(specimen.book_id)}}>Wypożycz</button>*/}
                                 {/*</Col>*/}
                             </Row>)}
+                            </Container >
                         </Container >
                     </div>
                 </div>
@@ -162,28 +164,38 @@ class Search extends Component {
     {
 
         if(book.book_id==sessionStorage.getItem('bookId')){
-            return (<Container>
+            return (
+                <Container>
                 <Row className="bookRow">
                 <Col className="bookCol" md={2}>{book.book_id}</Col>
                 <Col className="bookCol" md={5}>{book.title}</Col>
                 <Col className="bookCol" md={4}>{"MARIO"}</Col>
             </Row>
+            <Row className="bookRow">
+                <Col className="searchCol" md={2}>ID</Col>
+                <Col className="searchCol" md={5}>NAME</Col>
+                <Col className="searchCol" md={4}>STAN</Col>
+                <Col className={"searchCol"} md={1}>LINK</Col>
+             </Row>
             {this.specimens.map((specimen) => <Row className="bookRow">
-                <Col className="searchCol" md={2}>{specimen.specimen_id}</Col>
-                <Col className="searchCol" md={5}>{specimen.title}</Col>
+                <Col className="searchCol" md={2}>{specimen.user_id}</Col>
+                {/*<Col className="searchCol" md={5}>{specimen.title}</Col>*/}
                 <Col className="searchCol" md={4}>{specimen.condition}</Col>
+
                 {/*<Col className={"searchCol"}  md={1}><button className={"Button1"} onClick={()=>{loadBookPage(specimen.book_id)}}>Wypożycz</button>*/}
                 {/*</Col>*/}
             </Row>)}
             </Container>);
         }
         else return (
+            <Container>
             <Row className="bookRow">
             <Col className="bookCol" md={2}>{book.book_id}</Col>
             <Col className="bookCol" md={5}>{book.title}</Col>
             <Col className="bookCol" md={4}>{book.author}</Col>
-            <Col className="bookCol" md={1}>{<button onClick={()=>this.loadBookPage(book.book_id)}>Wypożycz</button>}</Col>
+            <Col className="bookCol" md={1}>{<button className={"Button1"} onClick={()=>this.loadBookPage(book.book_id)}>Wypożycz</button>}</Col>
             </Row>
+            </Container>
         )
     }
 
