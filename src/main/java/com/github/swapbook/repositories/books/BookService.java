@@ -39,12 +39,12 @@ public class BookService {
 
     public List<Book>  searchBooksByRegex(String regex) {
         String my_regex = ".*" + regex + ".*";
-        return getAllBooks().stream().filter(x -> x.getTitle().matches(my_regex)).collect(Collectors.toList());
+        return getAllBooks().stream().filter(x -> x.getTitle().toLowerCase().matches(my_regex.toLowerCase())).collect(Collectors.toList());
     }
 
     public List<Book> searchBooksByAuthor(String regex) {
         String my_regex = ".*" + regex + ".*";
-        return getAllBooks().stream().filter(x -> x.getAuthor().matches(my_regex)).collect(Collectors.toList());
+        return getAllBooks().stream().filter(x -> x.getAuthor().toLowerCase().matches(my_regex.toLowerCase())).collect(Collectors.toList());
 
     }
 }
