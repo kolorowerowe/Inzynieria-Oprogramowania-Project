@@ -29,6 +29,11 @@ public class FakeSpecimenRepository implements SpecimenRepository {
     }
 
     @Override
+    public List<Specimen> getSpecimensWithBookIdEqual(int bookId) throws Exception {
+        throw new Exception("TO NIE JEST ZAIMPLEMENTOWANE");
+    }
+
+    @Override
     public void addToList(Specimen specimen) {
         if(specimen != null)
         {
