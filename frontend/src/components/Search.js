@@ -10,7 +10,6 @@ class Search extends Component {
 
     books = [];
     specimens = [];
-    // actualSpecimenBookId = 52;
     state = InitialState;
     form = document.forms['searchBookByTitle'];
 
@@ -134,6 +133,7 @@ class Search extends Component {
                                 <Col className={"searchColBookHeader"} md={1}>AKCJA</Col>
                             </Row>
                             {this.books.map((book) => this.foo1(book))}
+                            <Row className={"searchRowBookLast"}></Row>
                         </Container >
                     <br/>
                     </div>
@@ -144,7 +144,6 @@ class Search extends Component {
 
     foo1(book)
     {
-
         if(book.book_id==sessionStorage.getItem('bookId')){
             return (
                 <Container>
@@ -166,12 +165,11 @@ class Search extends Component {
                         <Col className="searchColSpecimen" md={2}>{specimen.user_id}</Col>
                         <Col className="searchColSpecimen" md={4}>{specimen.condition}</Col>
                         <Col className="searchColSpecimen" md={4}>{specimen.loan_period}</Col>
-                        <Col className={"searchCol"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Pożycz</button>
+                        <Col className={"searchColSpecimen"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Pożycz</button>
                         </Col>
                     </Row>)}
                     <Row className={"searchColSpecimenLastRow"}>
                         <Col className="searchColSpecimenLast" md={11}></Col>
-
                     </Row>
                     {/*<Row className={"searchColBookFirst"}><Col c md={12}>123 </Col></Row>*/}
 

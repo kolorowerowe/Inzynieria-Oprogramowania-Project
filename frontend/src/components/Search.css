@@ -5,6 +5,7 @@
 }
 
 .searchColBook{
+    padding: 2px;
     border-left: #1F8943 dashed 2px;
     border-right: #1F8943 dashed 2px;
     text-align: center;
@@ -18,9 +19,14 @@
 }
 
 .searchColSpecimen{
+    padding: 2px;
     border-left: grey dotted 2px;
     border-right: grey dot-dot-dash 2px;
     text-align: center;
+}
+
+.searchRowBookLast{
+    border-bottom: dashed 2px #1F8943 ;
 }
 
 /*.searchColBookFirst{*/
@@ -28,7 +34,7 @@
 /*}*/
 
 .searchColSpecimenLast{
-    border-bottom: gray 2px dashed;
+    border-bottom: gray 2px dotted;
 }
 
 .searchColBookLast{
