@@ -12,22 +12,22 @@ public class User {
 
     @Id
     @PrimaryKeyJoinColumn
-    @Column(columnDefinition = "id")
+    @Column
     private int id;
 
-    @Column(columnDefinition = "name")
+    @Column
     private String name;
 
-    @Column(columnDefinition = "email")
+    @Column
     private String email;
 
-    @Column(columnDefinition = "password")
+    @Column
     private String password;
 
-    @Column(columnDefinition = "address")
+    @Column
     private String address;
 
-    @Column(columnDefinition = "is_active")
+    @Column
     private boolean isActive = false;
 
 
