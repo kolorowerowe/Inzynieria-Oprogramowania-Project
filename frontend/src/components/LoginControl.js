@@ -43,7 +43,7 @@ class LoginControl extends Component {
       return (
         <div>
           <Panel isLoggedIn={isLoggedIn} handleLogin={this.handleLogin} user={this.state.user} />
-          <small>{this.state.error}</small>
+          <small name="error">{this.state.error}</small>
           {button}
         </div>
       );
