@@ -1,48 +1,40 @@
 package com.github.swapbook.api;
 
-import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
 //import com.github.swapbook.repositories.books.BookDBRepository;
-import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
+import com.github.swapbook.repositories.specimens.SpecimenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
 public class Specimens {
 
     @Autowired
-    SpecimenDBRepository specimenRepository;
+    SpecimenService specimenService;
 
     @GetMapping("/api/specimens/all")
     @ResponseBody
     public ResponseEntity<List<Specimen>> getSpecimens() {
-        return ResponseEntity.ok().body(specimenRepository.getSpecimens());
+        return ResponseEntity.ok().body(specimenService.getSpecimens());
     }
 
     @GetMapping("/api/specimens/{id}")
     @ResponseBody
     public ResponseEntity<Specimen> getSpecimenById(@PathVariable(value = "id") int specimen_id) {
-        return ResponseEntity.ok().body(specimenRepository.getSpecimenById(specimen_id));
+        return ResponseEntity.ok().body(specimenService.getSpecimenById(specimen_id));
     }
 
     @PostMapping("/api/specimens/put")
     public void createSpecimen(@RequestBody Specimen specimen) {
-            specimen.setSpecimen_id(specimenRepository.getNextID());
-            specimenRepository.addToList(specimen);
+            specimenService.addToList(specimen);
     }
 
     @DeleteMapping("/api/specimens/{id}")
     public void deleteSpecimen(@PathVariable(value = "id") int specimen_id) {
-        specimenRepository.deleteSpecimenById(specimen_id);
+        specimenService.deleteSpecimenById(specimen_id);
     }
 
-    @GetMapping("/api/specimens/nextId")
-    @ResponseBody
-    public ResponseEntity<Integer> getNextId() {
-        return ResponseEntity.ok().body(specimenRepository.getNextID());
-    }
 }

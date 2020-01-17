@@ -4,19 +4,18 @@ import com.github.swapbook.model.Book;
 import com.github.swapbook.model.SearchQuery;
 //import com.github.swapbook.repositories.books.BookDBRepository;
 import com.github.swapbook.repositories.books.BookService;
-import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
+import com.github.swapbook.repositories.specimens.SpecimenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
 public class Books {
 
     @Autowired
-    SpecimenDBRepository specimenRepository;
+    SpecimenService specimenService;
 
     @Autowired
     BookService bookService;

@@ -1,11 +1,11 @@
 package com.github.swapbook.repositories.specimens;
 
 import com.github.swapbook.model.Specimen;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SpecimenRepository {
-    List<Specimen> getSpecimens();
-    Specimen getSpecimenById(int id);
-    void addToList(Specimen specimen);
-    void deleteSpecimenById(int id);
+
+@Repository
+public interface SpecimenRepository extends JpaRepository<Specimen, Integer> {
+
 }

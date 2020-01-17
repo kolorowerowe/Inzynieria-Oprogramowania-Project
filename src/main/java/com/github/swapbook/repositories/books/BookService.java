@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -30,6 +31,11 @@ public class BookService {
     public void addBook(Book b){
         bookRepository.save(b);
     }
+
+    public List<Book> getBooksByTitle(String title) {
+        return getAllBooks().stream().filter(x->x.getTitle().equals(title)).collect(Collectors.toList());
+    }
+
 
     public BookService searchBooksByRegex(String regex) {
         BookService resultRepository = new BookService();
