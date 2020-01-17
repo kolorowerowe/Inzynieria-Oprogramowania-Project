@@ -72,7 +72,7 @@ public class UserTest {
                 MockMvcRequestBuilders.get("/api/users/all"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$[0].user_id", Matchers.is(user1.getId()))
+                .andExpect(jsonPath("$[0].id", Matchers.is(user1.getId()))
                 );
 
         verify(userService).getUsers();
@@ -90,7 +90,7 @@ public class UserTest {
                 MockMvcRequestBuilders.get("/api/users/"+user1.getId()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(NUMBER_OF_USER_FIELDS)))
-                .andExpect(jsonPath("$.user_id", Matchers.is(user1.getId()))
+                .andExpect(jsonPath("$.id", Matchers.is(user1.getId()))
                 );
 
         verify(userService).getUserById(user1.getId());
