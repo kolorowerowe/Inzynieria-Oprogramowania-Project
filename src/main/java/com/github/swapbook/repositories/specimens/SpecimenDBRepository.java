@@ -89,6 +89,5 @@ public class SpecimenDBRepository implements SpecimenRepository {
             }
         }
         return max + 1;
-
     }
 }

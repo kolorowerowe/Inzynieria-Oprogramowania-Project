@@ -1,7 +1,6 @@
 package com.github.swapbook.repositories.books;
 
 import com.github.swapbook.model.Book;
-import com.github.swapbook.model.Specimen;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -92,11 +91,22 @@ public class BookDBRepository implements BookRepository {
     @Transactional
     public void addBookToList(Book book) {
         entityManager.createNativeQuery("INSERT INTO swapbook.books VALUES (?,?,?,?)")
-                .setParameter(1, book.getBook_id())
+                .setParameter(1, getNextID())
                 .setParameter(2, book.getTitle())
                 .setParameter(3, book.getAuthor())
                 .setParameter(4, book.getPhoto_url())
                 .executeUpdate();
     }
 
+    public int getNextID() {
+        int max = 0;
+        List<Book> booklist = getBooks();
+
+        for (Book book : booklist) {
+            if (book.getBook_id() > max) {
+                max = book.getBook_id();
+            }
+        }
+        return max + 1;
+    }
 }

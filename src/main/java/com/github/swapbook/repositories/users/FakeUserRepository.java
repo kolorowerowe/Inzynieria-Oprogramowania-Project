@@ -53,4 +53,9 @@ public class FakeUserRepository implements UserRepository {
     public User getUserByEmail(String email) {
         return null;
     }
+
+    @Override
+    public void updateUser(User user) {
+
+    }
 }

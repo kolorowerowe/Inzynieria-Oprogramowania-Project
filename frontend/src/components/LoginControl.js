@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 // import "./User.css"
 import Login from './Login'
 import User from './User'
+import * as Cookie from '../Functions/CookiesHandler'
 
 class LoginControl extends Component {
     constructor(props) {
       super(props);
       this.handleLogin = this.handleLogin.bind(this);
       this.handleLogoutClick = this.handleLogoutClick.bind(this);
+      this.handleCookies = this.handleCookies.bind(this);
       this.state = {isLoggedIn: false, user: {}, error: null};
     }
 
@@ -17,12 +19,19 @@ class LoginControl extends Component {
       } else {
         this.setState({isLoggedIn: true, user: data, error: null});
       }
+      this.handleCookies();
     }
   
     handleLogoutClick() {
       this.setState({isLoggedIn: false, user: {}, error: null});
+      this.handleCookies();
     }
   
+    handleCookies() {
+      Cookie.setCookie("userId", this.state.user.user_id, 1);
+      Cookie.setCookie("isLoggedIn", this.state.isLoggedIn, 1);
+    }
+
     render() {
       const isLoggedIn = this.state.isLoggedIn;
       let button;
