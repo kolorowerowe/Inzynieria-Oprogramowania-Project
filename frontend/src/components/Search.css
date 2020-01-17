@@ -1,10 +1,59 @@
-.specimenCol{
-    border: 2px solid black;
+.searchColBookHeader{
+    border: 4px solid grey;
+    border-radius: 50px;
+    text-align: center;
 }
+
+.searchColBook{
+    border-left: #1F8943 dashed 2px;
+    border-right: #1F8943 dashed 2px;
+    text-align: center;
+
+}
+
+.searchColSpecimenHeader{
+    border: 4px solid #1F8943;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.searchColSpecimen{
+    border-left: grey dotted 2px;
+    border-right: grey dot-dot-dash 2px;
+    text-align: center;
+}
+
+/*.searchColBookFirst{*/
+/*    border-bottom: yellow solid 3px;*/
+/*}*/
+
+.searchColSpecimenLast{
+    border-bottom: gray 2px dashed;
+}
+
+.searchColBookLast{
+    border-bottom: yellow solid 3px;
+    /*border: 4px solid #1F8943;*/
+    border-radius: 50px;
+    text-align: center;
+}
+
+.choosenOne{
+    border: 2px solid #1F8943;
+    border-radius: 50px;
+    color: white;
+    background: gray;
+    text-align: center;
+}
+
 
 .errorMessage{
     color: red;
     font-size: large;
+}
+
+.bookRow:hover{
+    background: rgba(192, 184, 193, 0.55);
 }
 
 body {
@@ -55,13 +104,13 @@ input.form-marcin {
 }
 
 a {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
 a:hover
 {
-    color:white;
+    color: black;
     text-decoration:none;
     cursor:pointer;
 }
@@ -105,5 +154,35 @@ a:hover
     color: black;
 }
 .nav-link.active {
+    color: black;
+}
+
+button.Button2{
+    background-color: red; /* Green */
+    height: 30px;
+    width: 70px;
+    border: none;
     color: white;
+    border-radius: 50px;
+    /*padding: 5px 3px;*/
+    text-align: center;
+    /*margin-right: 15px;*/
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+button.Button1{
+    background-color: #1F8943; /* Green */
+    height: 30px;
+    width: 70px;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    /*padding: 5px 3px;*/
+    text-align: center;
+    /*margin-right: 15px;*/
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
 }

@@ -130,17 +130,17 @@ class Specimen extends Component {
                 Miejsce na dodanie egzemplarza<br/>
                 <Container>
                     <Row className="specimenRow">
-                        <Col className="specimenCol" md={1}>ID</Col>
-                        <Col className="specimenCol" md={2}>Title</Col>
-                        <Col className="specimenCol" md={1}>State</Col>
-                        <Col className="specimenCol" md={1}>Num OfPages</Col>
-                        <Col className="specimenCol" md={1}>Author</Col>
-                        <Col className="specimenCol" md={1}>Release Date</Col>
-                        <Col className="specimenCol" md={1}>release Number</Col>
-                        <Col className="specimenCol" md={1}>ISBN</Col>
-                        <Col className="specimenCol" md={1}>Publishing House</Col>
-                        <Col className="specimenCol" md={1}>Rental Time</Col>
-                        <Col className="specimenCol" md={1}>Photo</Col>
+                        <Col className="specimenColHeader" md={1}>ID</Col>
+                        <Col className="specimenColHeader" md={2}>Title</Col>
+                        <Col className="specimenColHeader" md={1}>State</Col>
+                        <Col className="specimenColHeader" md={1}>Num OfPages</Col>
+                        <Col className="specimenColHeader" md={1}>Author</Col>
+                        <Col className="specimenColHeader" md={1}>Release Date</Col>
+                        <Col className="specimenColHeader" md={1}>release Number</Col>
+                        <Col className="specimenColHeader" md={1}>ISBN</Col>
+                        <Col className="specimenColHeader" md={1}>Publishing House</Col>
+                        <Col className="specimenColHeader" md={1}>Rental Time</Col>
+                        <Col className="specimenColHeader" md={1}>Photo</Col>
                     </Row>
                     {this.specimens.map((specimen) => <Row className="specimenRow">
                         <Col className="specimenCol" md={1}>{specimen.specimen_id}</Col>
@@ -160,10 +160,10 @@ class Specimen extends Component {
                 <h3>Tabela książek</h3>
                 <Container>
                     <Row className="bookRow">
-                        <Col className="bookCol" >ID</Col>
-                        <Col className="bookCol" >NAME</Col>
-                        <Col className="bookCol" >AUTHOR</Col>
-                        <Col className="bookCol" >PHOTO</Col>
+                        <Col className="bookColHeader" >ID</Col>
+                        <Col className="bookColHeader" >NAME</Col>
+                        <Col className="bookColHeader" >AUTHOR</Col>
+                        <Col className="bookColHeader" >PHOTO</Col>
                     </Row>
                     {this.books.map((book) => <Row className="bookRow">
                         <Col className="bookCol" >{book.book_id}</Col>

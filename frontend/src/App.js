@@ -45,14 +45,11 @@ class App extends Component {
                             <Route path="/about">
                                 <About/>
                             </Route>
-                            <Route path="/users">
-                                <Users/>
-                            </Route>
                             <Route path="/register">
                                 <Register/>
                             </Route>
-                            <Route patch="/user">
-                                <LoginControl/>
+                            <Route path="/users">
+                                <Users/>
                             </Route>
                             <Route path={"/search"}>
                                 <Search/>
@@ -63,7 +60,9 @@ class App extends Component {
                             <Route path="/addspecimen">
                                 <AddSpecimen/>
                             </Route>
-
+                            <Route patch="/user">
+                                <LoginControl/>
+                            </Route>
                             <Route path="/">
                                 <Home/>
                             </Route>

@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Nav} from 'react-bootstrap';
 import "./Search.css"
 
-
-const InitialState ={
+const InitialState = {
     attributeValue: "book"
 }
-
-// let searchAttributeFor = "-";
-// let searchValueFor = "-";
 
 class Search extends Component {
 
     books = [];
+    specimens = [];
+    // actualSpecimenBookId = 52;
     state = InitialState;
     form = document.forms['searchBookByTitle'];
 
@@ -20,6 +18,12 @@ class Search extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleAttributeChange = this.handleAttributeChange.bind(this);
+    }
+
+    resetOpenedSpecimen()
+    {
+        sessionStorage.setItem('bookId',"0");
+        window.location.reload();
     }
 
     handleSubmit(event) {
@@ -59,6 +63,29 @@ class Search extends Component {
         this.setState({attributeValue: event.target.attributeValue});
     }
 
+    loadBookPage(id) {
+        sessionStorage.setItem('bookId',id);
+        // ActualSpecimenBookId=id;
+        console.log("Print: "+id);
+        let post_data = {bookId: id};
+        console.log(post_data);
+        fetch('/api/specimens/bookId/'+id, {
+            method: 'POST',
+            body: '',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(
+                function () {
+                    console.log("Successfully send XXX data");
+                    window.location.reload();
+                }
+            ).catch(function () {
+            console.log("Error while sending")
+        });
+    }
+
     componentDidMount() {
         fetch('/api/books/search/result')
             .then(response => response.json())
@@ -67,11 +94,16 @@ class Search extends Component {
                 this.books = books_res;
                 this.setState({update: 2});
             });
+        fetch('/api/specimens/bookId/result')
+            .then(response => response.json())
+            .then(specimens_res => {
+                this.specimens = specimens_res;
+                this.setState({update: 3});
+            });
         console.log("myMess");
         console.log(this.books);
+        console.log(this.specimens);
     }
-
-
 
     render() {
         return (
@@ -86,7 +118,7 @@ class Search extends Component {
                                         <option value={"author"}>Author</option>
                                     </select>
                             </label>
-                            <input type={"text"} name={"value"} class="form-marcin" id={"mainInput"} required={true}/>
+                            <input type={"text"} name={"value"} className="form-marcin" id={"mainInput"} required={true}/>
                             <input type={"submit"} value={"Szukaj"} className="btn btn-success-marcin"/>
 
                             <br/>
@@ -96,20 +128,68 @@ class Search extends Component {
                         </div>
                         <Container>
                             <Row className="bookRow">
-                                <Col className="bookCol" md={2}>ID</Col>
-                                <Col className="bookCol" md={5}>NAME</Col>
-                                <Col className="bookCol" md={5}>AUTHOR</Col>
+                                <Col className="searchColBookHeader" md={2}>ID</Col>
+                                <Col className="searchColBookHeader" md={5}>NAME</Col>
+                                <Col className="searchColBookHeader" md={4}>AUTHOR</Col>
+                                <Col className={"searchColBookHeader"} md={1}>AKCJA</Col>
                             </Row>
-                            {this.books.map((book) => <Row className="bookRow">
-                                <Col className="bookCol" md={2}>{book.book_id}</Col>
-                                <Col className="bookCol" md={5}>{book.title}</Col>
-                                <Col className="bookCol" md={5}>{book.author}</Col>
-                            </Row>)}
+                            {this.books.map((book) => this.foo1(book))}
                         </Container >
+                    <br/>
                     </div>
                 </div>
             </div>
         );
     }
+
+    foo1(book)
+    {
+
+        if(book.book_id==sessionStorage.getItem('bookId')){
+            return (
+                <Container>
+                    {/*<Row className={"searchColBookLast"}></Row>*/}
+                    <Row className="bookRow">
+                        <Col className="choosenOne" md={2}>{book.book_id}</Col>
+                        <Col className="choosenOne" md={5}>{book.title}</Col>
+                        <Col className="choosenOne" md={4}>{"---"}</Col>
+                        <Col className="choosenOne1" md={1}>{<button className={"Button2"} onClick={()=>{this.resetOpenedSpecimen()}}>Zwiń</button>}</Col>
+                    </Row>
+                    <br/>
+                    <Row className="bookRow">
+                        <Col className="searchColSpecimenHeader" md={2}>ID</Col>
+                        <Col className="searchColSpecimenHeader" md={4}>NAME</Col>
+                        <Col className="searchColSpecimenHeader" md={4}>STAN</Col>
+                        <Col className={"searchColSpecimenHeader"} md={1}>AKCJA</Col>
+                     </Row>
+                    {this.specimens.map((specimen) => <Row className="bookRow">
+                        <Col className="searchColSpecimen" md={2}>{specimen.user_id}</Col>
+                        <Col className="searchColSpecimen" md={4}>{specimen.condition}</Col>
+                        <Col className="searchColSpecimen" md={4}>{specimen.loan_period}</Col>
+                        <Col className={"searchCol"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Pożycz</button>
+                        </Col>
+                    </Row>)}
+                    <Row className={"searchColSpecimenLastRow"}>
+                        <Col className="searchColSpecimenLast" md={11}></Col>
+
+                    </Row>
+                    {/*<Row className={"searchColBookFirst"}><Col c md={12}>123 </Col></Row>*/}
+
+                    <br/>
+                </Container>);
+        }
+        else return (
+            <Container>
+                <Row className="bookRow">
+                    <Col className="searchColBook" md={2}>{book.book_id}</Col>
+                    <Col className="searchColBook" md={5}>{book.title}</Col>
+                    <Col className="searchColBook" md={4}>{book.author}</Col>
+                    <Col className="searchColBook" md={1}>{<button className={"Button1"} onClick={()=>this.loadBookPage(book.book_id)}>Pokaż</button>}</Col>
+                </Row>
+            </Container>
+        )
+    }
+
+
 }
 export default Search;
