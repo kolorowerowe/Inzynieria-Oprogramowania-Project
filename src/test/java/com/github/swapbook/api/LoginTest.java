@@ -52,7 +52,7 @@ public class LoginTest {
                                 "}"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(NUMBER_OF_USER_FIELDS)))
-                .andExpect(jsonPath("$.user_id", Matchers.is(user1.getId())))
+                .andExpect(jsonPath("$.id", Matchers.is(user1.getId())))
                 .andExpect(jsonPath("$.name", Matchers.is(user1.getName())))
                 .andExpect(jsonPath("$.email", Matchers.is(user1.getEmail())))
                 .andExpect(jsonPath("$.address", Matchers.is(user1.getAddress())))
