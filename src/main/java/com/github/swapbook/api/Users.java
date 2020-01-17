@@ -64,6 +64,7 @@ public class Users {
     public ResponseEntity<Object> confirmCreateUser(@PathVariable(value = "id") int userId) throws URISyntaxException {
         User user = userService.getUserById(userId);
         user.setIsActive(true);
+        //TODO userRepository.updateUser(user);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(new URI(FrontUrl));
