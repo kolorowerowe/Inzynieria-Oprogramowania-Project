@@ -29,21 +29,17 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
+
     public void deleteUserById(int id) {
         userRepository.deleteById((long) id);
     }
 
     public User getUserByEmail(String email) {
 
-        User user = new User();
-        user.setEmail(email);
-
-        ExampleMatcher matcher =
-                ExampleMatcher.matching()
-                        .withMatcher("email", startsWith().ignoreCase());
-
-        Example<User> searchExample = Example.of(user, matcher);
-        return userRepository.findOne(searchExample).orElse(null);
+        return userRepository.findAll().stream().filter(u -> u.getEmail().equals(email)).findAny().orElse(null);
     }
 
 
