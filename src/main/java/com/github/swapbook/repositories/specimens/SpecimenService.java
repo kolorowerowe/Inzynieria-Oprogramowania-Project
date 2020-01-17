@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SpecimenService {
@@ -38,6 +39,10 @@ public class SpecimenService {
             bookService.addBook(newBook);
         }
 
+    }
+
+    public List<Specimen> getSpecimensWithBookIdEqual(int id){
+        return specimenRepository.findAll().stream().filter(s->s.getBook_id()==id).collect(Collectors.toList());
     }
 
     public void deleteSpecimenById(int id) {

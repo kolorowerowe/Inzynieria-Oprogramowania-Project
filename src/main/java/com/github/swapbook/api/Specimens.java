@@ -1,9 +1,7 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.model.Specimen;
-//import com.github.swapbook.repositories.books.BookDBRepository;
 import com.github.swapbook.repositories.specimens.SpecimenService;
-import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +22,7 @@ public class Specimens {
     @PostConstruct
     public void loadSpecimenList()
     {
-        specimenList = specimenRepository.getSpecimens();
+        specimenList = specimenService.getSpecimens();
     }
 
     @GetMapping("/api/specimens/all")
@@ -41,8 +39,7 @@ public class Specimens {
 
     @PostMapping("/api/specimens/bookId/{id}")
     public void getSpecimensWithBookIdEqual(@PathVariable(value="id") int bookId){
-        System.out.println(bookId);
-        specimenList = specimenRepository.getSpecimensWithBookIdEqual(bookId);
+        specimenList = specimenService.getSpecimensWithBookIdEqual(bookId);
     }
 
     @GetMapping("/api/specimens/bookId/result")
