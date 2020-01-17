@@ -1,15 +1,9 @@
 package com.github.swapbook.repositories.loans;
 
 import com.github.swapbook.model.Loan;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface LoanRepository {
-    List<Loan> getAllLoans();
-    List<Loan> getLoansInState(String state);
-    List<Loan> getLoansFromUser(int owner_id);
-    List<Loan> getLoansToUser(int loaner_id);
-    Loan getLoanById(int id);
-    void deleteLoanById(int id);
-    void addLoanToList(Loan loan);
+@Repository
+public interface LoanRepository extends JpaRepository<Loan, Integer> {
 }

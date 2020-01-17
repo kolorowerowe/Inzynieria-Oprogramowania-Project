@@ -28,7 +28,7 @@ class LoginControl extends Component {
     }
   
     handleCookies() {
-      Cookie.setCookie("userId", this.state.user.user_id, 1);
+      Cookie.setCookie("userId", this.state.user.id, 1);
       Cookie.setCookie("isLoggedIn", this.state.isLoggedIn, 1);
     }
 

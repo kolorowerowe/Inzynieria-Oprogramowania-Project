@@ -2,7 +2,7 @@ package com.github.swapbook.service;
 
 import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.User;
-import com.github.swapbook.repositories.users.UserDBRepository;
+import com.github.swapbook.repositories.users.UserService;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,14 +11,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Component
-public class UserService {
+public class UserLoginService {
 
     @Autowired
-    UserDBRepository userRepository;
+    UserService userService;
 
     public boolean VerifyToken(HttpServletRequest request, int userId)
     {
-        User user = userRepository.getUserById(userId);
+        User user = userService.getUserById(userId);
         if(user != null)
         {
             String token = null;

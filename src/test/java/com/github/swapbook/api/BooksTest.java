@@ -1,7 +1,7 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.model.Book;
-import com.github.swapbook.repositories.books.BookDBRepository;
+import com.github.swapbook.repositories.books.BookService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class BooksTest {
     private MockMvc mockMvc;
 
     @Mock
-    private BookDBRepository bookRepository;
+    private BookService bookService;
 
     @InjectMocks
     private Books books;
@@ -41,7 +41,7 @@ public class BooksTest {
 
         List<Book> listOfBooks = new LinkedList<>();
 
-        when(bookRepository.getBooks()).thenReturn(listOfBooks);
+        when(bookService.getAllBooks()).thenReturn(listOfBooks);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/books/all"))
@@ -56,7 +56,7 @@ public class BooksTest {
         Book book2 = new Book(13, "Tytuł, lol", "author 222222");
         List<Book> listOfBooks = Arrays.asList(book1, book2);
 
-        when(bookRepository.getBooks()).thenReturn(listOfBooks);
+        when(bookService.getAllBooks()).thenReturn(listOfBooks);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/books/all"))
@@ -81,7 +81,7 @@ public class BooksTest {
 
         Book book1 = new Book(id, "Tytuł, lol", "author 11", "url://url");
 
-        when(bookRepository.getBookById(id)).thenReturn(book1);
+        when(bookService.getBookById(id)).thenReturn(book1);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/books/"+id))

@@ -33,6 +33,9 @@ input.form-control {
     .btn.btn-border:hover {
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     }
+
+
+
 .btn.btn-link {
     width: 300px;
     padding: .5rem;
@@ -52,3 +55,44 @@ input.form-control {
     .nav-link.active {
         color: white;
     }
+
+/*#ReadyForRentingCheckBox {*/
+/*    position: absolute;*/
+/*    opacity: 0;*/
+/*    cursor: pointer;*/
+/*    height: 0;*/
+/*    width: 0;*/
+/*}*/
+
+
+/* Create a custom checkbox */
+/*.checkmark {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    height: 30px;*/
+/*    width: 30px;*/
+/*    padding: 5px;*/
+/*    background-color: #eee;*/
+/*}*/
+/* On mouse-over, add a grey background color */
+/*.container:hover input ~ .checkmark {*/
+/*    background-color: #ccc;*/
+/*}*/
+
+/*!* When the checkbox is checked, add a blue background *!*/
+/*.container input:checked ~ .checkmark {*/
+/*    background-color: #2196F3;*/
+/*}*/
+
+/*!* Create the checkmark/indicator (hidden when not checked) *!*/
+/*.checkmark:after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    display: none;*/
+/*}*/
+
+/* Show the checkmark when checked */
+/*.container input:checked ~ .checkmark:after {*/
+/*    display: block;*/
+/*}*/

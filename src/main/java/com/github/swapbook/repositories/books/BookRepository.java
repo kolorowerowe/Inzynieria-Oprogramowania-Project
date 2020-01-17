@@ -1,25 +1,10 @@
 package com.github.swapbook.repositories.books;
 
 import com.github.swapbook.model.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Set;
+@Repository
+public interface BookRepository extends JpaRepository<Book, Integer> {
 
-public interface BookRepository {
-    List<Book> getBooks();
-
-    Book getBookById(int id);
-
-    BookRepository searchBooksByRegex(String title);
-
-    BookRepository searchBooksByAuthor(String regex);
-
-    boolean setContainsName(Set<Book> set, String name);
-
-    Book getBookByTitle(String title);
-
-    void deleteBookById(int id);
-
-    //    void updateUniqueBooks();
-    void addBookToList(Book book);
 }

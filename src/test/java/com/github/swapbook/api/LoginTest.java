@@ -2,7 +2,7 @@ package com.github.swapbook.api;
 
 import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.User;
-import com.github.swapbook.repositories.users.UserDBRepository;
+import com.github.swapbook.repositories.users.UserService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class LoginTest {
     private static final int NUMBER_OF_USER_FIELDS = 6;
 
     @Mock
-    private UserDBRepository userRepository;
+    private UserService userService;
 
     @InjectMocks
     private Login login;
@@ -41,7 +41,7 @@ public class LoginTest {
     public void getAllUsers_shouldReturnEmptyList() throws Exception {
         User user1 = new User(1, "test1", "test@test.pl", "haslo", "address");
 
-        when(userRepository.getUserByEmail(user1.getEmail())).thenReturn(user1);
+        when(userService.getUserByEmail(user1.getEmail())).thenReturn(user1);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/login")
@@ -52,7 +52,7 @@ public class LoginTest {
                                 "}"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(NUMBER_OF_USER_FIELDS)))
-                .andExpect(jsonPath("$.user_id", Matchers.is(user1.getUser_id())))
+                .andExpect(jsonPath("$.id", Matchers.is(user1.getId())))
                 .andExpect(jsonPath("$.name", Matchers.is(user1.getName())))
                 .andExpect(jsonPath("$.email", Matchers.is(user1.getEmail())))
                 .andExpect(jsonPath("$.address", Matchers.is(user1.getAddress())))
