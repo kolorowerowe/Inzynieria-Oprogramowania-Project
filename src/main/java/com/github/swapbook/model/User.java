@@ -27,7 +27,7 @@ public class User {
     @Column
     private String address;
 
-    @Column
+    @Column(name="is_active")
     private boolean isActive = false;
 
 
