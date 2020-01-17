@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
 
 @Repository("swapbook.specimens")
@@ -29,6 +30,14 @@ public class SpecimenDBRepository implements SpecimenRepository {
                 .setParameter(1, id)
                 .getSingleResult());
     }
+
+    @Override
+    public List<Specimen> getSpecimensWithBookIdEqual(int bookId)
+    {
+        return ((List<Specimen>) entityManager.createNativeQuery("select * from swapbook.specimens WHERE book_id=?",Specimen.class)
+                .setParameter(1,bookId).getResultList());
+    }
+
 
     @Override
     @Transactional
