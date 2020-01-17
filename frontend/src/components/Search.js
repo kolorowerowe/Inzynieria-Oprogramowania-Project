@@ -5,7 +5,6 @@ import "./Search.css"
 const InitialState = {
     attributeValue: "book"
 }
-// let ActualSpecimenBookId =52;
 
 class Search extends Component {
 
@@ -19,6 +18,12 @@ class Search extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleAttributeChange = this.handleAttributeChange.bind(this);
+    }
+
+    resetOpenedSpecimen()
+    {
+        sessionStorage.setItem('bookId',"0");
+        window.location.reload();
     }
 
     handleSubmit(event) {
@@ -100,8 +105,6 @@ class Search extends Component {
         console.log(this.specimens);
     }
 
-
-
     render() {
         return (
             <div className="container h-100">
@@ -128,31 +131,11 @@ class Search extends Component {
                                 <Col className="searchColBookHeader" md={2}>ID</Col>
                                 <Col className="searchColBookHeader" md={5}>NAME</Col>
                                 <Col className="searchColBookHeader" md={4}>AUTHOR</Col>
-                                <Col className={"searchColBookHeader"} md={1}>LINK</Col>
+                                <Col className={"searchColBookHeader"} md={1}>AKCJA</Col>
                             </Row>
-                            {/*<Row className="bookRow">*/}
-                            {/*    <Col className="searchColBook" md={2}>ID</Col>*/}
-                            {/*    <Col className="searchColBook" md={5}>NAME</Col>*/}
-                            {/*    <Col className="searchColBook" md={4}>AUTHOR</Col>*/}
-                            {/*    <Col className={"searchColBook"} md={1}>LINK</Col>*/}
-                            {/*</Row>*/}
-                            {/*<Row className="bookRow">*/}
-                            {/*    <Col className="searchColSpecimenHeader" md={2}>ID</Col>*/}
-                            {/*    <Col className="searchColSpecimenHeader" md={5}>NAME</Col>*/}
-                            {/*    <Col className="searchColSpecimenHeader" md={4}>AUTHOR</Col>*/}
-                            {/*    <Col className={"searchColSpecimenHeader"} md={1}>LINK</Col>*/}
-                            {/*</Row>*/}
-                            {/*<Row className="bookRow">*/}
-                            {/*    <Col className="searchColSpecimen" md={2}>ID</Col>*/}
-                            {/*    <Col className="searchColSpecimen" md={5}>NAME</Col>*/}
-                            {/*    <Col className="searchColSpecimen" md={4}>AUTHOR</Col>*/}
-                            {/*    <Col className={"searchColSpecimen"} md={1}>LINK</Col>*/}
-                            {/*</Row>*/}
-
-
                             {this.books.map((book) => this.foo1(book))}
                         </Container >
-<br/>
+                    <br/>
                     </div>
                 </div>
             </div>
@@ -169,24 +152,27 @@ class Search extends Component {
                     <Row className="bookRow">
                         <Col className="choosenOne" md={2}>{book.book_id}</Col>
                         <Col className="choosenOne" md={5}>{book.title}</Col>
-                        <Col className="choosenOne" md={4}>{"MARIO"}</Col>
-                        <Col className="choosenOne" md={1}>{"MARIO"}</Col>
+                        <Col className="choosenOne" md={4}>{"---"}</Col>
+                        <Col className="choosenOne1" md={1}>{<button className={"Button2"} onClick={()=>{this.resetOpenedSpecimen()}}>Zwiń</button>}</Col>
                     </Row>
                     <br/>
                     <Row className="bookRow">
                         <Col className="searchColSpecimenHeader" md={2}>ID</Col>
                         <Col className="searchColSpecimenHeader" md={4}>NAME</Col>
                         <Col className="searchColSpecimenHeader" md={4}>STAN</Col>
-                        <Col className={"searchColSpecimenHeader"} md={1}>LINK</Col>
+                        <Col className={"searchColSpecimenHeader"} md={1}>AKCJA</Col>
                      </Row>
                     {this.specimens.map((specimen) => <Row className="bookRow">
                         <Col className="searchColSpecimen" md={2}>{specimen.user_id}</Col>
                         <Col className="searchColSpecimen" md={4}>{specimen.condition}</Col>
                         <Col className="searchColSpecimen" md={4}>{specimen.loan_period}</Col>
-                        <Col className={"searchCol"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Link2</button>
+                        <Col className={"searchCol"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Pożycz</button>
                         </Col>
                     </Row>)}
-                    <Row className={"searchColSpecimenLast"}></Row>
+                    <Row className={"searchColSpecimenLastRow"}>
+                        <Col className="searchColSpecimenLast" md={11}></Col>
+
+                    </Row>
                     {/*<Row className={"searchColBookFirst"}><Col c md={12}>123 </Col></Row>*/}
 
                     <br/>
@@ -198,7 +184,7 @@ class Search extends Component {
                     <Col className="searchColBook" md={2}>{book.book_id}</Col>
                     <Col className="searchColBook" md={5}>{book.title}</Col>
                     <Col className="searchColBook" md={4}>{book.author}</Col>
-                    <Col className="searchColBook" md={1}>{<button className={"Button1"} onClick={()=>this.loadBookPage(book.book_id)}>Wypożycz</button>}</Col>
+                    <Col className="searchColBook" md={1}>{<button className={"Button1"} onClick={()=>this.loadBookPage(book.book_id)}>Pokaż</button>}</Col>
                 </Row>
             </Container>
         )

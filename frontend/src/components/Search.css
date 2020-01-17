@@ -39,8 +39,9 @@
 }
 
 .choosenOne{
-    border: 4px solid #1F8943;
+    border: 2px solid #1F8943;
     border-radius: 50px;
+    color: white;
     background: gray;
     text-align: center;
 }
@@ -154,6 +155,21 @@ a:hover
 }
 .nav-link.active {
     color: black;
+}
+
+button.Button2{
+    background-color: red; /* Green */
+    height: 30px;
+    width: 70px;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    /*padding: 5px 3px;*/
+    text-align: center;
+    /*margin-right: 15px;*/
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
 }
 
 button.Button1{
