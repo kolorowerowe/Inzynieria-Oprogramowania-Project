@@ -20,7 +20,7 @@ CREATE TABLE swapbook.opinions (
 );
 
 CREATE TABLE swapbook.books (
-    book_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     title VARCHAR (255) UNIQUE NOT NULL,
     author VARCHAR (255)  NOT NULL,
     photo_url VARCHAR (255) NOT NULL

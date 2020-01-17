@@ -2,7 +2,7 @@ package com.github.swapbook.api;
 
 import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
-import com.github.swapbook.repositories.books.BookDBRepository;
+//import com.github.swapbook.repositories.books.BookDBRepository;
 import com.github.swapbook.repositories.specimens.SpecimenDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

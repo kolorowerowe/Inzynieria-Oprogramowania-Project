@@ -2,6 +2,8 @@ package com.github.swapbook.repositories.specimens;
 
 import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
+import com.github.swapbook.repositories.books.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,6 +16,9 @@ public class SpecimenDBRepository implements SpecimenRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    BookService bookService;
 
     public SpecimenDBRepository() {
     }
@@ -37,7 +42,7 @@ public class SpecimenDBRepository implements SpecimenRepository {
                 .setParameter(1,specimen.getTitle())
                 .getResultList());
 
-        List<Book> bookList = ((List<Book>) entityManager.createNativeQuery("select * from swapbook.books",Book.class).getResultList());
+        List<Book> bookList = bookService.getAllBooks();
 
         int max =0;
         for (Book book : bookList) {
@@ -46,13 +51,13 @@ public class SpecimenDBRepository implements SpecimenRepository {
             }
         }
 
+
         if(list.isEmpty()){
-            entityManager.createNativeQuery("INSERT INTO swapbook.books VALUES (?,?,?,?)")
-                    .setParameter(1,max+1 )
-                    .setParameter(2, specimen.getTitle())
-                    .setParameter(3, specimen.getAuthor())
-                    .setParameter(4, specimen.getPhoto_url())
-                    .executeUpdate();;
+            Book book = new Book();
+            book.setTitle(specimen.getTitle());
+            book.setAuthor(specimen.getAuthor());
+            book.setPhoto_url(specimen.getPhoto_url());
+            bookService.addBook(book);
         }
         entityManager.createNativeQuery("INSERT INTO swapbook.specimens VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")
                 .setParameter(1, specimen.getSpecimen_id())
