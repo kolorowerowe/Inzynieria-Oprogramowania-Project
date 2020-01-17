@@ -22,10 +22,10 @@ public class BookService {
         return bookRepository.findAll();
     }
     public Book getBookById(int id) {
-        return bookRepository.findById((long) id).orElse(null);
+        return bookRepository.findById(id).orElse(null);
     }
     public void deleteBookById(int book_id){
-        bookRepository.deleteById((long)book_id);
+        bookRepository.deleteById(book_id);
     }
 
     public void addBook(Book b){

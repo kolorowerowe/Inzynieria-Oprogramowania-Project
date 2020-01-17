@@ -22,11 +22,17 @@ public class UserService {
     }
 
     public User getUserById(int id) {
-        return userRepository.findById((long)id).orElse(null);
+        return userRepository.findById(id).orElse(null);
     }
 
     public void addToList(User user) {
         userRepository.save(user);
+    }
+
+    public void activateUserById(int userId){
+        User user = getUserById(userId);
+        user.setIsActive(true);
+        updateUser(user);
     }
 
     public void updateUser(User user) {
@@ -34,7 +40,7 @@ public class UserService {
     }
 
     public void deleteUserById(int id) {
-        userRepository.deleteById((long) id);
+        userRepository.deleteById(id);
     }
 
     public User getUserByEmail(String email) {

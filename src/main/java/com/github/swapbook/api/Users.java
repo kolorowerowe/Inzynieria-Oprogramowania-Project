@@ -62,10 +62,7 @@ public class Users {
 
     @GetMapping("/api/users/confirm/{id}")
     public ResponseEntity<Object> confirmCreateUser(@PathVariable(value = "id") int userId) throws URISyntaxException {
-        User user = userService.getUserById(userId);
-        user.setIsActive(true);
-        //TODO userRepository.updateUser(user);
-
+        userService.activateUserById(userId);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(new URI(FrontUrl));
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
