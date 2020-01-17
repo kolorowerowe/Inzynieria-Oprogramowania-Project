@@ -2,7 +2,7 @@ DROP SCHEMA IF EXISTS swapbook CASCADE;
 CREATE SCHEMA IF NOT EXISTS swapbook;
 
 CREATE TABLE swapbook.users (
-    user_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     name VARCHAR (255) NOT NULL,
     email VARCHAR (255) UNIQUE NOT NULL,
     password VARCHAR (255) NOT NULL,
@@ -12,8 +12,8 @@ CREATE TABLE swapbook.users (
 
 CREATE TABLE swapbook.opinions (
     opinion_id INT PRIMARY KEY,
-    giver_id INT REFERENCES swapbook.users,
-    receiver_id INT REFERENCES swapbook.users,
+    giver_id INT REFERENCES swapbook.users(id),
+    receiver_id INT REFERENCES swapbook.users(id),
     text VARCHAR (500),
     mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
@@ -28,8 +28,8 @@ CREATE TABLE swapbook.books (
 
 CREATE TABLE swapbook.reviews(
     review_id INT PRIMARY KEY,
-    book_id INT REFERENCES swapbook.books,
-    user_id INT REFERENCES swapbook.users,
+    book_id INT REFERENCES swapbook.books(id),
+    user_id INT REFERENCES swapbook.users(id),
     text VARCHAR (500),
     mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
@@ -37,8 +37,8 @@ CREATE TABLE swapbook.reviews(
 
 CREATE TABLE swapbook.specimens(
     specimen_id INT PRIMARY KEY,
-    book_id INT REFERENCES swapbook.books,
-    user_id INT REFERENCES swapbook.users,
+    book_id INT REFERENCES swapbook.books(id),
+    user_id INT REFERENCES swapbook.users(id),
     title VARCHAR (255) NOT NULL,
     condition VARCHAR(64),
     number_pages INT ,
@@ -54,8 +54,8 @@ CREATE TABLE swapbook.specimens(
 CREATE TABLE swapbook.loans(
     loan_id INT PRIMARY KEY,
     specimen_id INT REFERENCES swapbook.specimens,
-    owner_id INT REFERENCES swapbook.users,
-    loaner_id INT REFERENCES swapbook.users,
+    owner_id INT REFERENCES swapbook.users(id),
+    loaner_id INT REFERENCES swapbook.users(id),
     loan_status VARCHAR(64),
     date_loan DATE NOT NULL,
     date_return DATE

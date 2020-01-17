@@ -7,13 +7,13 @@ import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "swapbook.users")
+@Table(name = "users", schema="swapbook")
 public class User {
 
     @Id
     @PrimaryKeyJoinColumn
-    @Column(columnDefinition = "user_id")
-    private int user_id;
+    @Column(columnDefinition = "id")
+    private int id;
 
     @Column(columnDefinition = "name")
     private String name;
@@ -31,8 +31,8 @@ public class User {
     private boolean isActive = false;
 
 
-    public int getUser_id() {
-        return user_id;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -76,12 +76,12 @@ public class User {
     public User() { }
 
     public User(int id, String name) {
-        this.user_id = id;
+        this.id = id;
         this.name = name;
     }
 
     public User(int id, String name, String email, String password, String address) {
-        this.user_id = id;
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password; //TODO add hash
@@ -93,12 +93,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user_id == user.user_id;
+        return id == user.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id);
+        return Objects.hash(id);
     }
 
     public boolean Verify(LoginModel loginModel)

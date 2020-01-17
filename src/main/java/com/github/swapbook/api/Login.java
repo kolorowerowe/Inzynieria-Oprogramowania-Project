@@ -3,7 +3,7 @@ package com.github.swapbook.api;
 import com.github.swapbook.configuration.SecurityConstants;
 import com.github.swapbook.model.LoginModel;
 import com.github.swapbook.model.User;
-import com.github.swapbook.repositories.users.UserDBRepository;
+import com.github.swapbook.repositories.users.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -20,13 +20,13 @@ import java.util.Date;
 @RestController
 public class Login {
     @Autowired
-    UserDBRepository userRepository;
+    UserService userService;
 
     @PostMapping("/api/login")
     @ResponseBody
     public ResponseEntity<User> createUser(@RequestBody LoginModel loginModel, HttpServletResponse response) {
         
-        User loginUser = userRepository.getUserByEmail(loginModel.getEmail());
+        User loginUser = userService.getUserByEmail(loginModel.getEmail());
         if(loginUser == null) {
             return ResponseEntity.badRequest().body(null);
         }

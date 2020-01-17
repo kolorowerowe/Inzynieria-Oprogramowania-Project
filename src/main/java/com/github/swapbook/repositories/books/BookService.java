@@ -21,7 +21,7 @@ public class BookService {
         return bookRepository.findAll();
     }
     public Book getBookById(int id) {
-        return bookRepository.getOne((long) id);
+        return bookRepository.findById((long) id).orElse(null);
     }
     public void deleteBookById(int book_id){
         bookRepository.deleteById((long)book_id);
