@@ -6,3 +6,104 @@
     color: red;
     font-size: large;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+}
+
+input.form-control {
+    border-radius: 50px;
+}
+
+/* START -------------------------------------------Moje majdanie*/
+#selectState{
+    color: white;
+    background: #1F8943;
+    border: lightgrey;
+    border-style: solid;
+    padding: .1rem;
+    height: 30px;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+input.form-marcin {
+    border-radius: 50px;
+}
+
+#mainInput{
+    width: 400px;
+}
+
+.btn.btn-success-marcin {
+    color: aliceblue;
+    width: 100px;
+    padding: .1rem;
+    margin: 10px;
+    background-color: #1F8943;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.btn.btn-success-marcin:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+/* END -------------------------------------------Moje majdanie*/
+
+#description {
+    width: 300px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.btn.btn-success {
+    width: 300px;
+    padding: .5rem;
+    background-color: #1F8943;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.btn.btn-success:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.btn.btn-border {
+    width: 300px;
+    padding: .5rem;
+    background-color: transparent;
+    border-radius: 50px;
+    border: 5px solid #575757;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.btn.btn-border:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.btn.btn-link {
+    width: 300px;
+    padding: .5rem;
+    background-color: transparent;
+    border-radius: 50px;
+    border: none;
+    color: #7d7d7d;
+}
+
+.nav-app {
+    background-color: #C4C4C4;
+    border-radius: 50px;
+}
+.nav-link {
+    color: black;
+}
+.nav-link.active {
+    color: white;
+}

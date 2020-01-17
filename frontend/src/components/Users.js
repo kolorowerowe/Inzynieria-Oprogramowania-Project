@@ -57,7 +57,23 @@ class Users extends Component {
         return (
             <div className="userss">
                 <h2>Users</h2>
-                below you an find all users <br/>
+                <p>below you an find all users</p> <br/>
+                <form id="addUserForm" onSubmit={this.handleSubmit}>
+                    <label>
+                        <Row>
+                            <Col>Id:</Col>
+                            <Col><input type="text" className="form-control" name="id"/></Col>
+                        </Row>
+                    </label><br/>
+                    <label>
+                        <Row>
+                            <Col>Name:</Col>
+                            <Col><input type="text" className="form-control" name="name"/></Col>
+                        </Row>
+                    </label><br/>
+                    <input type="submit" className="btn btn-success" value="Submit"/>
+                </form>
+                <br/>
                 <Container>
                     <Row className="userRow">
                         <Col className="userCol" md={1}>ID</Col>
@@ -73,18 +89,7 @@ class Users extends Component {
                     </Row>)}
                 </Container>
                 <br/>
-                <form id="addUserForm" onSubmit={this.handleSubmit}>
 
-                    <label>
-                        Id:
-                        <input type="text" name="id" />
-                    </label>
-                    <label>
-                        Name:
-                        <input type="text" name="name" />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
             </div>
         );
     }

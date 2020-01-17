@@ -173,82 +173,108 @@ class Specimen extends Component {
                     </Row>)}
                 </Container>
                 <br/>
-                <form id="addSpecimenForm" onSubmit={this.handleSubmit}>
-                    <label>
-                        <Row className={"addSpecimenForm"}>
-                            <Col className={"addSpecimenForm"}>Title:</Col>
-                            <Col className={"addSpecimenForm"}><input type="text" name="title" required={true}/></Col>
-                        </Row>
-                    </label>
-                    <br/>
-                    <label>
-                        <Row className={"addSpecimenForm"}>
-                            <Col>State:</Col>
-                            <Col>
-                                <select name="condition" value={this.state.stateValue} onChange={this.handleStateChange}>
-                                <option value={"Dog-eaten"}>Dog-eaten</option>
-                                <option value={"Poor"}>Poor</option>
-                                <option value={"Average"}>Average</option>
-                                <option value={"Good"}>Good</option>
-                                <option value={"Perfect"}>Perfect</option>
-                                </select>
-                            </Col>
-                        </Row>
-                    </label>
-                    <br/>
-                    <label>
-                        <Row>
-                            <Col>NumberOfPages:</Col>
-                            <Col><input type="text" name="number_pages" required={true}/></Col>
-                            <div className="errorMessage">{this.state.numberOfPagesError}</div>
-                        </Row>
-                    </label>
-                    <br/>
-                    <label>
-                        Author:
-                        <input type="text" name="author" required={true}/>
-                    </label>
-                    <br/>
-                    <label>
-                        ReleaseDate:
-                        <input type="date" name="release_date" required={true} />
-                        <div className="errorMessage">{this.state.releaseDateError}</div>
-                    </label>
-                    <br/>
-                    <label>
-                        ReleaseNumber:
-                        <input type="text" name="issue_number" required={true}/>
-                    </label>
-                    <br/>
-                    <label>
-                        ISBN:
-                        <input type="text" name="isbn" required={true}/>
-                    </label>
-                    <br/>
-                    <label>
-                        PublishingHouse:
-                        <input type="text" name="publishing_house" required={true}/>
-                    </label>
-                    <br/>
-                    <label>
-                        Ready for renting:<br/>
-                        <input type="checkbox" name={"readyForRenting"} onClick={this.handleRentalTimeStateChange}/>Yes<br/>
-                    </label>
-                    <br/>
-                    <label>
-                        RentalTime:
-                        <input type="number" name="loan_period" required={!this.state.rentalTimeDisabled} disabled={(this.state.rentalTimeDisabled)?true:false}/>
-                        <div className="errorMessage">{this.state.rentalTimeError}</div>
-                    </label>
-                    <br/>
-                    <label>
-                        Photo url:
-                        <input type="text" name="photo_url" required={true}/>
-                    </label>
-                    <br/>
-                    <input type="submit" value="Submit"/>
-                </form>
+                <div className="container h-100">
+                    <div className="row h-100">
+                        <div className="col d-flex align-items-center justify-content-center flex-column">
+                            <form id="addSpecimenForm" onSubmit={this.handleSubmit}>
+                                <label>
+                                    <Row className={"addSpecimenForm"}>
+                                        <Col className={"addSpecimenForm"}>Title:</Col>
+                                        <Col className={"addSpecimenForm"}><input type="text" name="title" required={true} class="form-control"/></Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row className={"addSpecimenForm"}>
+                                        <Col>State:</Col>
+                                        <Col>
+                                            <select className={"selectCondition"} name="condition" value={this.state.stateValue} onChange={this.handleStateChange}>
+                                                <option value={"Dog-eaten"}>Dog-eaten</option>
+                                                <option value={"Poor"}>Poor</option>
+                                                <option value={"Average"}>Average</option>
+                                                <option value={"Good"}>Good</option>
+                                                <option value={"Perfect"}>Perfect</option>
+                                            </select>
+                                        </Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>NumberOfPages:</Col>
+                                        <Col><input type="text" name="number_pages" required={true} class="form-control" id={"pages"}/></Col>
+                                        <div className="errorMessage" >{this.state.numberOfPagesError}</div>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>Author:</Col>
+                                        <Col><input type="text" name="author" required={true} class="form-control"/></Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>ReleaseDate:</Col>
+                                        <Col><input type="date" name="release_date" required={true} class="form-control" id={"ReleaseDate"}/></Col>
+                                        <div className="errorMessage">{this.state.releaseDateError}</div>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>ReleaseNumber:</Col>
+                                        <Col><input type="text" name="issue_number" required={true} class="form-control"/></Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>ISBN:</Col>
+                                        <Col><input type="text" name="isbn" required={true} class="form-control"/></Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>PublishingHouse:</Col>
+                                        <Col><input type="text" name="publishing_house" required={true} class="form-control"/></Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>Ready_for_renting: </Col>
+                                        <br/>
+                                        <Col><input type="checkbox" name={"readyForRenting"} onClick={this.handleRentalTimeStateChange} id={"ReadyForRentingCheckBox"}/>
+                                            <span className={"checkmark"}></span></Col>
+                                        <br/>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>RentalTime:</Col>
+                                        <Col><input id={"RentalTime"} class="form-control" type="number" name="loan_period" required={!this.state.rentalTimeDisabled} disabled={(this.state.rentalTimeDisabled)?true:false }/></Col>
+                                        <div className="errorMessage">{this.state.rentalTimeError}</div>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <label>
+                                    <Row>
+                                        <Col>Photo url:</Col>
+                                        <Col><input type="text" name="photo_url" required={true} class="form-control"/></Col>
+                                    </Row>
+                                </label>
+                                <br/>
+                                <input type="submit" value="Submit" className="btn btn-success"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         );
     }
 }

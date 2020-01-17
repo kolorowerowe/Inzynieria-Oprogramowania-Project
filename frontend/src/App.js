@@ -30,7 +30,7 @@ class App extends Component {
                     <Navbar bg="dark" variant="dark">
                         <Navbar.Brand href="/">SwapBook</Navbar.Brand>
                         <Nav className="mr-auto">
-                            <Nav.Link href="/about">About</Nav.Link>
+                            <Nav.Link href="/about">O stronie</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
                             <Nav.Link href="/register">Rejstracja</Nav.Link>
                             <Nav.Link href="/user">Login</Nav.Link>
@@ -81,9 +81,15 @@ function Home() {
 
 function About() {
     return (
-        <div>
-            <h2>About</h2>
-            <p>Jakis tekst</p>
+        <div className="container h-100">
+            <div className="row h-100">
+                <div className="col d-flex align-items-center justify-content-center flex-column">
+                    <h3 className="mb-5">O stronie</h3>
+                    <p>SwapBook albo też BookSwap to super stronka do wypożyczania innym książek!</p>
+                    <p>Chcesz przeczytać kolejne tomy przygód Harrego Pottera a w bibliotekach ni ... kolejnych cześci?</p>
+                    <p>Sprawdz u nas! Tu (chyba) na pewno będzie!</p>
+                </div>
+            </div>
         </div>
             );
 }
