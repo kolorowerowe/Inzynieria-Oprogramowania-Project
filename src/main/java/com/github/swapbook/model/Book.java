@@ -6,13 +6,13 @@ import javax.persistence.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "swapbook.books")
+@Table(name = "books", schema="swapbook")
 public class Book {
 
     @Id
     @PrimaryKeyJoinColumn
     @Column
-    private int book_id;
+    private int id;
 
     @Column
     private String title;
@@ -26,7 +26,7 @@ public class Book {
     public Book() {}
 
     public Book(int book_id, String title, String author) {
-        this.book_id = book_id;
+        this.id = book_id;
         this.title = title;
         this.author = author;
         this.photo_url = "";
@@ -38,7 +38,7 @@ public class Book {
     }
 
     public int getBook_id() {
-        return book_id;
+        return id;
     }
 
     public String getTitle() {

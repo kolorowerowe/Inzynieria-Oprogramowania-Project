@@ -20,7 +20,7 @@ class Users extends Component {
         console.log(data);
 
         let post_data = {
-            id: data.get("user_id"),
+            id: data.get("id"),
             name : data.get("name")
         };
         console.log(post_data);
@@ -82,7 +82,7 @@ class Users extends Component {
                         <Col className="userCol" md={4}>ADDRESS</Col>
                     </Row>
                     {this.users.map((user) => <Row className="userRow">
-                        <Col className="userCol" md={1}>{user.user_id}</Col>
+                        <Col className="userCol" md={1}>{user.id}</Col>
                         <Col className="userCol" md={3}>{user.name}</Col>
                         <Col className="userCol" md={3}>{user.email}</Col>
                         <Col className="userCol" md={4}>{user.address}</Col>
