@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./Register.css"
+import {Col} from "react-bootstrap";
 
 class Register extends Component {
     constructor(props) {
@@ -58,7 +59,12 @@ class Register extends Component {
                         </div>
                         <div className="form-group">
                         <label>
-                            <input type="checkbox" name="regulamin" value="accepted" required/> Czy akceptujesz regulamin
+                            {/*Tu byly problemy, pytaj marcina xDDDDD*/}
+                            {/*<Col>*/}
+                            {/*<input type="checkbox" name={"regulamin"}*/}
+                            {/*       id={"ReadyForRentingCheckBox"} required={true}/>*/}
+                            {/*<span className={"checkmark"}></span>XI    Czy akceptujesz regulamin</Col>*/}
+                            <input type="checkbox" name="regulamin"  value="accepted" required/> Czy akceptujesz regulamin?
                         </label>
                         </div>
                         <button type="submit" className="btn btn-success mt-3">Zarejestruj się!</button>

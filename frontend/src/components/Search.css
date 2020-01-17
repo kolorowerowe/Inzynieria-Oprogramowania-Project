@@ -51,6 +51,10 @@
     text-align: center;
 }
 
+.choosenOne1{
+    color: white;
+    text-align: center;
+}
 
 .errorMessage{
     color: red;
@@ -99,6 +103,17 @@ input.form-marcin {
     border-radius: 50px;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
+
+.btn.btn-success-marcin-reset {
+    color: aliceblue;
+    width: 100px;
+    padding: .1rem;
+    margin: 10px;
+    background-color: #bb0500;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
 .btn.btn-success-marcin:hover {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
