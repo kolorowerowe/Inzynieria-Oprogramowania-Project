@@ -1,11 +1,13 @@
-.specimenCol{
-    border: 2px solid grey;
+.specimenColHeader{
+    border: 4px solid grey;
     border-radius: 50px;
     text-align: center;
 }
 
-.bookCol{
-    border: 2px solid black;
+.bookColHeader{
+    border: 4px solid grey;
+    border-radius: 50px;
+    text-align: center;
 }
 
 .img-fluid{

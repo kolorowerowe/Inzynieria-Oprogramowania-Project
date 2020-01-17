@@ -1,12 +1,58 @@
-.searchCol{
-    border: 2px solid blue;
+.searchColBookHeader{
+    border: 4px solid grey;
+    border-radius: 50px;
+    text-align: center;
 }
-.searchColLink{
-    border: pink;
+
+.searchColBook{
+    border-left: #1F8943 dashed 2px;
+    border-right: #1F8943 dashed 2px;
+    text-align: center;
+
 }
+
+.searchColSpecimenHeader{
+    border: 4px solid #1F8943;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.searchColSpecimen{
+    border-left: grey dotted 2px;
+    border-right: grey dot-dot-dash 2px;
+    text-align: center;
+}
+
+/*.searchColBookFirst{*/
+/*    border-bottom: yellow solid 3px;*/
+/*}*/
+
+.searchColSpecimenLast{
+    border-bottom: gray 2px dashed;
+}
+
+.searchColBookLast{
+    border-bottom: yellow solid 3px;
+    /*border: 4px solid #1F8943;*/
+    border-radius: 50px;
+    text-align: center;
+}
+
+.choosenOne{
+    border: 4px solid #1F8943;
+    border-radius: 50px;
+    background: gray;
+    text-align: center;
+}
+
+
 .errorMessage{
     color: red;
     font-size: large;
+}
+
+.bookRow:hover{
+    background: rgba(192, 184, 193, 0.55);
 }
 
 body {
