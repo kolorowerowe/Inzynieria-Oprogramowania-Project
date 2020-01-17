@@ -41,7 +41,7 @@ class Register extends Component {
 
             <div className="row h-100">
                 <div className="col d-flex align-items-center justify-content-center flex-column">
-                    <h3 className="mb-5">Rejstracja</h3>
+                    <h3 className="mb-5">Rejestracja</h3>
 
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
