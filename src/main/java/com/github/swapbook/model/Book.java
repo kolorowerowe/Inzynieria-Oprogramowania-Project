@@ -32,6 +32,11 @@ public class Book {
         this.photo_url = "";
     }
 
+    public Book(int book_id, String title, String author, String photo_url) {
+        this(book_id, title, author);
+        this.photo_url = photo_url;
+    }
+
     public int getBook_id() {
         return id;
     }

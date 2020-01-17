@@ -1,8 +1,8 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.model.User;
-import com.github.swapbook.repositories.users.UserService;
-import com.github.swapbook.service.UserLoginService;
+import com.github.swapbook.repositories.users.UserDBRepository;
+import com.github.swapbook.service.UserService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,13 +29,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserTest {
 
+    private static final int NUMBER_OF_USER_FIELDS = 6;
+
     private MockMvc mockMvc;
 
     @Mock
-    private UserService userService;
+    private UserDBRepository userRepository;
 
     @Mock
-    private UserLoginService userLoginService;
+    private UserService userService;
 
     @InjectMocks
     private Users users;
@@ -49,7 +51,7 @@ public class UserTest {
     @Test
     public void getAllUsers_shouldReturnEmptyList() throws Exception {
         List<User> users = new LinkedList<User>();
-        when(userService.getUsers()).thenReturn(users);
+        when(userRepository.getUsers()).thenReturn(users);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/users/all"))
@@ -64,33 +66,33 @@ public class UserTest {
         List<User> users = new LinkedList<User>();
         users.add(user1);
 
-        when(userService.getUsers()).thenReturn(users);
+        when(userRepository.getUsers()).thenReturn(users);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/users/all"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$[0].user_id", Matchers.is(user1.getId()))
+                .andExpect(jsonPath("$[0].user_id", Matchers.is(user1.getUser_id()))
                 );
 
-        verify(userService).getUsers();
+        verify(userRepository).getUsers();
     }
 
     @Test
     public void getUserById_shouldReturnCorrectUser() throws Exception {
         User user1 = new User(1, "test1");
 
-        when(userService.getUserById(user1.getId())).thenReturn(user1);
+        when(userRepository.getUserById(user1.getUser_id())).thenReturn(user1);
 
-        when(userLoginService.VerifyToken(any(HttpServletRequest.class),anyInt())).thenReturn(true);
+        when(userService.VerifyToken(any(HttpServletRequest.class),anyInt())).thenReturn(true);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/users/"+user1.getId()))
+                MockMvcRequestBuilders.get("/api/users/"+user1.getUser_id()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(jsonPath("$.*", Matchers.hasSize(5)))
-                .andExpect(jsonPath("$.user_id", Matchers.is(user1.getId()))
+                .andExpect(jsonPath("$.*", Matchers.hasSize(NUMBER_OF_USER_FIELDS)))
+                .andExpect(jsonPath("$.user_id", Matchers.is(user1.getUser_id()))
                 );
 
-        verify(userService).getUserById(user1.getId());
+        verify(userRepository).getUserById(user1.getUser_id());
     }
 }
