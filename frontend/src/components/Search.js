@@ -210,7 +210,7 @@ class Search extends Component {
                 specimenId: specimen.specimen_id
             }
 
-            fetch('/api/books/loan', {
+            fetch('/api/loans/create', {
                 method: 'POST',
                 body: JSON.stringify(post_data),
                 headers: {
