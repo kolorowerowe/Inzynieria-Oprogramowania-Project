@@ -220,7 +220,7 @@ class Search extends Component {
                 .then(
                     function () {
                         console.log("Successfully send form data");
-                        window.location.reload();
+                        // window.location.reload();
                     }
                 ).catch(function () {
                 console.log("Error while sending")
@@ -264,7 +264,7 @@ class Search extends Component {
     }
 
     tekstGuzika(specimen) {
-        let stan = specimen.status
+        let stan = specimen.status;
         if(stan=='AVAILABLE') return "Pożycz";
         return "Niedostępny";
 
