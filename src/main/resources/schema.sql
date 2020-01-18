@@ -48,8 +48,10 @@ CREATE TABLE swapbook.specimens(
     isbn VARCHAR (64),
     publishing_house VARCHAR (64),
     loan_period INT,
+    status VARCHAR (64),
     photo_url VARCHAR (255)
 );
+
 
 CREATE TABLE swapbook.loans(
     loan_id INT PRIMARY KEY,
@@ -57,9 +59,9 @@ CREATE TABLE swapbook.loans(
     owner_id INT REFERENCES swapbook.users(id),
     loaner_id INT REFERENCES swapbook.users(id),
     loan_status VARCHAR(64),
-    date_loan DATE NOT NULL,
+    date_loan VARCHAR(64),
     period_days INT,
-    date_return DATE
+    date_return VARCHAR(64)
 );
 
 INSERT INTO swapbook.users
@@ -79,12 +81,12 @@ VALUES
 
 INSERT INTO swapbook.specimens
 VALUES
-    (71, 51, 11, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', '9780605928183', 'Wydawnictwo Magow', 14, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
-    (72, 51, 12, 'Harry Potter i komnata tajemnic', 'Average', 566, 'J. K. Rowling', '1999-07-27', 'wydanie trzecie', '9780605928122', 'PWN', 17, 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
-    (73, 52, 13, 'Swiat według Clarksona. Jesli moglbym dokonczyć...', 'Average', 321, 'Jeremy Clarkson', '2019-11-13', 'pierwsze', '33634555', 'Insignis' , 10, 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' ),
-    (74, 53, 11, 'Wprowadzenie do fizyki w grach, animacjach i symulacjach Flash', 'Average', 531, 'Dev Ramtal', '2019-11-13', 'pierwsze', '978-83-246-4473-5', 'Helion' , 10, 'https://static01.helion.com.pl/helion/okladki/326x466/wprofi.jpg' ),
-    (75, 54, 11, 'English 4 IT', 'Average', 283, 'Beata Blaszczyk', '2017-10-11', 'pierwsze', '9788328304338', 'Helion' , 10, 'https://static01.helion.com.pl/helion/okladki/326x466/anginf.jpg' ),
-    (76, 55, 13, 'Wprowadzenie do algorytmow', 'Good', 999, 'Thomas H. Cormen, Ron Rivest', '2019-11-13', 'pierwsze', '9789650603533', 'PWN' , 10, 'https://emp-scs-uat.img-osdw.pl/img-p/1/kipwn/d576082e/std/2bc-452/105536615o.jpg' );
+    (71, 51, 11, 'Harry Potter i komnata tajemnic', 'Good', 567, 'J. K. Rowling', '1997-06-26', 'wydanie drugie', '9780605928183', 'Wydawnictwo Magow', 14,'NOT_AVAILABLE', 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
+    (72, 51, 12, 'Harry Potter i komnata tajemnic', 'Average', 566, 'J. K. Rowling', '1999-07-27', 'wydanie trzecie', '9780605928122', 'PWN', 17,'AVAILABLE', 'https://image.ceneostatic.pl/data/products/46228652/i-harry-potter-i-komnata-tajemnic.jpg' ),
+    (73, 52, 13, 'Swiat według Clarksona. Jesli moglbym dokonczyć...', 'Average', 321, 'Jeremy Clarkson', '2019-11-13', 'pierwsze', '33634555', 'Insignis' , 10,'AVAILABLE', 'https://ecsmedia.pl/c/swiat-wedlug-clarksona-jesli-moglbym-dokonczyc-w-iext55525750.jpg' ),
+    (74, 53, 11, 'Wprowadzenie do fizyki w grach, animacjach i symulacjach Flash', 'Average', 531, 'Dev Ramtal', '2019-11-13', 'pierwsze', '978-83-246-4473-5', 'Helion' , 10,'AVAILABLE', 'https://static01.helion.com.pl/helion/okladki/326x466/wprofi.jpg' ),
+    (75, 54, 11, 'English 4 IT', 'Average', 283, 'Beata Blaszczyk', '2017-10-11', 'pierwsze', '9788328304338', 'Helion' , 10,'AVAILABLE', 'https://static01.helion.com.pl/helion/okladki/326x466/anginf.jpg' ),
+    (76, 55, 13, 'Wprowadzenie do algorytmow', 'Good', 999, 'Thomas H. Cormen, Ron Rivest', '2019-11-13', 'pierwsze', '9789650603533', 'PWN' , 10,'AVAILABLE', 'https://emp-scs-uat.img-osdw.pl/img-p/1/kipwn/d576082e/std/2bc-452/105536615o.jpg' );
 
 INSERT INTO swapbook.reviews
 VALUES
