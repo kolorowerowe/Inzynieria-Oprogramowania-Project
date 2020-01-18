@@ -37,4 +37,9 @@ public class ReviewService implements ReviewServiceI {
     public void deleteReviewById(int reviev_id) {
         reviewRepository.deleteById(reviev_id);
     }
+
+    @Override
+    public List<Review> getReviewsFromUser(int id) {
+        return reviewRepository.findAll().stream().filter(b -> b.getUser_id()==id).collect(Collectors.toList());
+    }
 }
