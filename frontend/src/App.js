@@ -31,7 +31,7 @@ class App extends Component {
                         <Navbar.Brand href="/">SwapBook</Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link href="/about">O stronie</Nav.Link>
-                            <Nav.Link href="/users">Użytkownicy</Nav.Link>
+                            {/*<Nav.Link href="/users">Użytkownicy</Nav.Link>*/}
                             <Nav.Link className="registerNaviBar" href="/register">Rejestracja</Nav.Link>
                             <Nav.Link className="loginNaviBar" href="/user">Login</Nav.Link>
                             <Nav.Link href="/search">Wyszukaj</Nav.Link>
@@ -48,9 +48,9 @@ class App extends Component {
                             <Route path="/register">
                                 <Register/>
                             </Route>
-                            <Route path="/users">
-                                <Users/>
-                            </Route>
+                            {/*<Route path="/users">*/}
+                            {/*    <Users/>*/}
+                            {/*</Route>*/}
                             <Route path={"/search"}>
                                 <Search/>
                             </Route>
@@ -85,8 +85,8 @@ function About() {
                 <div className="col d-flex align-items-center justify-content-center flex-column">
                     <h3 className="mb-5">O stronie</h3>
                     <p>SwapBook albo też BookSwap to super stronka do wypożyczania innym książek!</p>
-                    <p>Chcesz przeczytać kolejne tomy przygód Harrego Pottera a w bibliotekach ni ... kolejnych cześci?</p>
-                    <p>Sprawdz u nas! Tu (chyba) na pewno będzie!</p>
+                    <p>Chcesz przeczytać kolejne tomy przygód Harrego Pottera a w bibliotekach nie ma  kolejnych cześci?</p>
+                    <p>Sprawdz u nas! Tu na pewno ktoś  będzie chciał Ci ją wypożyczyć!!</p>
                 </div>
             </div>
         </div>
