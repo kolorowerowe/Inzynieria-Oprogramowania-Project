@@ -32,7 +32,7 @@ class App extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/about">O stronie</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
-                            <Nav.Link className="registerNaviBar" href="/register">Rejstracja</Nav.Link>
+                            <Nav.Link className="registerNaviBar" href="/register">Rejestracja</Nav.Link>
                             <Nav.Link className="loginNaviBar" href="/user">Login</Nav.Link>
                             <Nav.Link href="/search">Wyszukaj</Nav.Link>
                             {/*<Nav.Link href="/addbook">Dodaj książke</Nav.Link>*/}

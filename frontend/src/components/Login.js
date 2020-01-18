@@ -55,6 +55,8 @@ class Login extends Component {
                             <button type="submit" className="btn btn-success mt-3">Zaloguj się!</button>
                         </form>
                         {/* <button class="btn btn-link btn-sm">Zapomniałem Hasła</button> */}
+                        <a href="register" className="btn btn-link btn-sm">Nie masz konta? Zarejestruj się</a>
+
                     </div>
                 </div>
             </div>
