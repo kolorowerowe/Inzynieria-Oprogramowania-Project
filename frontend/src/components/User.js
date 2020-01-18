@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import "./User.css"
+import {Col, Container, Row} from "react-bootstrap";
+
+let loans=[];
+let specimens=[];
 
 class User extends Component {
     constructor(props) {
@@ -7,7 +11,9 @@ class User extends Component {
         this.user = props.user;
         this.state = {statistic: {}};
         console.log("ctor");
+        this.getSpecimens();
         this.getStatistic();
+        this.getLoanedSpecimens();
     }
 
     getStatistic() {
@@ -24,6 +30,38 @@ class User extends Component {
         .catch(_ => {
             console.log("Error while sending");
         });
+    }
+
+    getLoanedSpecimens() {
+        fetch('/api/users/loaned/'+this.user.id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                loans=data;
+            })
+            .catch(_ => {
+                console.log("Error while sending");
+            });
+    }
+
+    getSpecimens() {
+        fetch('/api/specimens/all', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                specimens=data;
+            })
+            .catch(_ => {
+                console.log("Error while sending");
+            });
     }
 
     render() {
@@ -47,6 +85,27 @@ class User extends Component {
                         Książki w biblioteczce: <strong className="ml-2">{this.state.statistic.specimenCount}</strong><br/>
                         Wypożyczone książki od innych: <strong className="ml-2">{this.state.statistic.loanerCount}</strong>
                     </p>
+                    <Row className="bookRow">
+                        {/*<Col className="searchColSpecimenHeader" md={2}>ID</Col>*/}
+                        <Col className="searchColSpecimenHeader" md={5}>Nazwa</Col>
+                        <Col className="searchColSpecimenHeader" md={3}>DATA ZWROTU</Col>
+                        <Col className="searchColSpecimenHeader" md={3}>ZWROC</Col>
+
+                        {/*<Col className="searchColSpecimenHeader" md={1}>WYDAWNICTWO</Col>*/}
+                        {/*<Col className="searchColSpecimenHeader" md={1}>CZAS WYPOZYCZENIA</Col>*/}
+                        {/*<Col className={"searchColSpecimenHeader"} md={1}>AKCJA</Col>*/}
+                    </Row>
+                    {loans.map((loan) => <Row className="bookRow">
+                        {/*<Col className="searchColSpecimen" md={2}>{specimen.specimen_id}</Col>*/}
+                        <Col className="searchColSpecimen" md={5}>{this.selectInJS(loan)}</Col>
+                        <Col className="searchColSpecimen" md={3}>{loan.date_return}</Col>
+                        <Col className="searchColSpecimen" md={3}>{this.myButton(loan)}</Col>
+
+                        {/*<Col className="searchColSpecimen" md={3}>{loan.publishing_house}</Col>*/}
+                        {/*<Col className="searchColSpecimen" md={2}>{loan.loan_period}</Col>*/}
+                        {/*<Col className={"searchColSpecimen"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Pożycz</button>*/}
+                        {/*</Col>*/}
+                    </Row>)}
 
                     <div>
                         <a href="login.html" className="btn btn-success mt-5">Moje Recenzje i Opinie</a>
@@ -57,6 +116,38 @@ class User extends Component {
         </div>
         );
     }
+
+    myButton(loan) {
+        return <button className={"Button1"} onClick={()=>{this.sendReturnChec(loan)}}>Zwroć</button>
+    }
+
+    sendReturnChec(loan) {
+        fetch('/api/loans/return/'+loan.loan_id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                specimens=data;
+            })
+            .catch(_ => {
+                console.log("Error while sending");
+            });
+    }
+
+    compare(specimen,loan){
+        return (specimen.specimen_id === loan.loan_id);
+    }
+
+    selectInJS(loan) {
+        specimens.filter((specimen)=>{this.compare(specimen,loan)});
+        return specimens[0].title;
+    }
+
+
+
 }
 
 export default User;

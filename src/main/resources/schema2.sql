@@ -1,6 +1,8 @@
 DROP SCHEMA IF EXISTS swapbook CASCADE;
 CREATE SCHEMA IF NOT EXISTS swapbook;
 
+--AVAILABLE, WAIT_FOR_ACCEPT,LOANED,WANT_TO_RETURN, NOT_AVAILABLE
+
 CREATE TABLE swapbook.users (
     id INT PRIMARY KEY,
     name VARCHAR (255) NOT NULL,
@@ -34,6 +36,7 @@ CREATE TABLE swapbook.reviews(
     mark INT NOT NULL CHECK ((mark >= 1) AND ( mark <= 5 )),
     date DATE
 );
+
 
 CREATE TABLE swapbook.specimens(
     specimen_id INT PRIMARY KEY,

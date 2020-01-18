@@ -51,6 +51,11 @@ public class LoanService implements LoanServiceI {
         return loanRepository.save(loan);
     }
 
+    @Override
+    public List<Loan> getLoansToUserActive(int userId) {
+        return loanRepository.findAll().stream().filter(l -> l.getLoaner_id()==userId).filter(l->l.getLoan_status().equals("LOANED")).collect(Collectors.toList());
+    }
+
     public int getNextID() {
         int max = 0;
         List<Loan> loanList = getAllLoans();
