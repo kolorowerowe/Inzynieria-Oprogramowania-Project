@@ -57,10 +57,8 @@ public class LoanApi {
         loan.setOwner_id(sp.getUser_id());
         loan.setPeriod_days(sp.getLoan_period());
         loan.setDate_loan(dateFormat.format(currentDate));
+        loan.setLoan_status("WAIT_FOR_ACCEPT");
         Loan loanResult = loanService.addLoanToList(loan);
-
-        //TODO add to speciment state
-        //
 
         emailService.sendMessage(owner.getEmail(), "Proźba o wypożycznie książki",
                 "<html>" +
@@ -81,9 +79,7 @@ public class LoanApi {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date currentDate = new Date();
 
-        //TODO add to speciment state
-        //
-
+        loan.setLoan_status("LOANED");
         loan.setDate_loan(dateFormat.format(currentDate));
         loanService.addLoanToList(loan);
     }
@@ -94,9 +90,7 @@ public class LoanApi {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date currentDate = new Date();
 
-        //TODO add to speciment state
-        //
-
+        loan.setLoan_status("AVAILABLE");
         loan.setDate_return(dateFormat.format(currentDate));
         loanService.addLoanToList(loan);
     }
@@ -113,8 +107,7 @@ public class LoanApi {
         User owner = userService.getUserById(loan.getOwner_id());
         User loaner = userService.getUserById(loan.getLoaner_id());
 
-        //TODO add to speciment state
-        //
+        loan.setLoan_status("WANT_TO_RETURN");
 
         emailService.sendMessage(owner.getEmail(), "Zwrot książki",
                 "<html>" +
