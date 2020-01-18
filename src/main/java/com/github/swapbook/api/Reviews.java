@@ -32,7 +32,6 @@ public class Reviews {
         return ResponseEntity.ok().body(reviewService.getReviewById(reviev_id));
     }
 
-
     @PostMapping("/api/reviews/put")
     public void createReview(@RequestBody Review review) {
         reviewService.addReview(review);

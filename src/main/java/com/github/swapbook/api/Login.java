@@ -24,7 +24,7 @@ public class Login {
 
     @PostMapping("/api/login")
     @ResponseBody
-    public ResponseEntity<User> createUser(@RequestBody LoginModel loginModel, HttpServletResponse response) {
+    public ResponseEntity<User> loginUser(@RequestBody LoginModel loginModel, HttpServletResponse response) {
         
         User loginUser = userService.getUserByEmail(loginModel.getEmail());
         if(loginUser == null) {
@@ -54,11 +54,10 @@ public class Login {
             else
                 return ResponseEntity.badRequest().body(null);
         }
-
     }
 
     @GetMapping("/api/logout")
-    public void get(HttpServletRequest request, HttpServletResponse response) {
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader(SecurityConstants.TOKEN_HEADER, "Empty");
     }
 }

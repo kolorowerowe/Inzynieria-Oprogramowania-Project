@@ -18,15 +18,9 @@ public class LoanModel
         return userId;
     }
 
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
 
     public int getSpecimenId() {
         return specimenId;
     }
 
-//    public void setSpecimenId(int specimenId) {
-//        this.specimenId = specimenId;
-//    }
 }

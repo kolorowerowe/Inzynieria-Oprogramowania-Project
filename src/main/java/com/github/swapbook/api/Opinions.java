@@ -10,9 +10,13 @@ import java.util.List;
 
 @RestController
 public class Opinions {
+    OpinionService opinionService;
 
     @Autowired
-    OpinionService opinionService;
+    public Opinions(OpinionService opinionService)
+    {
+        this.opinionService = opinionService;
+    }
 
     @GetMapping("/api/opinions/all")
     @ResponseBody
@@ -37,7 +41,6 @@ public class Opinions {
     public ResponseEntity<Opinion> getOpinionById(@PathVariable(value = "id") int reviev_id) {
         return ResponseEntity.ok().body(opinionService.getOpinionById(reviev_id));
     }
-
 
     @PostMapping("/api/opinions/put")
     public void createOpinion(@RequestBody Opinion opinion) {

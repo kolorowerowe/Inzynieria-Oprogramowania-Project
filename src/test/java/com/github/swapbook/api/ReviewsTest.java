@@ -69,10 +69,6 @@ public class ReviewsTest {
     }
 
     @Test
-    public void getReviewsForBook() {
-    }
-
-    @Test
     public void getReviewById() throws Exception {
         List<Review> reviews = new LinkedList<>();
         Review review1 = new Review();

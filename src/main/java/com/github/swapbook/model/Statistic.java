@@ -20,7 +20,7 @@ public class Statistic {
     }
 
     public Statistic(int specCount, int ownerCount, int loanerCount, int writtenOpinionCount, int reviewCount) {
-        this.specimenCount = specimenCount;
+        this.specimenCount = specCount;
         this.ownerCount = ownerCount;
         this.loanerCount = loanerCount;
         this.writtenOpinionCount = writtenOpinionCount;

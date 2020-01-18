@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UserTest {
+public class UsersTest {
 
     private static final int NUMBER_OF_USER_FIELDS = 6;
 

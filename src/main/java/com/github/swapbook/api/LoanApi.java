@@ -28,7 +28,6 @@ public class LoanApi {
     EmailService emailService;
     private static String ApiUrl = "http://localhost:8080";
 
-
     @Autowired
     public LoanApi(UserService userService, LoanService loanService,
                    SpecimenService specimenService, EmailService emailService)
@@ -59,9 +58,6 @@ public class LoanApi {
         loan.setDate_loan(dateFormat.format(currentDate));
         Loan loanResult = loanService.addLoanToList(loan);
 
-        //TODO add to speciment state
-        //
-
         emailService.sendMessage(owner.getEmail(), "Proźba o wypożycznie książki",
                 "<html>" +
                         "<body>Użytkownik " + loaner.getName() +" prosi o wypożycznie ksiązki: " + sp.getTitle()+
@@ -81,9 +77,6 @@ public class LoanApi {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date currentDate = new Date();
 
-        //TODO add to speciment state
-        //
-
         loan.setDate_loan(dateFormat.format(currentDate));
         loanService.addLoanToList(loan);
     }
@@ -93,9 +86,6 @@ public class LoanApi {
         Loan loan = loanService.getLoanById(loanId);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date currentDate = new Date();
-
-        //TODO add to speciment state
-        //
 
         loan.setDate_return(dateFormat.format(currentDate));
         loanService.addLoanToList(loan);
@@ -113,9 +103,6 @@ public class LoanApi {
         User owner = userService.getUserById(loan.getOwner_id());
         User loaner = userService.getUserById(loan.getLoaner_id());
 
-        //TODO add to speciment state
-        //
-
         emailService.sendMessage(owner.getEmail(), "Zwrot książki",
                 "<html>" +
                         "<body>Użytkownik " + loaner.getName() +" chce zwrócić książkę : " + sp.getTitle()+
@@ -128,6 +115,4 @@ public class LoanApi {
 
         return ResponseEntity.ok().body(true);
     }
-
-
 }

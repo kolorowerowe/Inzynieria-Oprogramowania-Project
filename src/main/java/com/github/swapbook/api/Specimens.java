@@ -57,5 +57,4 @@ public class Specimens {
     public void deleteSpecimen(@PathVariable(value = "id") int specimen_id) {
         specimenService.deleteSpecimenById(specimen_id);
     }
-
 }

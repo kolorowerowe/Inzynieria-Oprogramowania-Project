@@ -39,8 +39,6 @@ public class Users {
 
     ReviewService reviewService;
 
-    BookService bookService;
-
     private static String ApiUrl = "http://localhost:8080";
     private static String FrontUrl = "http://localhost:3000";
 
@@ -81,7 +79,7 @@ public class Users {
     @PostMapping("/api/users/put")
     public void createUser(@RequestBody User user) throws MessagingException {
         user.setIsActive(false);
-        emailService.sendMessage(user.getEmail(), "Create user in SwapBook", "<html><body>Confirm Your account. <button><a href=\""+ApiUrl+"/api/users/confirm/"+user.getId()+"\">Confirm</a></button> <h3>Team swapBook</h3></body></html>", true);
+        emailService.sendMessage(user.getEmail(), "Create user in SwapBook", "<html><body>Confirm Your account. <a href=\""+ApiUrl+"/api/users/confirm/"+user.getId()+"\">Confirm</a> <h3>Team swapBook</h3></body></html>", true);
 
         userService.addToList(user);
     }
@@ -97,7 +95,6 @@ public class Users {
     @DeleteMapping("/api/users/{id}")
     public void deleteUser(HttpServletRequest request, @PathVariable(value = "id") int userId) {
         if(userLoginService.VerifyToken(request, userId)) {
-            //userRepository.deleteUserById((userId));
             User user = userService.getUserById(userId);
             user.setIsActive(false);
         }
@@ -114,7 +111,6 @@ public class Users {
 
         Statistic stat = new Statistic(specCount, ownerCount, loanerCount,
                 writtenOpinionCount, reviewCount);
-
 
         return ResponseEntity.ok().body(stat);
     }

@@ -1,6 +1,5 @@
 package com.github.swapbook.repositories.specimens;
 
-
 import com.github.swapbook.model.Book;
 import com.github.swapbook.model.Specimen;
 import com.github.swapbook.repositories.books.BookService;
@@ -38,7 +37,6 @@ public class SpecimenService {
             newBook.setPhoto_url(specimen.getPhoto_url());
             bookService.addBook(newBook);
         }
-
     }
 
     public List<Specimen> getSpecimensWithBookIdEqual(int id){

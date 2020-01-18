@@ -38,7 +38,7 @@ public class LoginTest {
     }
 
     @Test
-    public void getAllUsers_shouldReturnEmptyList() throws Exception {
+    public void loginUser_shouldReturnEmptyList() throws Exception {
         User user1 = new User(1, "test1", "test@test.pl", "haslo", "address");
 
         when(userService.getUserByEmail(user1.getEmail())).thenReturn(user1);

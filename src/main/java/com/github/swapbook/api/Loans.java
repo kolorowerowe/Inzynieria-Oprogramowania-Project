@@ -10,9 +10,13 @@ import java.util.List;
 
 @RestController
 public class Loans {
+    LoanService loanService;
 
     @Autowired
-    LoanService loanService;
+    public Loans(LoanService loanService)
+    {
+        this.loanService = loanService;
+    }
 
     @GetMapping("/api/loans/all")
     @ResponseBody
@@ -53,10 +57,4 @@ public class Loans {
     public void deleteLoan(@PathVariable(value = "id") int loan_id) {
         loanService.deleteLoanById(loan_id);
     }
-
-
-
-
-
-
 }

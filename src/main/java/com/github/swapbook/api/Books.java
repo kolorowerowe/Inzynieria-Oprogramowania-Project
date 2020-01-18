@@ -58,7 +58,6 @@ public class Books {
         } else if (query.getAttribute().equals("author")) {
             searchBookRepository = bookService.searchBooksByAuthor(query.getValue());
         }
-
     }
 
     @DeleteMapping("/api/books/delete/{id}")
@@ -67,13 +66,7 @@ public class Books {
     }
 
     @PostMapping("/api/books/put")
-    public void createSpecimen(@RequestBody Book book) {
+    public void createBook(@RequestBody Book book) {
         bookService.addBook(book);
     }
-
-    @DeleteMapping("/api/books/{id}")
-    public void deleteSpecimen(@PathVariable(value = "id") int book_id) {
-        bookService.deleteBookById(book_id);
-    }
-
 }
