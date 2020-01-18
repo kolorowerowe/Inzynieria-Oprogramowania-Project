@@ -1,7 +1,13 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.email.EmailService;
+import com.github.swapbook.model.Statistic;
 import com.github.swapbook.model.User;
+import com.github.swapbook.repositories.books.BookService;
+import com.github.swapbook.repositories.loans.LoanService;
+import com.github.swapbook.repositories.opinions.OpinionService;
+import com.github.swapbook.repositories.reviews.ReviewService;
+import com.github.swapbook.repositories.specimens.SpecimenService;
 import com.github.swapbook.repositories.users.UserService;
 import com.github.swapbook.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +31,36 @@ public class Users {
 
     EmailService emailService;
 
+    LoanService loanService;
+
+    SpecimenService specimenService;
+
+    OpinionService opinionService;
+
+    ReviewService reviewService;
+
+    BookService bookService;
+
     private static String ApiUrl = "http://localhost:8080";
     private static String FrontUrl = "http://localhost:3000";
 
     @Autowired
     public Users (UserService userService,
-                  UserLoginService userLoginService, EmailService emailService)
+                  UserLoginService userLoginService,
+                  EmailService emailService,
+                  LoanService loanService,
+                  SpecimenService specimenService,
+                  OpinionService opinionService,
+                  ReviewService reviewService,
+                  BookService bookService)
     {
         this.userService = userService;
         this.userLoginService = userLoginService;
         this.emailService = emailService;
+        this.loanService = loanService;
+        this.specimenService = specimenService;
+        this.opinionService = opinionService;
+        this.reviewService = reviewService;
     }
 
     @GetMapping("/api/users/all")
@@ -75,5 +101,21 @@ public class Users {
             User user = userService.getUserById(userId);
             user.setIsActive(false);
         }
+    }
+
+    @GetMapping("/api/users/statistic/{id}")
+    public ResponseEntity<Statistic> getStatisticForUser(@PathVariable(value = "id") int userId) throws URISyntaxException {
+        int specCount = specimenService.getSpecimensForUser(userId).size();
+        int ownerCount = loanService.getLoansFromUser(userId).size();
+        int loanerCount = loanService.getLoansToUser(userId).size();
+
+        int writtenOpinionCount = opinionService.getOpinionsFromUser(userId).size();
+        int reviewCount = reviewService.getReviewsFromUser(userId).size();
+
+        Statistic stat = new Statistic(specCount, ownerCount, loanerCount,
+                writtenOpinionCount, reviewCount);
+
+
+        return ResponseEntity.ok().body(stat);
     }
 }

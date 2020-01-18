@@ -45,6 +45,10 @@ public class SpecimenService {
         return specimenRepository.findAll().stream().filter(s->s.getBook_id()==id).collect(Collectors.toList());
     }
 
+    public List<Specimen> getSpecimensForUser(int id){
+        return specimenRepository.findAll().stream().filter(s->s.getUser_id()==id).collect(Collectors.toList());
+    }
+
     public void deleteSpecimenById(int id) {
         specimenRepository.deleteById(id);
     }

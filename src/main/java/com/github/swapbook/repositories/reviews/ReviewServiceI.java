@@ -1,7 +1,6 @@
 package com.github.swapbook.repositories.reviews;
 
 import com.github.swapbook.model.Review;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +12,5 @@ public interface ReviewServiceI {
     Review getReviewById(int reviev_id);
     void addReview(Review review);
     void deleteReviewById(int reviev_id);
-
+    List<Review> getReviewsFromUser(int id);
 }
