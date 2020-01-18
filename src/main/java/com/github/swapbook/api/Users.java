@@ -1,6 +1,7 @@
 package com.github.swapbook.api;
 
 import com.github.swapbook.email.EmailService;
+import com.github.swapbook.model.Loan;
 import com.github.swapbook.model.Statistic;
 import com.github.swapbook.model.User;
 import com.github.swapbook.repositories.books.BookService;
@@ -117,5 +118,12 @@ public class Users {
 
 
         return ResponseEntity.ok().body(stat);
+    }
+
+    @GetMapping("/api/users/loaned/{id}")
+    public ResponseEntity<List<Loan>> getLoansForUser(@PathVariable(value = "id") int userId) throws URISyntaxException {
+        List<Loan> loaned = loanService.getLoansToUserActive(userId);
+
+        return ResponseEntity.ok().body(loaned);
     }
 }

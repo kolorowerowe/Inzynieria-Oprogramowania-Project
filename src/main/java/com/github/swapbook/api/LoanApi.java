@@ -80,6 +80,7 @@ public class LoanApi {
         Date currentDate = new Date();
 
         loan.setLoan_status("LOANED");
+
         loan.setDate_loan(dateFormat.format(currentDate));
         loanService.addLoanToList(loan);
     }
@@ -91,6 +92,7 @@ public class LoanApi {
         Date currentDate = new Date();
 
         loan.setLoan_status("AVAILABLE");
+
         loan.setDate_return(dateFormat.format(currentDate));
         loanService.addLoanToList(loan);
     }
@@ -107,7 +109,7 @@ public class LoanApi {
         User owner = userService.getUserById(loan.getOwner_id());
         User loaner = userService.getUserById(loan.getLoaner_id());
 
-        loan.setLoan_status("WANT_TO_RETURN");
+        loan.setLoan_status("WAIT_FOR_RETURN");
 
         emailService.sendMessage(owner.getEmail(), "Zwrot książki",
                 "<html>" +

@@ -12,4 +12,5 @@ public interface LoanServiceI {
     Loan getLoanById(int id);
     void deleteLoanById(int id);
     Loan addLoanToList(Loan loan);
+    List<Loan> getLoansToUserActive(int userId);
 }
