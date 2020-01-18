@@ -239,36 +239,36 @@ class Specimen extends Component {
                 </div>
             </div>
 
-                {/*<h2>Add Egzemplarz</h2>*/}
-                {/*Miejsce na dodanie egzemplarza<br/>*/}
-                {/*<Container>*/}
-                {/*    <Row className="specimenRow">*/}
-                {/*        <Col className="specimenColHeader" md={1}>ID</Col>*/}
-                {/*        <Col className="specimenColHeader" md={2}>Title</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>State</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>Num OfPages</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>Author</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>Release Date</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>release Number</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>ISBN</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>Publishing House</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>Rental Time</Col>*/}
-                {/*        <Col className="specimenColHeader" md={1}>Photo</Col>*/}
-                {/*    </Row>*/}
-                {/*    {this.specimens.map((specimen) => <Row className="specimenRow">*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.specimen_id}</Col>*/}
-                {/*        <Col className="specimenCol" md={2}>{specimen.title}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.condition}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.number_pages}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.author}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.release_date}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.issue_number}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.isbn}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.publishing_house}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}>{specimen.loan_period}</Col>*/}
-                {/*        <Col className="specimenCol" md={1}><img className="img-fluid" src = {specimen.photo_url}/></Col>*/}
-                {/*    </Row>)}*/}
-                {/*</Container>*/}
+                <h2>Add Egzemplarz</h2>
+                Miejsce na dodanie egzemplarza<br/>
+                <Container>
+                    <Row className="specimenRow">
+                        <Col className="specimenColHeader" md={1}>ID</Col>
+                        <Col className="specimenColHeader" md={2}>Title</Col>
+                        <Col className="specimenColHeader" md={1}>State</Col>
+                        <Col className="specimenColHeader" md={1}>Num OfPages</Col>
+                        <Col className="specimenColHeader" md={1}>Author</Col>
+                        <Col className="specimenColHeader" md={1}>Release Date</Col>
+                        <Col className="specimenColHeader" md={1}>release Number</Col>
+                        <Col className="specimenColHeader" md={1}>ISBN</Col>
+                        <Col className="specimenColHeader" md={1}>Publishing House</Col>
+                        <Col className="specimenColHeader" md={1}>Rental Time</Col>
+                        <Col className="specimenColHeader" md={1}>Photo</Col>
+                    </Row>
+                    {this.specimens.map((specimen) => <Row className="specimenRow">
+                        <Col className="specimenCol" md={1}>{specimen.specimen_id}</Col>
+                        <Col className="specimenCol" md={2}>{specimen.title}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.condition}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.number_pages}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.author}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.release_date}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.issue_number}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.isbn}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.publishing_house}</Col>
+                        <Col className="specimenCol" md={1}>{specimen.loan_period}</Col>
+                        <Col className="specimenCol" md={1}><img className="img-fluid" src = {specimen.photo_url}/></Col>
+                    </Row>)}
+                </Container>
                 <br/>
                 <h3>Tabela książek</h3>
                 <Container>

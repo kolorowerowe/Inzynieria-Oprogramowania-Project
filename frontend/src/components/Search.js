@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Nav} from 'react-bootstrap';
 import "./Search.css"
+import {getCookie} from "../Functions/CookiesHandler";
 
 const InitialState = {
     attributeValue: "book"
@@ -128,8 +129,9 @@ class Search extends Component {
                         <Container>
                             <Row className="bookRow">
                                 {/*<Col className="searchColBookHeader" md={2}>ID</Col>*/}
-                                <Col className="searchColBookHeader" md={5}>TYTUŁ</Col>
-                                <Col className="searchColBookHeader" md={5}>AUTOR</Col>
+                                <Col className={"searchColBookHeader"} md={2}>ZDJĘCIE</Col>
+                                <Col className="searchColBookHeader" md={4}>TYTUŁ</Col>
+                                <Col className="searchColBookHeader" md={4}>AUTOR</Col>
                                 <Col className={"searchColBookHeader"} md={2}>AKCJA</Col>
                             </Row>
                             {this.books.map((book) => this.foo1(book))}
@@ -150,8 +152,9 @@ class Search extends Component {
                     {/*<Row className={"searchColBookLast"}></Row>*/}
                     <Row className="bookRow">
                         {/*<Col className="choosenOne" md={2}>{book.book_id}</Col>*/}
-                        <Col className="choosenOne" md={5}>{book.title}</Col>
-                        <Col className="choosenOne" md={5}>{"---"}</Col>
+                        <Col className="choosenOne1" md={2}><img className="img-fluid" src = {book.photo_url}/></Col>
+                        <Col className="choosenOne" md={4}>{book.title}</Col>
+                        <Col className="choosenOne" md={4}>{book.author}</Col>
                         <Col className="choosenOne1" md={2}>{<button className={"Button2"} onClick={()=>{this.resetOpenedSpecimen()}}>Zwiń</button>}</Col>
                     </Row>
                     <br/>
@@ -169,8 +172,8 @@ class Search extends Component {
                         <Col className="searchColSpecimen" md={3}>{specimen.release_date}</Col>
                         <Col className="searchColSpecimen" md={3}>{specimen.publishing_house}</Col>
                         <Col className="searchColSpecimen" md={2}>{specimen.loan_period}</Col>
-                        <Col className={"searchColSpecimen"}  md={1}><button className={"Button1"} onClick={()=>{console.log(specimen.specimen_id)}}>Pożycz</button>
-                        </Col>
+                        <Col className={"searchColSpecimen"}  md={1}><button className={"Button1"}  onClick={()=>this.loanTheSpecimen(specimen)}>{this.tekstGuzika(specimen)}</button>
+                    </Col>
                     </Row>)}
                     <Row className={"searchColSpecimenLastRow"}>
                         <Col className="searchColSpecimenLast" md={11}></Col>
@@ -184,12 +187,46 @@ class Search extends Component {
             <Container>
                 <Row className="bookRow">
                     {/*<Col className="searchColBook" md={2}>{book.book_id}</Col>*/}
-                    <Col className="searchColBook" md={5}>{this.shortenTitleTo40(book.title)}</Col>
-                    <Col className="searchColBook" md={5}>{book.author}</Col>
+                    <Col className="searchColBook" md={2}><img className="img-fluid" src = {book.photo_url}/></Col>
+                    <Col className="searchColBook" md={4}>{this.shortenTitleTo40(book.title)}</Col>
+                    <Col className="searchColBook" md={4}>{book.author}</Col>
                     <Col className="searchColBook" md={2}>{<button className={"Button1"} onClick={()=>this.loadBookPage(book.book_id)}>Pokaż</button>}</Col>
                 </Row>
             </Container>
         )
+    }
+
+    is_disabled(specimen) {
+        if(specimen.status=='AVAILABLE') return true;
+        return false;
+    }
+
+
+    loanTheSpecimen(specimen) {
+        if(specimen.status=='AVAILABLE') {
+            console.log(specimen);
+            let post_data ={
+                userId: getCookie("userId"),
+                specimenId: specimen.specimen_id
+            }
+
+            fetch('/api/loans/create', {
+                method: 'POST',
+                body: JSON.stringify(post_data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(
+                    function () {
+                        console.log("Successfully send form data");
+                        // window.location.reload();
+                    }
+                ).catch(function () {
+                console.log("Error while sending")
+            });
+       }
+
     }
 
     shortenTitleTo40(title) {
@@ -224,6 +261,13 @@ class Search extends Component {
             ).catch(function () {
             console.log("Error while sending")
         });
+    }
+
+    tekstGuzika(specimen) {
+        let stan = specimen.status;
+        if(stan=='AVAILABLE') return "Pożycz";
+        return "Niedostępny";
+
     }
 }
 export default Search;

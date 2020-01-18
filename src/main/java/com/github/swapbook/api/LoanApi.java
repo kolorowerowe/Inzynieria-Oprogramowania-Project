@@ -60,7 +60,6 @@ public class LoanApi {
         loan.setLoan_status("WAIT_FOR_ACCEPT");
         Loan loanResult = loanService.addLoanToList(loan);
 
-
         emailService.sendMessage(owner.getEmail(), "Proźba o wypożycznie książki",
                 "<html>" +
                         "<body>Użytkownik " + loaner.getName() +" prosi o wypożycznie ksiązki: " + sp.getTitle()+
