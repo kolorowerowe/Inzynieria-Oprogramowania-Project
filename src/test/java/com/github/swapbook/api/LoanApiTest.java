@@ -58,7 +58,7 @@ public class LoanApiTest {
         List<Loan> list = new LinkedList<Loan>();
         when(loanService.getAllLoans()).thenReturn(list);
 
-        Specimen sp = new Specimen(1,1,2,"title","",100,"", "", "", "", 14, "");
+        Specimen sp = new Specimen(1,1,2,"title","",100,"", "", "", "", 14,"", "");
         when(specimenService.getSpecimenById(1)).thenReturn(sp);
 
         User owner = new User(2, "owner", "owner@gmail.com", "", "");
