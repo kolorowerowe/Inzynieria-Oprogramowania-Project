@@ -55,6 +55,9 @@ public class Specimen {
     private int loan_period;
 
     @Column
+    private String status;
+
+    @Column
     private String photo_url;
 
     public int getSpecimen_id() {
@@ -109,7 +112,6 @@ public class Specimen {
         this.author = author;
     }
 
-
     public String getIssue_number() {
         return issue_number;
     }
@@ -150,7 +152,9 @@ public class Specimen {
         this.publishing_house = publishing_house;
     }
 
+    public String getStatus() {return status;}
 
+    public void setStatus(String status) {this.status = status;}
 
 
     public Specimen() {}
@@ -161,7 +165,7 @@ public class Specimen {
         this.title = title;
     }
 
-    public Specimen(int specimen_id, int book_id, int user_id, String title, String condition, int number_pages, String author, String release_date, String issue_number, String isbn, int loan_period, String photo_url) {
+    public Specimen(int specimen_id, int book_id, int user_id, String title, String condition, int number_pages, String author, String release_date, String issue_number, String isbn, int loan_period, String status, String photo_url) {
         this.specimen_id = specimen_id;
         this.book_id = book_id;
         this.user_id = user_id;
@@ -173,9 +177,9 @@ public class Specimen {
         this.issue_number = issue_number;
         this.isbn = isbn;
         this.loan_period = loan_period;
+        this.status = status;
         this.photo_url = photo_url;
     }
-
 
     @Override
     public boolean equals(Object o) {
