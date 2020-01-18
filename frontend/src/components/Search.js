@@ -206,7 +206,7 @@ class Search extends Component {
         if(specimen.status=='AVAILABLE') {
             console.log(specimen);
             let post_data ={
-                userId: getCookie(getCookie("userId")),
+                userId: getCookie("userId"),
                 specimenId: specimen.specimen_id
             }
 
