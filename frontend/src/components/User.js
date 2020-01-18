@@ -5,6 +5,25 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.user = props.user;
+        this.state = {statistic: {}};
+        console.log("ctor");
+        this.getStatistic();
+    }
+
+    getStatistic() {
+        fetch('/api/users/statistic/'+this.user.id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.setState({statistic: data});
+        })
+        .catch(_ => {
+            console.log("Error while sending");
+        });
     }
 
     render() {
@@ -18,15 +37,15 @@ class User extends Component {
                     <h3>{this.user.name} <small className="text-black-50">{this.user.email}</small></h3>
 
                     <p className="mt-4">
-                        Napisanych recenzji [książek]: <strong className="ml-2">25</strong><br/>
-                        Napisanych opini [o userach]: <strong className="ml-2">10</strong><br/>
-                        Twoja Ocena: <strong className="ml-2">7,5/10</strong>
+                        Napisanych recenzji [książek]: <strong className="ml-2">{this.state.statistic.reviewCount}</strong><br/>
+                        Napisanych opini [o userach]: <strong className="ml-2">{this.state.statistic.writtenOpinionCount}</strong><br/>
+                        {/* Twoja Ocena: <strong className="ml-2">7,5/10</strong> */}
                     </p>
 
                     <p className="my-4">
-                        Wypożyczonych książek: <strong className="ml-2">100</strong><br/>
-                        Książki w biblioteczce: <strong className="ml-2">41</strong><br/>
-                        Wypożyczone książki od innych: <strong className="ml-2">2</strong>
+                        Wypożyczonych książek: <strong className="ml-2">{this.state.statistic.ownerCount}</strong><br/>
+                        Książki w biblioteczce: <strong className="ml-2">{this.state.statistic.specimenCount}</strong><br/>
+                        Wypożyczone książki od innych: <strong className="ml-2">{this.state.statistic.loanerCount}</strong>
                     </p>
 
                     <div>
