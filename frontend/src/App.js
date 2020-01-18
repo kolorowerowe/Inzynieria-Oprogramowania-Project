@@ -32,8 +32,8 @@ class App extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/about">O stronie</Nav.Link>
                             <Nav.Link href="/users">Użytkownicy</Nav.Link>
-                            <Nav.Link href="/register">Rejestracja</Nav.Link>
-                            <Nav.Link href="/user">Login</Nav.Link>
+                            <Nav.Link className="registerNaviBar" href="/register">Rejestracja</Nav.Link>
+                            <Nav.Link className="loginNaviBar" href="/user">Login</Nav.Link>
                             <Nav.Link href="/search">Wyszukaj</Nav.Link>
                             {/*<Nav.Link href="/addbook">Dodaj książke</Nav.Link>*/}
                             <Nav.Link href="/addspecimen">Dodaj egzemplarz & książkę</Nav.Link>
@@ -41,7 +41,7 @@ class App extends Component {
                     </Navbar>
 
                     <div id="container">
-                        <Switch>
+                    <Switch>
                             <Route path="/about">
                                 <About/>
                             </Route>
@@ -66,7 +66,7 @@ class App extends Component {
                             <Route path="/">
                                 <Home/>
                             </Route>
-                        </Switch>
+                    </Switch>
                     </div>
                 </div>
             </Router>

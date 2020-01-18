@@ -53,6 +53,7 @@ CREATE TABLE swapbook.specimens(
     photo_url VARCHAR (255)
 );
 
+
 CREATE TABLE swapbook.loans(
     loan_id INT PRIMARY KEY,
     specimen_id INT REFERENCES swapbook.specimens,

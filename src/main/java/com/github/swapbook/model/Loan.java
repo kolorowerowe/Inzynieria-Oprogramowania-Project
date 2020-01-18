@@ -3,7 +3,6 @@ package com.github.swapbook.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
@@ -28,10 +27,10 @@ public class Loan {
     private String loan_status;
 
     @Column
-    private Date date_loan;
+    private String date_loan;
 
     @Column
-    private Date date_return;
+    private String date_return;
 
     @Column
     private int period_days;
@@ -39,7 +38,7 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(int loan_id, int specimen_id, int owner_id, int loaner_id, String loan_status, Date date_loan, Date date_return, int period_days) {
+    public Loan(int loan_id, int specimen_id, int owner_id, int loaner_id, String loan_status, String date_loan, String date_return, int period_days) {
         this.loan_id = loan_id;
         this.specimen_id = specimen_id;
         this.owner_id = owner_id;
@@ -82,23 +81,27 @@ public class Loan {
         return loan_status;
     }
 
+    public void setLoan_id(int loan_id) {
+        this.loan_id = loan_id;
+    }
+
     public void setLoan_status(String loan_status) {
         this.loan_status = loan_status;
     }
 
-    public Date getDate_loan() {
+    public String getDate_loan() {
         return date_loan;
     }
 
-    public void setDate_loan(Date date_loan) {
+    public void setDate_loan(String date_loan) {
         this.date_loan = date_loan;
     }
 
-    public Date getDate_return() {
+    public String getDate_return() {
         return date_return;
     }
 
-    public void setDate_return(Date date_return) {
+    public void setDate_return(String date_return) {
         this.date_return = date_return;
     }
 

@@ -44,7 +44,22 @@ public class LoanService implements LoanServiceI {
     }
 
     @Override
-    public void addLoanToList(Loan loan) {
-        loanRepository.save(loan);
+    public Loan addLoanToList(Loan loan) {
+        if(loan.getLoan_id() == 0)
+            loan.setLoan_id(getNextID());
+
+        return loanRepository.save(loan);
+    }
+
+    public int getNextID() {
+        int max = 0;
+        List<Loan> loanList = getAllLoans();
+
+        for (Loan loan : loanList) {
+            if (loan.getLoan_id() > max) {
+                max = loan.getLoan_id();
+            }
+        }
+        return max + 1;
     }
 }
